@@ -27,7 +27,7 @@ export default function Card({ data }: { data: ProjectType }) {
           </ul>
           <div className="flex justify-center gap-4 mt-8" data-atropos-offset="4">
             {data.repo && (
-              <a href={data.repo} target="_blank">
+              <a href={data.repo} target="_blank" rel="noreferrer">
                 <div className="flex flex-col items-center">
                   <i className="fa-brands fa-github text-white text-2xl" />
                   <span>Repo</span>
@@ -35,7 +35,7 @@ export default function Card({ data }: { data: ProjectType }) {
               </a>
             )}
             {data.deploy && (
-              <a href={data.deploy} target="_blank">
+              <a href={data.deploy} target="_blank" rel="noreferrer">
                 <div className="flex flex-col items-center">
                   <i className="fa-solid fa-globe text-white text-2xl" />
                   <span>Deploy</span>

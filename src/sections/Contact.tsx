@@ -15,7 +15,7 @@ export default function Contact() {
     <SectionLayout id="contact" className="pb-0">
       <div className="h-full w-80 flex flex-col items-center justify-center mx-auto">
         <form ref={_form} className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
-          <h2 className="text-2xl text-center">Let's talk</h2>
+          <h2 className="text-2xl text-center">Let&apos;s talk</h2>
           <input
             className="bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white"
             type="text"

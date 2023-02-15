@@ -1,9 +1,8 @@
 import Head from 'next/head';
 import Home from '@/sections/Home';
-import Header from '@/sections/Header';
+import Header from '@/components/Header';
 import Skills from '@/sections/Skills';
 import Projects from '@/sections/Projects';
-import 'atropos/css/min';
 import Contact from '@/sections/Contact';
 
 export default function Index() {

@@ -24,7 +24,7 @@ export default function Header() {
     >
       <div className="flex justify-between items-center w-full md:w-fit px-14 z-10">
         <a href="#" className="block h-full">
-          <img src={logo.src} className="object-contain h-11" />
+          <img src={logo.src} alt="Manuel Salvador logo" className="object-contain h-11" />
         </a>
         <span className="md:hidden text-xl" onClick={handleToggleMenu}>
           <i className="fa-solid fa-bars"></i>
@@ -51,6 +51,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <a
             target="_blank"
+            rel="noreferrer"
             href="https://www.linkedin.com/in/manuel-salvador/"
             className="w-10 h-10 flex items-center justify-center border rounded-full p-2 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
           >
@@ -58,6 +59,7 @@ export default function Header() {
           </a>
           <a
             target="_blank"
+            rel="noreferrer"
             href="https://github.com/manuel-salvador"
             className="w-10 h-10 flex items-center justify-center border rounded-full p-1 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
           >
