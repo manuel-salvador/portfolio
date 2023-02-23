@@ -21,9 +21,7 @@ export default function Skills() {
             <h3 className="text-center text-2xl">Back-end</h3>
             <div className="flex justify-center gap-8 flex-wrap">
               {backSkills.map((tech, index) => (
-                <motion.div>
-                  <Skill key={`${tech.name}${index}`} index={index} tech={tech} initialX={100} />
-                </motion.div>
+                <Skill key={`${tech.name}${index}`} index={index} tech={tech} initialX={100} />
               ))}
             </div>
           </div>
