@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import Atropos from 'atropos/react';
 import type { ProjectType } from '@/types';
 
@@ -11,7 +12,18 @@ export default function Card({ data }: { data: ProjectType }) {
   }, []);
 
   return (
-    <div className="md:w-[50%] h-[100%] md:mx-auto cursor-default">
+    <motion.div
+      className="md:w-[50%] h-[100%] md:mx-auto cursor-default"
+      initial={false}
+      whileInView={{
+        scale: [1, 1.2, 1],
+      }}
+      transition={{
+        duration: 1,
+        delay: 1,
+      }}
+      viewport={{ once: true }}
+    >
       <Atropos>
         <div className="tilt-inner flex flex-col md:mx-auto mx-auto h-[100%] border border-slate-600 p-3 md:py-5 md:px-10 rounded-lg bg-slate-700 bg-opacity-60 hover:bg-opacity-70">
           <p data-atropos-offset="4" className="mb-4 text-lg">
@@ -45,6 +57,6 @@ export default function Card({ data }: { data: ProjectType }) {
           </div>
         </div>
       </Atropos>
-    </div>
+    </motion.div>
   );
 }

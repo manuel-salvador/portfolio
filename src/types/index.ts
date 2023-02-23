@@ -5,3 +5,8 @@ export type ProjectType = {
   repo?: string;
   deploy?: string;
 };
+
+export type SkillType = {
+  name: string;
+  imgURL: string;
+};
