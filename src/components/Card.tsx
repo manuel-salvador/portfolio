@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Atropos from 'atropos/react';
 import type { ProjectType } from '@/types';
+import { GitHubIcon, GlobeIcon } from './Icons';
 
 export default function Card({ data }: { data: ProjectType }) {
   const [imageSrc, setImageSrc] = useState<string | undefined>(undefined);
@@ -41,7 +42,9 @@ export default function Card({ data }: { data: ProjectType }) {
             {data.repo && (
               <a href={data.repo} target="_blank" rel="noreferrer">
                 <div className="flex flex-col items-center">
-                  <i className="fa-brands fa-github text-white text-2xl" />
+                  <div className="h-7 w-7">
+                    <GitHubIcon />
+                  </div>
                   <span>Repo</span>
                 </div>
               </a>
@@ -49,7 +52,9 @@ export default function Card({ data }: { data: ProjectType }) {
             {data.deploy && (
               <a href={data.deploy} target="_blank" rel="noreferrer">
                 <div className="flex flex-col items-center">
-                  <i className="fa-solid fa-globe text-white text-2xl" />
+                  <div className="h-7 w-7">
+                    <GlobeIcon />
+                  </div>
                   <span>Deploy</span>
                 </div>
               </a>

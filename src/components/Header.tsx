@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import logo from '@/assets/logo.webp';
+import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './Icons';
 
 const sections: string[] = ['Home', 'Skills', 'Projects'];
 
@@ -19,15 +20,18 @@ export default function Header() {
   return (
     <header
       className={`${
-        menuOpen ? 'w-screen h-screen pt-4 pb-0' : ''
+        menuOpen ? 'h-screen pt-4 pb-0' : ''
       } z-10 flex py-4 gap-4 items-center flex-col md:flex-row md:justify-between fixed w-full bg-gradient-main shadow-xl`}
     >
       <div className="flex justify-between items-center w-full md:w-fit px-14 z-10">
         <a href="#" className="block h-full">
           <img src={logo.src} alt="Manuel Salvador logo" className="object-contain h-11" />
         </a>
-        <span className="md:hidden text-xl" onClick={handleToggleMenu}>
-          <i className="fa-solid fa-bars"></i>
+        <span
+          className="md:hidden text-xl h-7 w-7 flex justify-center items-center"
+          onClick={handleToggleMenu}
+        >
+          {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </span>
       </div>
       <nav
@@ -53,23 +57,23 @@ export default function Header() {
             target="_blank"
             rel="noreferrer"
             href="https://www.linkedin.com/in/manuel-salvador/"
-            className="w-10 h-10 flex items-center justify-center border rounded-full p-2 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
+            className="w-10 h-10 flex items-center justify-center border-2 rounded-full p-2 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
           >
-            <i className="fa-brands fa-linkedin-in text-white text-2xl" />
+            <LinkedInIcon />
           </a>
           <a
             target="_blank"
             rel="noreferrer"
             href="https://github.com/manuel-salvador"
-            className="w-10 h-10 flex items-center justify-center border rounded-full p-1 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
+            className="w-10 h-10 flex items-center justify-center border-2 rounded-full p-1 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
           >
-            <i className="fa-brands fa-github text-white text-3xl" />
+            <GitHubIcon />
           </a>
           <a
             href="mailto:manu.sacr@hotmail.com"
-            className="w-10 h-10 flex items-center justify-center border rounded-full p-2 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
+            className="w-10 h-10 flex items-center justify-center border-2 rounded-full p-2 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
           >
-            <i className="fa-solid fa-envelope text-white text-2xl"></i>
+            <EmailIcon />
           </a>
         </div>
         <a

@@ -1,3 +1,4 @@
+import { ArrowDown } from '@/components/Icons';
 import { once } from 'events';
 import { motion } from 'framer-motion';
 import SectionLayout from '../layouts/SectionLayout';
@@ -35,7 +36,14 @@ export default function Home() {
         href="#skills"
         className="absolute bottom-6 flex items-center justify-center"
       >
-        <i className="fa-solid fa-angles-down text-6xl" />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 3 }}
+          className="w-10 h-10"
+        >
+          <ArrowDown />
+        </motion.div>
       </motion.a>
     </SectionLayout>
   );

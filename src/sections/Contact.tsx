@@ -1,51 +1,129 @@
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import SectionLayout from '../layouts/SectionLayout';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const inputStyle = 'bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white';
 
+const wrapperVariants = {
+  initial: {
+    clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)',
+    transition: { duration: 0.4 },
+  },
+  animate: {
+    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+    transition: { duration: 0.4, staggerChildren: 0.1 },
+  },
+  exit: {
+    clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
+    transition: { duration: 0.4 },
+  },
+};
+
 export default function Contact() {
   const _form = useRef(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [messageSent, setMessageSent] = useState(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(_form.current);
+
+    // console.log(_form.current);
+
+    setLoading(true);
+
+    setTimeout(() => {
+      setMessageSent(true);
+      setLoading(false);
+    }, 2000);
   };
 
   return (
     <SectionLayout id="contact" className="pb-0">
-      <div className="h-full w-80 flex flex-col items-center justify-center mx-auto">
-        <form ref={_form} className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
-          <h2 className="text-2xl text-center">Let&apos;s talk</h2>
-          <input
-            className="bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white"
-            type="text"
-            name="name"
-            placeholder="Name"
-            autoComplete="off"
-          />
-          <input
-            className={inputStyle}
-            type="email"
-            name="email"
-            placeholder="Email"
-            autoComplete="off"
-          />
-          <textarea
-            className={inputStyle}
-            name="message"
-            cols={30}
-            rows={4}
-            placeholder="Message"
-            autoComplete="off"
-          ></textarea>
-          <button
-            type="submit"
-            className="bg-cyan-600 p-2 w-fit self-center rounded-lg hover:shadow-lg hover:shadow-cyan-700 transition-all"
-          >
-            Send message
-          </button>
-        </form>
-      </div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="h-full w-80 flex flex-col items-center justify-center mx-auto"
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {messageSent ? (
+            <motion.div
+              key="sent"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="text-center"
+            >
+              <p>Message sent successfully ✔️</p>
+              <p>Thank you</p>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="form"
+              variants={wrapperVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <form ref={_form} className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
+                <h2 className="text-2xl text-center">Let&apos;s talk</h2>
+                <input
+                  className={inputStyle}
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  autoComplete="off"
+                  required
+                />
+                <input
+                  className={inputStyle}
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  autoComplete="off"
+                  required
+                />
+                <textarea
+                  className={inputStyle}
+                  name="message"
+                  cols={30}
+                  rows={4}
+                  placeholder="Message"
+                  autoComplete="off"
+                  required
+                ></textarea>
+                {loading ? (
+                  <div className="flex justify-center items-center bg-cyan-800 p-2 h-11 w-36 self-center rounded-lg cursor-not-allowed">
+                    <svg
+                      aria-hidden="true"
+                      className="w-6 h-6 mr-2 animate-spin dark:text-cyan-900 fill-cyan-600"
+                      viewBox="0 0 100 101"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                        fill="currentFill"
+                      />
+                    </svg>
+                  </div>
+                ) : (
+                  <button
+                    type="submit"
+                    className="bg-cyan-600 p-2 h-11 w-36 self-center rounded-lg hover:shadow-lg hover:shadow-cyan-700 transition-all"
+                  >
+                    Send message
+                  </button>
+                )}
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </SectionLayout>
   );
 }
