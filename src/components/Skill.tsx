@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+
 import type { SkillType } from '@/types';
 
 type Props = {
@@ -19,11 +21,13 @@ export default function Skill({ index, tech, initialX }: Props) {
       }}
       viewport={{ once: true }}
     >
-      <figure className="w-6 h-6 md:w-8 md:h-8">
-        <img
+      <figure className="w-6 h-6 md:w-8 md:h-8 relative">
+        <Image
           key={`${index}${tech.name}`}
           src={tech.imgURL}
           alt={tech.name}
+          width={32}
+          height={32}
           className="object-contain"
         />
       </figure>

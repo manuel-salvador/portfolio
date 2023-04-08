@@ -18,7 +18,7 @@ export default function Projects() {
       </div>
       <div className="flex justify-center">
         <Link
-          href="/projects"
+          href={'/projects'}
           className=" py-2 px-4 rounded-full bg-white text-black shadow-md shadow-gray-400 border-transparent border-2 font-bold hover:bg-black hover:text-white hover:border-white transition-all"
         >
           More projects ➜

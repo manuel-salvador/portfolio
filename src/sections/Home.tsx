@@ -1,6 +1,8 @@
+import { motion } from 'framer-motion';
+
 import { ArrowDown } from '@/components/Icons';
 import SkillsList from '@/components/SkillsList';
-import { motion } from 'framer-motion';
+
 import SectionLayout from '../layouts/SectionLayout';
 
 export default function Home() {

@@ -38,7 +38,7 @@ export default function Header() {
       >
         <div className="flex justify-between items-center w-full md:w-auto z-10 px-8 md:px-0">
           <Link href="/" className="block relative h-11 w-16">
-            <Image src={logo} alt="Manuel Salvador logo" fill className="object-contain" />
+            <Image src={logo} alt="Manuel Salvador logo" fill className="object-contain" priority />
           </Link>
           <span
             className="md:hidden text-xl h-7 w-7 flex justify-center items-center"
@@ -56,7 +56,7 @@ export default function Header() {
             {pages.map((page, index) => (
               <li key={index}>
                 <Link
-                  href={`/${page.url}`}
+                  href={`${page.url}`}
                   onClick={handleCloseMenu}
                   className="hover:bg-cyan-600 p-2 rounded-md hover:shadow-cyan-700 hover:shadow-lg transition-all"
                 >

@@ -10,7 +10,7 @@ export default function Card({ data }: { data: ProjectType }) {
   return (
     <div className="w-full md:w-[47%] md:max-w-3xl cursor-default">
       <div className="flex flex-col mx-auto h-96 md:h-[27rem] border border-slate-600 p-4 md:p-2 rounded-lg bg-slate-700 bg-opacity-60 hover:bg-opacity-70">
-        <Atropos shadow={false} highlight={false} className="h-full">
+        <Atropos shadow={false} highlight={false} className="h-full" rotateTouch={false}>
           <div className="md:py-2 md:px-8 h-full flex flex-col">
             <p className="mb-4 text-lg">{data.name}</p>
             <figure className="w-full h-full relative" data-atropos-offset="6">
