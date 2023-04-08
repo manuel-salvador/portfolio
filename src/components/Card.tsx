@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Atropos from 'atropos/react';
-import type { ProjectType } from '@/types';
-import { GitHubIcon, GlobeIcon } from './Icons';
 import Image from 'next/image';
+
+import type { ProjectType } from '@/types';
+
+import { GitHubIcon, GlobeIcon } from './Icons';
 
 export default function Card({ data }: { data: ProjectType }) {
   return (
-    <div className="w-full md:w-[47%] md:max-w-3xl md:mx-auto cursor-default">
+    <div className="w-full md:w-[47%] md:max-w-3xl cursor-default">
       <div className="flex flex-col mx-auto h-96 md:h-[27rem] border border-slate-600 p-4 md:p-2 rounded-lg bg-slate-700 bg-opacity-60 hover:bg-opacity-70">
         <Atropos shadow={false} highlight={false} className="h-full">
           <div className="md:py-2 md:px-8 h-full flex flex-col">
