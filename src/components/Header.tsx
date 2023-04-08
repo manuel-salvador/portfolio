@@ -1,7 +1,10 @@
 import { useState } from 'react';
+
 import logo from '/public/logo.webp';
-import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './Icons';
+
 import Image from 'next/image';
+
+import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './Icons';
 
 const sections: string[] = ['Home', 'Projects'];
 
@@ -22,10 +25,10 @@ export default function Header() {
     <header
       className={`${
         menuOpen ? 'h-screen pt-4 pb-0' : ''
-      } z-10 flex items-center flex-col md:flex-row md:justify-between gap-4 py-4 fixed w-full max-w-[1200px] bg-gradient-main shadow-xl`}
+      } z-10 flex items-center flex-col md:flex-row md:justify-between gap-4 py-4 fixed left-0 top-0 w-full max-w-screen-xl backdrop-blur-md backdrop-brightness-75 shadow-xl md:px-10`}
     >
-      <div className="flex justify-between items-center w-full md:w-fit px-14 z-10">
-        <a href="#" className="block relative h-11 w-20">
+      <div className="flex justify-between items-center w-full md:w-auto z-10 px-8 md:px-0">
+        <a href="#home" className="block relative h-11 w-16">
           <Image src={logo} alt="Manuel Salvador logo" fill className="object-contain" />
         </a>
         <span
@@ -38,7 +41,7 @@ export default function Header() {
       <nav
         className={`${
           menuOpen ? 'flex bg-gradient-main z-10 flex-1 overflow-hidden' : 'hidden'
-        } py-4 md:py-0 w-full md:w-fit md:flex flex-col md:flex-row items-center gap-10 text-xl md:text-base px-14 `}
+        } py-4 md:py-0 w-full md:w-fit md:flex flex-col md:flex-row items-center gap-10 text-xl md:text-base`}
       >
         <ul className="flex flex-col md:flex-row items-center gap-4">
           {sections.map((section, index) => (

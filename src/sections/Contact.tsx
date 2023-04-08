@@ -7,16 +7,16 @@ const inputStyle = 'bg-transparent border-b-2 border-cyan-600 outline-none p-2 t
 
 const wrapperVariants = {
   initial: {
-    clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)',
-    transition: { duration: 0.4 },
+    opacity: 0,
+    transition: { duration: 0.3 },
   },
   animate: {
-    clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
-    transition: { duration: 0.4, staggerChildren: 0.1 },
+    opacity: 1,
+    transition: { duration: 0.3 },
   },
   exit: {
-    clipPath: 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
-    transition: { duration: 0.4 },
+    opacity: 0,
+    transition: { duration: 0.3 },
   },
 };
 
@@ -53,7 +53,8 @@ export default function Contact() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className="h-full w-80 flex flex-col items-center justify-center mx-auto"
+        viewport={{ once: true }}
+        className="h-full w-full px-8 max-w-md flex flex-col items-center justify-center mx-auto"
       >
         <AnimatePresence mode="wait" initial={false}>
           {messageSent ? (
@@ -74,8 +75,13 @@ export default function Contact() {
               initial="initial"
               animate="animate"
               exit="exit"
+              className="w-full"
             >
-              <form ref={_form} className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
+              <form
+                ref={_form}
+                className="flex flex-col gap-8 w-full py-4 px-8 rounded-lg border-2 border-cyan-600 shadow-lg shadow-cyan-800"
+                onSubmit={handleSubmit}
+              >
                 <h2 className="text-2xl text-center">Let&apos;s talk</h2>
                 <input
                   className={inputStyle}
