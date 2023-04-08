@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import SectionLayout from '../layouts/SectionLayout';
 import { AnimatePresence, motion } from 'framer-motion';
+
+import SectionLayout from '../layouts/SectionLayout';
 
 const inputStyle = 'bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white';
 
@@ -20,25 +21,34 @@ const wrapperVariants = {
 };
 
 export default function Contact() {
-  const _form = useRef(null);
+  const _form = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [messageSent, setMessageSent] = useState(false);
+  const [messageSent, setMessageSent] = useState<boolean>(false);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    // console.log(_form.current);
-
     setLoading(true);
 
-    setTimeout(() => {
-      setMessageSent(true);
-      setLoading(false);
-    }, 2000);
+    if (_form.current !== null) {
+      const data = Object.fromEntries(new FormData(_form.current));
+      fetch('/api/contact', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      })
+        .then((response) => {
+          if (response.status === 200) {
+            setMessageSent(true);
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   return (
-    <SectionLayout id="contact" className="pb-0">
+    <SectionLayout id="contact">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -91,7 +101,7 @@ export default function Contact() {
                   placeholder="Message"
                   autoComplete="off"
                   required
-                ></textarea>
+                />
                 {loading ? (
                   <div className="flex justify-center items-center bg-cyan-800 p-2 h-11 w-36 self-center rounded-lg cursor-not-allowed">
                     <svg

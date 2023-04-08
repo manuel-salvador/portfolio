@@ -19,7 +19,7 @@ export default function Skill({ index, tech, initialX }: Props) {
       }}
       viewport={{ once: true }}
     >
-      <figure className="w-8 h-8 md:w-12 md:h-12">
+      <figure className="w-6 h-6 md:w-8 md:h-8">
         <img
           key={`${index}${tech.name}`}
           src={tech.imgURL}

@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Home from '@/sections/Home';
 import Header from '@/components/Header';
-import Skills from '@/sections/Skills';
+import Skills from '@/components/SkillsList';
 import Projects from '@/sections/Projects';
 import Contact from '@/sections/Contact';
 
@@ -17,7 +17,6 @@ export default function Index() {
       <main>
         <Header />
         <Home />
-        <Skills />
         <Projects />
         <Contact />
       </main>
