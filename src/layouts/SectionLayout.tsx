@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 type SectionLayoutType = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   id: string;
 };

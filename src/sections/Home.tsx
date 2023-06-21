@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-
 import { ArrowDown } from '@/components/Icons';
 import SkillsList from '@/components/SkillsList';
 
@@ -12,44 +10,22 @@ export default function Home() {
       className="relative h-[80vh] md:h-screen flex flex-col items-center justify-center text-center gap-16 sm:mt-0"
     >
       <div className="flex flex-col gap-8">
-        <motion.h1
-          initial={{ opacity: 0, y: -100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-5xl font-bold tracking-wider"
-        >
+        <h1 className="text-4xl md:text-5xl font-bold tracking-wider animate-fade-down">
           Manuel Salvador
-        </motion.h1>
-        <motion.h2
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-xl md:text-2xl tracking-wide"
-        >
+        </h1>
+        <h2 className="text-xl md:text-2xl tracking-wide animate-fade-up">
           Full-Stack Web Developer
-        </motion.h2>
+        </h2>
       </div>
       <SkillsList />
-      <motion.a
-        initial="initial"
-        animate="visible"
-        variants={{
-          visible: { y: [0, -60, 0] },
-          initial: { y: 0 },
-        }}
-        transition={{ duration: 2, repeat: Infinity }}
-        href="#projects"
-        className="absolute bottom-0 md:bottom-4 flex items-center justify-center"
+      <a
+        href="#aboutMe"
+        className="absolute bottom-0 md:bottom-4 flex items-center justify-center animate-fade w-6 h-6 md:w-10 md:h-10"
       >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 3 }}
-          className="w-6 h-6 md:w-10 md:h-10"
-        >
+        <div className="w-full h-full animate-bounce-more">
           <ArrowDown />
-        </motion.div>
-      </motion.a>
+        </div>
+      </a>
     </SectionLayout>
   );
 }

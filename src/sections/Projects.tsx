@@ -7,7 +7,7 @@ import Card from '../components/Card';
 
 export default function Projects() {
   return (
-    <SectionLayout id="projects" className="pb-0">
+    <SectionLayout id="projects" className="md:py-1 py-4">
       <div className="p-6 flex flex-col gap-4">
         <h2 className="text-2xl">Projects</h2>
         <div className="flex flex-col md:flex-row flex-wrap justify-center gap-8">
@@ -19,7 +19,7 @@ export default function Projects() {
       <div className="flex justify-center">
         <Link
           href={'/projects'}
-          className=" py-2 px-4 rounded-full bg-white text-black shadow-md shadow-gray-400 border-transparent border-2 font-bold hover:bg-black hover:text-white hover:border-white transition-all"
+          className=" py-2 px-4 rounded-full bg-white text-black shadow-md shadow-gray-400 border-transparent border-2 font-bold hover:bg-black hover:text-white hover:border-white transition-all duration-300"
         >
           More projects ➜
         </Link>

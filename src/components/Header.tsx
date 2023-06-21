@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import logo from '/public/logo.webp';
+import logo from '/public/logo.avif';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,6 +16,16 @@ const pages: Pages = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('overflow-hidden');
+      document.body.classList.add('max-h-screen');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+      document.body.classList.remove('max-h-screen');
+    }
+  }, [menuOpen]);
 
   const handleToggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -91,7 +101,7 @@ export default function Header() {
           </div>
           <a
             href="#contact"
-            className="flex items-center p-2 border rounded-md hover:bg-gradient-to-br hover:from-cyan-700 hover:to-cyan-400"
+            className="flex items-center p-2 border rounded-md hover:bg-gradient-to-br hover:from-cyan-700 hover:to-cyan-400 hover:shadow-cyan-700 hover:shadow-lg transition-all"
             onClick={handleCloseMenu}
           >
             Contact me
