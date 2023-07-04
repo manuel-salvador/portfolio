@@ -4,6 +4,7 @@ export type ProjectType = {
   skills: string[];
   repo: string;
   deploy?: string;
+  description: string;
 };
 
 export type SkillType = {

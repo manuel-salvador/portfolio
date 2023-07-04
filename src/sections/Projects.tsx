@@ -10,7 +10,7 @@ export default function Projects() {
     <SectionLayout id="projects" className="md:py-1 py-4">
       <div className="p-6 flex flex-col gap-4">
         <h2 className="text-2xl">Projects</h2>
-        <div className="flex flex-col md:flex-row flex-wrap justify-center gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
           {MainProjects.map((project) => (
             <Card data={project} key={project.name} />
           ))}

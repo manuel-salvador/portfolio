@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Atropos from 'atropos/react';
 import Image from 'next/image';
 
@@ -6,14 +6,18 @@ import type { ProjectType } from '@/types';
 
 import { GitHubIcon, GlobeIcon } from './Icons';
 
-export default function Card({ data }: { data: ProjectType }) {
+type CardProps = {
+  data: ProjectType;
+};
+
+export default function Card({ data }: CardProps) {
   return (
-    <div className="w-full md:w-[47%] md:max-w-3xl cursor-default">
-      <div className="flex flex-col mx-auto h-96 md:h-[27rem] border border-slate-600 p-4 md:p-2 rounded-lg bg-slate-700 bg-opacity-60 hover:bg-opacity-70">
-        <Atropos shadow={false} highlight={false} className="h-full" rotateTouch={false}>
-          <div className="md:py-2 md:px-8 h-full flex flex-col">
-            <p className="mb-4 text-lg">{data.name}</p>
-            <figure className="w-full h-full relative" data-atropos-offset="6">
+    <div className="w-full md:max-w-3xl cursor-default">
+      <div className="flex flex-col gap-1 justify-between mx-auto h-full border border-slate-600 px-4 pb-3 md:px-5 md:py-3  rounded-lg bg-slate-700 bg-opacity-60 hover:bg-opacity-70">
+        <Atropos shadow={false} highlight={false} rotateTouch={false}>
+          <div className="md:px-7 py-3 flex flex-col">
+            <p className="text-lg">{data.name}</p>
+            <figure className="w-full aspect-video relative" data-atropos-offset="6">
               <Image
                 src={data.image}
                 alt={data.name}
@@ -21,13 +25,16 @@ export default function Card({ data }: { data: ProjectType }) {
                 className="w-full h-full object-contain"
               />
             </figure>
-            <ul className="flex gap-2 flex-wrap justify-center mt-2" data-atropos-offset="8">
+            <ul className="flex gap-3 flex-wrap justify-center mt-2" data-atropos-offset="8">
               {data.skills.map((skill, index) => (
-                <li key={`${data.name}${skill}${index}`}>{skill}</li>
+                <li key={`${data.name}${skill}${index}`} className="bg-gray-900 px-2 rounded-full">
+                  {skill}
+                </li>
               ))}
             </ul>
           </div>
         </Atropos>
+        <p className="text-center">{data.description}</p>
         <div className="flex justify-center gap-8 mt-4">
           {data.repo && (
             <a href={data.repo} target="_blank" rel="noreferrer">
