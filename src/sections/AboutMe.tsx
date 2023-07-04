@@ -17,16 +17,15 @@ export default function AboutMe({}: Props) {
           <h2 className="text-2xl mb-4 text-center md:text-left">About me</h2>
           <div className="flex flex-col gap-3">
             <p>
-              I am a full-stack web developer, I am passionate about everything related to
-              technology.
+              As a Full Stack Web Developer, my passion lies in everything related to technology.
             </p>
             <p>
-              I like to learn about new frameworks, technologies, tools and best practices, to give
-              the best of me and that my work is of quality.
+              Exploring new frameworks, technologies, tools and best practices is something I enjoy,
+              as it allows me to deliver high quality work.
             </p>
             <p>
-              I am looking for further development in the IT area and to gain experience that will
-              serve me both professionally and personally.
+              I am looking for further growth in the IT field to gain valuable experience by
+              learning as much as I can and contributing from my knowledge.
             </p>
           </div>
         </div>
