@@ -37,6 +37,8 @@ export default function Contact() {
     }
   };
 
+  console.log(process.env.NODE_ENV);
+
   return (
     <SectionLayout id="contact" className="px-8 pb-16">
       <div
