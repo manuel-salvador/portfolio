@@ -19,7 +19,7 @@ export default function PageLayout({ title, children, className }: Props) {
         <meta property="og:title" content="Manuel Salvador | Full Stack Developer" />
         <meta
           property="og:description"
-          content="¡Bienvenido a mi portfolio! Explora mis proyectos y descubre mi pasión por crear webs innovadoras. Con habilidades en desarrollo web, programación y resolución de problemas, estoy listo para enfrentar nuevos desafíos. ¡Conóceme y descubre cómo puedo aportar valor a tu equipo!"
+          content="Welcome to my portfolio! Explore my projects and discover my passion for creating innovative websites. With skills in web development, programming, and problem-solving, I'm ready to tackle new challenges. Get to know me and find out how I can bring value to your team!"
         />
         <meta property="og:image" content="https://i.imgur.com/vk5Dw1U.png" />
       </Head>
