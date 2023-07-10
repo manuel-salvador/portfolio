@@ -20,6 +20,15 @@ export default function Contact() {
 
     setLoading(true);
 
+    if (!!process.env.NEXT_PUBLIC_PREVIEW_MODE) {
+      setTimeout(() => {
+        setMessageSent(true);
+        setLoading(false);
+      }, 2000);
+
+      return;
+    }
+
     if (_form.current !== null) {
       const data = Object.fromEntries(new FormData(_form.current));
       fetch('/api/contact', {
@@ -36,8 +45,6 @@ export default function Contact() {
         });
     }
   };
-
-  console.log(process.env.NODE_ENV);
 
   return (
     <SectionLayout id="contact" className="px-8 pb-16">
