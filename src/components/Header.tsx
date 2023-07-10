@@ -12,6 +12,7 @@ import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './Icon
 const pages: Pages = [
   { label: 'Home', url: '/' },
   { label: 'Projects', url: '/projects' },
+  { label: 'Links', url: '/links' },
 ];
 
 export default function Header() {
@@ -99,13 +100,13 @@ export default function Header() {
               <EmailIcon />
             </a>
           </div>
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="flex items-center p-2 border rounded-md hover:bg-gradient-to-br hover:from-cyan-700 hover:to-cyan-400 hover:shadow-cyan-700 hover:shadow-lg transition-all"
             onClick={handleCloseMenu}
           >
             Contact me
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

@@ -8,7 +8,7 @@ export const MainProjects: ProjectType[] = [
     repo: 'https://github.com/manuel-salvador/hackathon-tuse',
     deploy: 'https://tuse.vercel.app/',
     description:
-      'A DAO-governed collective voting and investment NFT platform developed at the Think & Dev X Ripio Hackathon.',
+      'The collective DAO voting and investment NFT platform, developed at the Think & Dev X Ripio Hackathon.',
   },
   {
     name: 'Sportsbook | Hackathon Think & Dev 2022',
@@ -28,7 +28,7 @@ export const AllProjects: ProjectType[] = [
     repo: 'https://github.com/manuel-salvador/hackathon-tuse',
     deploy: 'https://tuse.vercel.app/',
     description:
-      'A DAO-governed collective voting and investment NFT platform developed at the Think & Dev X Ripio Hackathon.',
+      'Collective DAO voting and investment NFT platform developed at the Think & Dev X Ripio Hackathon.',
   },
   {
     name: 'Crowdfunding Smart Contract | Platzi Course',

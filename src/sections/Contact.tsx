@@ -75,7 +75,7 @@ export default function Contact() {
           } transition-opacity duration-300 flex flex-col gap-8 w-full`}
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl text-center">Let&apos;s talk</h2>
+          <h2 className="text-3xl text-center">Let&apos;s talk</h2>
           <input
             className={inputStyle}
             type="text"

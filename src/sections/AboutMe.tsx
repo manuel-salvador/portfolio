@@ -14,7 +14,7 @@ export default function AboutMe({}: Props) {
           <Image src={profileImage} fill alt="Profile image" />
         </div>
         <div className="flex-1">
-          <h2 className="text-2xl mb-4 text-center md:text-left">About me</h2>
+          <h2 className="text-3xl mb-4 text-center md:text-left">About me</h2>
           <div className="flex flex-col gap-3">
             <p>
               As a Full Stack Web Developer, my passion lies in everything related to technology.
