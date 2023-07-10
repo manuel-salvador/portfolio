@@ -3,6 +3,7 @@ import { FormEvent, Ref, useRef, useState } from 'react';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import SectionLayout from '@/layouts/SectionLayout';
 import { CheckIcon } from '@/components/Icons';
+import { testContactForm } from '@/pages/utils/testContactForm';
 
 const inputStyle = 'bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white';
 
@@ -11,12 +12,12 @@ export default function Contact() {
   const divRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [messageSent, setMessageSent] = useState<boolean>(false);
+  const [invalidData, setInvalidData] = useState(false);
 
   const [ref, entry] = useIntersectionObserver({ root: divRef, threshold: 0.3 });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setMessageSent(true);
 
     setLoading(true);
 
@@ -31,6 +32,15 @@ export default function Contact() {
 
     if (_form.current !== null) {
       const data = Object.fromEntries(new FormData(_form.current));
+
+      const isCorrectData = testContactForm(data);
+
+      if (!isCorrectData) {
+        setInvalidData(true);
+        setLoading(false);
+        return;
+      }
+
       fetch('/api/contact', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -38,11 +48,19 @@ export default function Contact() {
         .then((response) => {
           if (response.status === 200) {
             setMessageSent(true);
+          } else {
+            setInvalidData(true);
           }
         })
         .finally(() => {
           setLoading(false);
         });
+    }
+  };
+
+  const handleOnChange = () => {
+    if (invalidData) {
+      setInvalidData(false);
     }
   };
 
@@ -83,6 +101,7 @@ export default function Contact() {
             placeholder="Name"
             autoComplete="off"
             required
+            onChange={handleOnChange}
           />
           <input
             className={inputStyle}
@@ -91,6 +110,7 @@ export default function Contact() {
             placeholder="Email"
             autoComplete="off"
             required
+            onChange={handleOnChange}
           />
           <textarea
             className={inputStyle}
@@ -100,12 +120,13 @@ export default function Contact() {
             placeholder="Message"
             autoComplete="off"
             required
+            onChange={handleOnChange}
           />
-          {loading ? (
+          {loading && !invalidData && (
             <div className="flex justify-center items-center bg-cyan-800 p-2 h-11 w-36 self-center rounded-lg cursor-not-allowed">
               <svg
                 aria-hidden="true"
-                className="w-6 h-6 mr-2 animate-spin dark:text-cyan-900 fill-cyan-600"
+                className="w-6 h-6 animate-spin text-cyan-900 fill-cyan-600"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +141,15 @@ export default function Contact() {
                 />
               </svg>
             </div>
-          ) : (
+          )}
+
+          {invalidData && !loading && (
+            <div className="bg-red-100 text-red-800 font-bold text-center px-3 py-1 border-2 border-red-800 self-center w-fit">
+              <small>This form has errors</small>
+            </div>
+          )}
+
+          {!loading && (
             <button
               type="submit"
               className="bg-cyan-600 p-2 h-11 w-36 self-center rounded-lg hover:shadow-lg hover:shadow-cyan-700 transition-all"
