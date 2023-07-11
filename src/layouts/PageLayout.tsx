@@ -23,7 +23,7 @@ export default function PageLayout({ title, children, className }: Props) {
         <meta property="og:title" content={title} />
         <meta
           property="og:description"
-          content="Welcome to my portfolio! Explore my projects and discover my passion for creating innovative websites. With skills in web development, programming, and problem-solving, I'm ready to tackle new challenges. Get to know me and find out how I can bring value to your team!"
+          content="Welcome to my portfolio! Explore my projects and discover my passion for creating innovative websites."
         />
         <meta property="og:image" content="https://i.imgur.com/vk5Dw1U.png" />
         <meta property="og:image:secure_url" content="https://i.imgur.com/vk5Dw1U.png" />
@@ -39,7 +39,7 @@ export default function PageLayout({ title, children, className }: Props) {
         <meta name="twitter:title" content={title} />
         <meta
           name="twitter:description"
-          content="Welcome to my portfolio! Explore my projects and discover my passion for creating innovative websites. With skills in web development, programming, and problem-solving, I'm ready to tackle new challenges. Get to know me and find out how I can bring value to your team!"
+          content="Welcome to my portfolio! Explore my projects and discover my passion for creating innovative websites."
         />
         <meta name="twitter:image" content="https://i.imgur.com/vk5Dw1U.png" />
         <meta name="twitter:creator" content="@manu_svd" />
