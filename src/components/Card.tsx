@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Atropos from 'atropos/react';
 import Image from 'next/image';
 

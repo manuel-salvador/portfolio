@@ -8,8 +8,8 @@ export default function ProjectsPage() {
       <h1 className="text-center font-bold text-3xl mb-10">Projects</h1>
       <div className="grid md:grid-cols-2 gap-8 px-8 md:px-8">
         {AllProjects.map((project) => (
-          <div className="mx-auto h-full w-full">
-            <Card key={project.name} data={project} />
+          <div key={project.name} className="mx-auto h-full w-full">
+            <Card data={project} />
           </div>
         ))}
       </div>
