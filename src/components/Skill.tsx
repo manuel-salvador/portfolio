@@ -26,9 +26,9 @@ export default function Skill({ index, tech, initialX }: Props) {
           key={`${index}${tech.name}`}
           src={tech.imgURL}
           alt={tech.name}
-          width={32}
-          height={32}
-          className="object-contain"
+          fill
+          sizes="10vw"
+          className="object-contain h-auto w-auto"
         />
       </figure>
       <p>{tech.name}</p>

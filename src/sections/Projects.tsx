@@ -12,7 +12,7 @@ export default function Projects() {
         <h2 className="text-3xl text-center mb-8">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
           {MainProjects.map((project) => (
-            <Card data={project} key={project.name} />
+            <Card data={project} key={project.name} lazy={false} />
           ))}
         </div>
       </div>

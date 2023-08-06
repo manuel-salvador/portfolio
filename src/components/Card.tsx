@@ -8,9 +8,10 @@ import { GitHubIcon, GlobeIcon } from './Icons';
 
 type CardProps = {
   data: ProjectType;
+  lazy?: boolean;
 };
 
-export default function Card({ data }: CardProps) {
+export default function Card({ data, lazy = true }: CardProps) {
   return (
     <div className="w-full md:max-w-3xl cursor-default">
       <div className="flex flex-col gap-1 justify-between mx-auto h-full border border-slate-600 px-4 pb-3 md:px-5 md:py-3  rounded-lg bg-slate-700 bg-opacity-60 hover:bg-opacity-70">
@@ -22,7 +23,9 @@ export default function Card({ data }: CardProps) {
                 src={data.image}
                 alt={data.name}
                 fill
-                className="w-full h-full object-contain"
+                className="w-auto h-auto object-contain"
+                priority={lazy}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </figure>
             <ul className="flex gap-3 flex-wrap justify-center mt-2" data-atropos-offset="8">

@@ -11,7 +11,12 @@ export default function AboutMe({}: Props) {
     <SectionLayout id="aboutMe" className="px-8 pb-1">
       <div className="flex flex-col items-center md:flex-row gap-10  mt-8 w-full md:w-4/5 mx-auto">
         <div className="w-[200px] aspect-square rounded-full overflow-hidden relative">
-          <Image src={profileImage} fill alt="Profile image" />
+          <Image
+            src={profileImage}
+            fill
+            alt="Profile image"
+            sizes="(max-width: 1200px) 50vw, 33vw"
+          />
         </div>
         <div className="flex-1">
           <h2 className="text-3xl mb-4 text-center md:text-left">About me</h2>

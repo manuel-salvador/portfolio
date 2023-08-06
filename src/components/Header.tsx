@@ -48,8 +48,15 @@ export default function Header() {
         } w-full max-w-screen-xl mx-auto flex items-center flex-col md:flex-row md:justify-between gap-4 py-4 md:px-10`}
       >
         <div className="flex justify-between items-center w-full md:w-auto z-10 px-8 md:px-0">
-          <Link href="/" className="block relative h-11 w-16">
-            <Image src={logo} alt="Manuel Salvador logo" fill className="object-contain" priority />
+          <Link href="/" className="block relative h-11 w-16" as={'image'}>
+            <Image
+              src={logo}
+              alt="Manuel Salvador logo"
+              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 30vw, 15vw"
+              fill
+              className="object-contain"
+              priority
+            />
           </Link>
           <span
             className="md:hidden text-xl h-7 w-7 flex justify-center items-center"
