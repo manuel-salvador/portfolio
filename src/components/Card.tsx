@@ -13,10 +13,10 @@ type CardProps = {
 
 export default function Card({ data, lazy = true }: CardProps) {
   return (
-    <div className="w-full md:max-w-3xl cursor-default">
+    <div className="w-full cursor-default h-full">
       <div className="flex flex-col gap-1 justify-between mx-auto h-full border border-slate-600 px-4 pb-3 md:px-5 md:py-3  rounded-lg bg-slate-700 bg-opacity-60 hover:bg-opacity-70">
         <Atropos shadow={false} highlight={false} rotateTouch={false}>
-          <div className="md:px-7 py-3 flex flex-col">
+          <div className="lg:px-7 py-3 flex flex-col">
             <p className="text-lg">{data.name}</p>
             <figure className="w-full aspect-video relative" data-atropos-offset="6">
               <Image

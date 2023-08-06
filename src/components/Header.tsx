@@ -12,7 +12,7 @@ import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './Icon
 const pages: Pages = [
   { label: 'Home', url: '/' },
   { label: 'Projects', url: '/projects' },
-  { label: 'Links', url: '/links' },
+  { label: 'Curriculum', url: '/curriculum' },
 ];
 
 export default function Header() {
@@ -40,12 +40,16 @@ export default function Header() {
 
   return (
     <header
-      className={`z-10 fixed left-0 top-0 w-full backdrop-blur-md backdrop-brightness-75 shadow-xl`}
+      className={`z-10 fixed left-0 top-0 w-full shadow-xl ${
+        menuOpen
+          ? 'backdrop-brightness-50 backdrop-blur-lg'
+          : 'backdrop-brightness-75 backdrop-blur-md'
+      }`}
     >
       <div
         className={`${
-          menuOpen ? 'h-screen pt-4 pb-0' : ''
-        } w-full max-w-screen-xl mx-auto flex items-center flex-col md:flex-row md:justify-between gap-4 py-4 md:px-10`}
+          menuOpen ? 'h-screen pt-4 pb-0 gap-4' : 'gap-0'
+        } w-screen max-w-screen-xl mx-auto flex items-center flex-col md:flex-row md:justify-between md:gap-4 py-4 md:px-10`}
       >
         <div className="flex justify-between items-center w-full md:w-auto z-10 px-8 md:px-0">
           <Link href="/" className="block relative h-11 w-16" as={'image'}>
@@ -67,8 +71,10 @@ export default function Header() {
         </div>
         <nav
           className={`${
-            menuOpen ? 'flex bg-gradient-main z-10 flex-1 overflow-hidden' : 'hidden'
-          } py-4 md:py-0 w-full md:w-fit md:flex flex-col md:flex-row items-center gap-10 text-xl md:text-base`}
+            menuOpen
+              ? 'z-10 left-0 opacity-100 py-4'
+              : 'left-full md:left-0 opacity-0 md:opacity-100 h-0 md:h-auto'
+          } relative overflow-hidden md:py-0 w-full md:w-fit flex flex-col md:flex-row items-center gap-10 text-xl md:text-base transition-all duration-300`}
         >
           <ul className="flex flex-col md:flex-row items-center gap-4">
             {pages.map((page, index) => (
