@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import logo from '/public/logo.avif';
+import logo from '/public/logo.webp';
 
 import Image from 'next/image';
 import Link from 'next/link';

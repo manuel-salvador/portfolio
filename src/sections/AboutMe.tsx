@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import profileImage from '/public/profile-image.avif';
+import profileImage from '/public/profile-image.webp';
 
 import SectionLayout from '@/layouts/SectionLayout';
 

@@ -3,7 +3,7 @@ import { ProjectType } from '@/types';
 export const MainProjects: ProjectType[] = [
   {
     name: 'Tuse | Hackathon Think & Dev 2.0 2023',
-    image: '/projects/Tuse.avif',
+    image: '/projects/Tuse.webp',
     skills: ['TypeScript', 'Next.js', 'Tailwind', 'Solidity', 'ethers.js', 'wagmi'],
     repo: 'https://github.com/manuel-salvador/hackathon-tuse',
     deploy: 'https://tuse.vercel.app/',
@@ -12,7 +12,7 @@ export const MainProjects: ProjectType[] = [
   },
   {
     name: 'Sportsbook | Hackathon Think & Dev 2022',
-    image: '/projects/Sportsbook.avif',
+    image: '/projects/Sportsbook.webp',
     skills: ['React', 'Tailwind', 'Solidity', 'ethers.js', 'wagmi'],
     repo: 'https://github.com/manuel-salvador/hackaton-think-and-dev-gol-2022',
     description:
@@ -23,7 +23,7 @@ export const MainProjects: ProjectType[] = [
 export const AllProjects: ProjectType[] = [
   {
     name: 'Tuse | Hackathon Think & Dev 2.0 2023',
-    image: '/projects/Tuse.avif',
+    image: '/projects/Tuse.webp',
     skills: ['Next.js', 'TypeScript', 'Tailwind', 'Solidity', 'ethers.js', 'wagmi'],
     repo: 'https://github.com/manuel-salvador/hackathon-tuse',
     deploy: 'https://tuse.vercel.app/',
@@ -32,7 +32,7 @@ export const AllProjects: ProjectType[] = [
   },
   {
     name: 'Crowdfunding Smart Contract | Platzi Course',
-    image: '/projects/crowdfunding-contract.avif',
+    image: '/projects/crowdfunding-contract.webp',
     skills: ['Solidity', 'Hardhat', 'TypeScript'],
     repo: 'https://github.com/manuel-salvador/crowdfunding-solidity',
     description:
@@ -40,7 +40,7 @@ export const AllProjects: ProjectType[] = [
   },
   {
     name: 'Create-manu-app | npm CLI package ',
-    image: '/projects/create-manu-app.avif',
+    image: '/projects/create-manu-app.webp',
     skills: ['Node'],
     repo: 'https://github.com/manuel-salvador/create-manu-app',
     deploy: 'https://www.npmjs.com/package/create-manu-app',
@@ -49,21 +49,21 @@ export const AllProjects: ProjectType[] = [
   },
   {
     name: 'Personal Blog | Notion as CMS',
-    image: '/projects/personal-blog.avif',
+    image: '/projects/personal-blog.webp',
     skills: ['Next.js', 'TypeScript', 'Tailwind', 'NotionAPI'],
     repo: 'https://github.com/manuel-salvador/personal-blog',
     description: 'Personal blog using Notion API as database',
   },
   {
     name: 'Streaming Service',
-    image: '/projects/streaming-service.avif',
+    image: '/projects/streaming-service.webp',
     skills: ['Next', 'TypeScript', 'Tailwind', 'Axios', 'TMDB-API'],
     repo: 'https://github.com/manuel-salvador/streaming-service-practice',
     description: 'A landing page showing the catalog of movies consuming the IMDb api ',
   },
   {
     name: 'Sportsbook | Hackathon Think & Dev 2022',
-    image: '/projects/Sportsbook.avif',
+    image: '/projects/Sportsbook.webp',
     skills: ['Next.js', 'Tailwind', 'Solidity', 'ethers.js', 'wagmi'],
     repo: 'https://github.com/manuel-salvador/hackaton-think-and-dev-gol-2022',
     description:
@@ -71,7 +71,7 @@ export const AllProjects: ProjectType[] = [
   },
   {
     name: 'Simple Portfolio',
-    image: '/projects/simple-portfolio.avif',
+    image: '/projects/simple-portfolio.webp',
     skills: ['HTML', 'CSS', 'JavaScript'],
     repo: 'https://github.com/manuel-salvador/simple-portfolio',
     deploy: 'https://manuel-salvador.github.io/simple-portfolio/',
