@@ -4,9 +4,7 @@ import profileImage from '/public/profile-image.webp';
 
 import SectionLayout from '@/layouts/SectionLayout';
 
-type Props = {};
-
-export default function AboutMe({}: Props) {
+export default function AboutMe() {
   return (
     <SectionLayout id="aboutMe" className="px-8 pb-1">
       <div className="flex flex-col items-center md:flex-row gap-10  mt-8 w-full md:w-4/5 mx-auto">

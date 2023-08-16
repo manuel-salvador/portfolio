@@ -1,12 +1,8 @@
-import React from 'react';
-
 import { LinkedInIcon, GitHubIcon, EmailIcon } from './Icons';
 
-type Props = {};
-
-export default function Footer({}: Props) {
+export default function Footer() {
   return (
-    <footer className="flex items-center justify-center gap-4 pb-16 md:hidden">
+    <footer className="flex items-center justify-center gap-4 pb-10 md:hidden">
       <a
         target="_blank"
         rel="noreferrer"

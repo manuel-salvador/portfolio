@@ -12,7 +12,7 @@ import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './Icon
 const pages: Pages = [
   { label: 'Home', url: '/' },
   { label: 'Projects', url: '/projects' },
-  { label: 'Curriculum', url: '/curriculum' },
+  { label: 'CV', url: '/curriculum' },
 ];
 
 export default function Header() {
