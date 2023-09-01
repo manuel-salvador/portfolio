@@ -4,15 +4,29 @@ import Contact from '@/sections/Contact';
 import PageLayout from '@/layouts/PageLayout';
 import Footer from '@/components/Footer';
 import AboutMe from '@/sections/AboutMe';
+import { api } from '@/services/api';
+import { ProjectType } from '@/types';
 
-export default function Index() {
+type Props = { projects: ProjectType[] };
+
+export default function Index({ projects }: Props) {
   return (
     <PageLayout title="Manuel Salvador | Portfolio">
       <Home />
       <AboutMe />
-      <Projects />
+      <Projects projects={projects} />
       <Contact />
       <Footer />
     </PageLayout>
   );
+}
+
+export async function getStaticProps() {
+  const projects = await api.mainProjects.list();
+
+  return {
+    props: {
+      projects,
+    },
+  };
 }

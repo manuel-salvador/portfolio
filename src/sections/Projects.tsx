@@ -1,17 +1,18 @@
 import Link from 'next/link';
 
-import { MainProjects } from '@/constants/projects';
+import { ProjectType } from '@/types';
+import SectionLayout from '@/layouts/SectionLayout';
+import Card from '@/components/Card';
 
-import SectionLayout from '../layouts/SectionLayout';
-import Card from '../components/Card';
+type Props = { projects: ProjectType[] };
 
-export default function Projects() {
+export default function Projects({ projects }: Props) {
   return (
     <SectionLayout id="projects" className="md:py-1 py-4">
       <div className="p-6 flex flex-col gap-4">
         <h2 className="text-3xl text-center mb-8">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
-          {MainProjects.map((project) => (
+          {projects.map((project) => (
             <Card data={project} key={project.name} lazy={false} />
           ))}
         </div>

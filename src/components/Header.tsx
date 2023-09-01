@@ -52,7 +52,7 @@ export default function Header() {
         } w-screen max-w-screen-xl mx-auto flex items-center flex-col md:flex-row md:justify-between md:gap-4 py-4 md:px-10`}
       >
         <div className="flex justify-between items-center w-full md:w-auto z-10 px-8 md:px-0">
-          <Link href="/" className="block relative h-11 w-16" as={'image'}>
+          <Link href="/" className="block relative h-11 w-16">
             <Image
               src={logo}
               alt="Manuel Salvador logo"
