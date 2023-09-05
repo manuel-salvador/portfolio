@@ -11,7 +11,7 @@ export default function CurriculumPage() {
 
 const links = [
   {
-    path: 'https://drive.google.com/file/d/14MA2oaqxlnZZlxGC4mjAdC1FDNNn3sWL/view?usp=sharing',
+    path: 'https://drive.google.com/file/d/1doXfhTLj7ZhPxEqfjIdcCXqn161fp8l6/view?usp=sharing',
     slug: 'See Resume - EN',
   },
   {
