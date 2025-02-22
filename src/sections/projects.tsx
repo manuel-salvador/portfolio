@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { ProjectType } from '@/types';
-import SectionLayout from '@/layouts/SectionLayout';
 import Card from '@/components/card';
+import SectionLayout from '@/layouts/section-layout';
+import { ProjectType } from '@/types';
 
 type Props = { projects: ProjectType[] };
 

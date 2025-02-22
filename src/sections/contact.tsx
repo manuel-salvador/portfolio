@@ -3,9 +3,9 @@
 import { FormEvent, Ref, useRef, useState } from 'react';
 
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import SectionLayout from '@/layouts/SectionLayout';
 import { CheckIcon } from '@/components/icons';
 import { testContactForm } from '@/utils/testContactForm';
+import SectionLayout from '@/layouts/section-layout';
 
 const inputStyle = 'bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white';
 

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
+import SectionLayout from '@/layouts/section-layout';
 import profileImage from 'public/profile-image.webp';
-import SectionLayout from '@/layouts/SectionLayout';
 
 export default function AboutMe() {
   return (
