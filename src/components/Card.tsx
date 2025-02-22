@@ -14,24 +14,24 @@ type CardProps = {
 
 export default function Card({ data, lazy = true }: CardProps) {
   return (
-    <div className="w-full cursor-default h-full">
-      <div className="flex flex-col gap-1 justify-between mx-auto h-full border border-slate-600 px-4 pb-3 md:px-5 md:py-3  rounded-lg bg-slate-700 bg-opacity-60 hover:bg-opacity-70">
+    <div className="h-full w-full cursor-default">
+      <div className="mx-auto flex h-full flex-col justify-between gap-1 rounded-lg border border-slate-600 bg-slate-700 bg-opacity-60 px-4 pb-3 hover:bg-opacity-70 md:px-5 md:py-3">
         <Atropos shadow={false} highlight={false} rotateTouch={false}>
-          <div className="lg:px-7 py-3 flex flex-col">
+          <div className="flex flex-col py-3 lg:px-7">
             <p className="text-lg">{data.name}</p>
-            <figure className="w-full aspect-video relative" data-atropos-offset="6">
+            <figure className="relative aspect-video w-full" data-atropos-offset="6">
               <Image
                 src={data.image}
                 alt={data.name}
                 fill
-                className="w-auto h-auto object-contain"
+                className="h-auto w-auto object-contain"
                 priority={lazy}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </figure>
-            <ul className="flex gap-3 flex-wrap justify-center mt-2" data-atropos-offset="8">
+            <ul className="mt-2 flex flex-wrap justify-center gap-3" data-atropos-offset="8">
               {data.skills.map((skill, index) => (
-                <li key={`${data.name}${skill}${index}`} className="bg-gray-900 px-2 rounded-full">
+                <li key={`${data.name}${skill}${index}`} className="rounded-full bg-gray-900 px-2">
                   {skill}
                 </li>
               ))}
@@ -39,7 +39,7 @@ export default function Card({ data, lazy = true }: CardProps) {
           </div>
         </Atropos>
         <p className="text-center">{data.description}</p>
-        <div className="flex justify-center gap-8 mt-4">
+        <div className="mt-4 flex justify-center gap-8">
           {data.repo && (
             <a href={data.repo} target="_blank" rel="noreferrer">
               <div className="flex flex-col items-center">

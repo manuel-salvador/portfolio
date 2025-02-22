@@ -4,7 +4,7 @@ import LinksList from '@/components/links-list';
 
 export const metadata: Metadata = {
   title: 'CV/Resume',
-  description: 'See my CV/Resume',
+  description: 'See my CV/Resume'
 };
 
 export default function CurriculumPage() {
@@ -14,10 +14,10 @@ export default function CurriculumPage() {
 const links = [
   {
     path: 'https://drive.google.com/file/d/1doXfhTLj7ZhPxEqfjIdcCXqn161fp8l6/view?usp=sharing',
-    slug: 'See Resume - EN',
+    slug: 'See Resume - EN'
   },
   {
     path: 'https://drive.google.com/file/d/12vRYRj1Cpe6gGiTbLlDJbRp-zwioCOz4/view?usp=sharing',
-    slug: 'Ver CV - ES',
-  },
+    slug: 'Ver CV - ES'
+  }
 ];

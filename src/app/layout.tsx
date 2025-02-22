@@ -20,11 +20,11 @@ const TWITTER_HANDLE = '@manu_svd';
 export const metadata: Metadata = {
   title: {
     default: SITE_NAME,
-    template: 'Manuel Salvador | %s',
+    template: 'Manuel Salvador | %s'
   },
   description: SITE_DESCRIPTION,
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.ico'
   },
   metadataBase: new URL(SITE_URL),
   openGraph: {
@@ -37,18 +37,18 @@ export const metadata: Metadata = {
         url: SITE_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'manuelSalvador',
-      },
+        alt: 'manuelSalvador'
+      }
     ],
-    type: 'website',
+    type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     creator: TWITTER_HANDLE,
-    images: [SITE_IMAGE],
-  },
+    images: [SITE_IMAGE]
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <Header />
-        <main className="min-h-screen bg-background antialiased">{children}</main>
+        <main className="bg-background min-h-screen antialiased">{children}</main>
         <Footer />
       </body>
     </html>

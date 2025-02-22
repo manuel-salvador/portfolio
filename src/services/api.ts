@@ -16,12 +16,12 @@ export const api = {
             const normalized = normalizeApiData(result.data);
             resolve(normalized);
           },
-          error: reject,
+          error: reject
         });
       });
 
       return data;
-    },
+    }
   },
   mainProjects: {
     list: async () => {
@@ -35,11 +35,11 @@ export const api = {
             const normalized = normalizeApiData(result.data);
             resolve(normalized);
           },
-          error: reject,
+          error: reject
         });
       });
 
       return data;
-    },
-  },
+    }
+  }
 };

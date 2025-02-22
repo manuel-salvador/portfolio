@@ -5,22 +5,22 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'seeklogo.com',
+        hostname: 'seeklogo.com'
       },
       {
         protocol: 'https',
-        hostname: 'assets.website-files.com',
+        hostname: 'assets.website-files.com'
       },
       {
         protocol: 'https',
-        hostname: 'cdn.cdnlogo.com',
+        hostname: 'cdn.cdnlogo.com'
       },
       {
         protocol: 'https',
-        hostname: 'i.ibb.co',
-      },
-    ],
-  },
+        hostname: 'i.ibb.co'
+      }
+    ]
+  }
 };
 
 module.exports = nextConfig;

@@ -12,7 +12,7 @@ import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './icon
 const pages: Pages = [
   { label: 'Home', url: '/' },
   { label: 'Projects', url: '/projects' },
-  { label: 'CV', url: '/curriculum' },
+  { label: 'CV', url: '/curriculum' }
 ];
 
 export default function Header() {
@@ -40,19 +40,19 @@ export default function Header() {
 
   return (
     <header
-      className={`z-10 fixed left-0 top-0 w-full shadow-xl ${
+      className={`fixed left-0 top-0 z-10 w-full shadow-xl ${
         menuOpen
-          ? 'backdrop-brightness-50 backdrop-blur-lg'
-          : 'backdrop-brightness-75 backdrop-blur-md'
+          ? 'backdrop-blur-lg backdrop-brightness-50'
+          : 'backdrop-blur-md backdrop-brightness-75'
       }`}
     >
       <div
         className={`${
-          menuOpen ? 'h-screen pt-4 pb-0 gap-4' : 'gap-0'
-        } w-screen max-w-screen-xl mx-auto flex items-center flex-col md:flex-row md:justify-between md:gap-4 py-4 md:px-10`}
+          menuOpen ? 'h-screen gap-4 pb-0 pt-4' : 'gap-0'
+        } mx-auto flex w-screen max-w-screen-xl flex-col items-center py-4 md:flex-row md:justify-between md:gap-4 md:px-10`}
       >
-        <div className="flex justify-between items-center w-full md:w-auto z-10 px-8 md:px-0">
-          <Link href="/" className="block relative h-11 w-16">
+        <div className="z-10 flex w-full items-center justify-between px-8 md:w-auto md:px-0">
+          <Link href="/" className="relative block h-11 w-16">
             <Image
               src={logo}
               alt="Manuel Salvador logo"
@@ -63,7 +63,7 @@ export default function Header() {
             />
           </Link>
           <span
-            className="md:hidden text-xl h-7 w-7 flex justify-center items-center"
+            className="flex h-7 w-7 items-center justify-center text-xl md:hidden"
             onClick={handleToggleMenu}
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
@@ -72,17 +72,17 @@ export default function Header() {
         <nav
           className={`${
             menuOpen
-              ? 'z-10 left-0 opacity-100 py-4'
-              : 'left-full md:left-0 opacity-0 md:opacity-100 h-0 md:h-auto'
-          } relative overflow-hidden md:py-0 w-full md:w-fit flex flex-col md:flex-row items-center gap-10 text-xl md:text-base transition-all duration-300`}
+              ? 'left-0 z-10 py-4 opacity-100'
+              : 'left-full h-0 opacity-0 md:left-0 md:h-auto md:opacity-100'
+          } relative flex w-full flex-col items-center gap-10 overflow-hidden text-xl transition-all duration-300 md:w-fit md:flex-row md:py-0 md:text-base`}
         >
-          <ul className="flex flex-col md:flex-row items-center gap-4">
+          <ul className="flex flex-col items-center gap-4 md:flex-row">
             {pages.map((page, index) => (
               <li key={index}>
                 <Link
                   href={`${page.url}`}
                   onClick={handleCloseMenu}
-                  className="hover:bg-cyan-600 p-2 rounded-md hover:shadow-cyan-700 hover:shadow-lg transition-all"
+                  className="rounded-md p-2 transition-all hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700"
                 >
                   {page.label}
                 </Link>
@@ -94,7 +94,7 @@ export default function Header() {
               target="_blank"
               rel="noreferrer"
               href="https://www.linkedin.com/in/manuel-salvador/"
-              className="w-10 h-10 flex items-center justify-center border-2 rounded-full p-2 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
+              className="flex h-10 w-10 items-center justify-center rounded-full border-2 bg-slate-800 p-2 transition-all hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700"
             >
               <LinkedInIcon />
             </a>
@@ -102,20 +102,20 @@ export default function Header() {
               target="_blank"
               rel="noreferrer"
               href="https://github.com/manuel-salvador"
-              className="w-10 h-10 flex items-center justify-center border-2 rounded-full p-1 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
+              className="flex h-10 w-10 items-center justify-center rounded-full border-2 bg-slate-800 p-1 transition-all hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700"
             >
               <GitHubIcon />
             </a>
             <a
               href="mailto:manu.sacr@hotmail.com"
-              className="w-10 h-10 flex items-center justify-center border-2 rounded-full p-2 bg-slate-800 hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700 transition-all"
+              className="flex h-10 w-10 items-center justify-center rounded-full border-2 bg-slate-800 p-2 transition-all hover:bg-cyan-600 hover:shadow-lg hover:shadow-cyan-700"
             >
               <EmailIcon />
             </a>
           </div>
           <Link
             href="/#contact"
-            className="flex items-center p-2 border rounded-md hover:bg-gradient-to-br hover:from-cyan-700 hover:to-cyan-400 hover:shadow-cyan-700 hover:shadow-lg transition-all"
+            className="flex items-center rounded-md border p-2 transition-all hover:bg-gradient-to-br hover:from-cyan-700 hover:to-cyan-400 hover:shadow-lg hover:shadow-cyan-700"
             onClick={handleCloseMenu}
           >
             Contact me

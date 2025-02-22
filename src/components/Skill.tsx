@@ -18,11 +18,11 @@ export default function Skill({ index, tech, initialX }: Props) {
       initial={{ x: initialX, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       transition={{
-        delay: index / 3 + 0.5,
+        delay: index / 3 + 0.5
       }}
       viewport={{ once: true }}
     >
-      <div className="w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">{tech.icon}</div>
+      <div className="flex h-6 w-6 items-center justify-center md:h-8 md:w-8">{tech.icon}</div>
       <p>{tech.name}</p>
     </motion.div>
   );

@@ -5,14 +5,14 @@ type Props = {
 
 export default function LinksList({ title, links }: Props) {
   return (
-    <div className="min-h-[calc(100vh-5rem)] mt-20 w-full flex flex-col gap-8 justify-center items-center px-4 pb-10">
-      <h1 className="font-bold text-2xl text-center">{title}</h1>
-      <ul className="flex flex-col gap-4 w-full max-w-xs">
+    <div className="mt-20 flex min-h-[calc(100vh-5rem)] w-full flex-col items-center justify-center gap-8 px-4 pb-10">
+      <h1 className="text-center text-2xl font-bold">{title}</h1>
+      <ul className="flex w-full max-w-xs flex-col gap-4">
         {links.map((link) => (
           <li key={link.slug}>
             <a
               href={`${link.path}`}
-              className="block text-center w-full border-2 border-gray-200 p-2 rounded-md cursor-pointer hover:shadow-md hover:shadow-gray-400 transition-all duration-300 text-lg hover:scale-105"
+              className="block w-full cursor-pointer rounded-md border-2 border-gray-200 p-2 text-center text-lg transition-all duration-300 hover:scale-105 hover:shadow-md hover:shadow-gray-400"
               target="_blank"
             >
               {link.slug}

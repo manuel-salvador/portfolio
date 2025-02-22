@@ -6,8 +6,8 @@ import SectionLayout from '@/layouts/SectionLayout';
 export default function AboutMe() {
   return (
     <SectionLayout id="aboutMe" className="px-8 pb-1">
-      <div className="flex flex-col items-center md:flex-row gap-10  mt-8 w-full md:w-4/5 mx-auto">
-        <div className="w-[200px] aspect-square rounded-full overflow-hidden relative">
+      <div className="mx-auto mt-8 flex w-full flex-col items-center gap-10 md:w-4/5 md:flex-row">
+        <div className="relative aspect-square w-[200px] overflow-hidden rounded-full">
           <Image
             src={profileImage}
             fill
@@ -16,7 +16,7 @@ export default function AboutMe() {
           />
         </div>
         <div className="flex-1">
-          <h2 className="text-3xl mb-4 text-center md:text-left">About me</h2>
+          <h2 className="mb-4 text-center text-3xl md:text-left">About me</h2>
           <div className="flex flex-col gap-3">
             <p>
               As a Full Stack Web Developer, my passion lies in everything related to technology.

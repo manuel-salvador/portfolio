@@ -16,7 +16,7 @@ export async function GET(request: Request) {
   } catch (error) {
     return NextResponse.json(
       { message: error instanceof Error ? error.message : 'Error revalidating' },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

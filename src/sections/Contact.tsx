@@ -45,7 +45,7 @@ export default function Contact() {
 
       fetch('/api/contact', {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       })
         .then((response) => {
           if (response.status === 200) {
@@ -71,16 +71,16 @@ export default function Contact() {
       <div
         className={`${
           entry?.isIntersecting ? 'opacity-100' : 'opacity-0'
-        } transition-all duration-700 h-full w-full px-8 max-w-md flex flex-col items-center justify-center mx-auto py-4 rounded-lg border-2 border-cyan-600 shadow-lg shadow-cyan-800 relative`}
+        } relative mx-auto flex h-full w-full max-w-md flex-col items-center justify-center rounded-lg border-2 border-cyan-600 px-8 py-4 shadow-lg shadow-cyan-800 transition-all duration-700`}
         ref={ref as Ref<HTMLDivElement>}
       >
         <div
           className={`${
-            messageSent ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          } transition-opacity duration-1000 text-center absolute`}
+            messageSent ? 'opacity-100' : 'pointer-events-none opacity-0'
+          } absolute text-center transition-opacity duration-1000`}
         >
           <div className="mb-3">
-            <span className="block mx-auto w-fit mb-1 text-center">
+            <span className="mx-auto mb-1 block w-fit text-center">
               <CheckIcon size={40} />
             </span>
             <p>Message sent successfully</p>
@@ -92,10 +92,10 @@ export default function Contact() {
           ref={_form}
           className={`${
             messageSent ? 'opacity-0' : 'opacity-100'
-          } transition-opacity duration-300 flex flex-col gap-8 w-full`}
+          } flex w-full flex-col gap-8 transition-opacity duration-300`}
           onSubmit={handleSubmit}
         >
-          <h2 className="text-3xl text-center">Let&apos;s talk</h2>
+          <h2 className="text-center text-3xl">Let&apos;s talk</h2>
           <input
             className={inputStyle}
             type="text"
@@ -125,10 +125,10 @@ export default function Contact() {
             onChange={handleOnChange}
           />
           {loading && !invalidData && (
-            <div className="flex justify-center items-center bg-cyan-800 p-2 h-11 w-36 self-center rounded-lg cursor-not-allowed">
+            <div className="flex h-11 w-36 cursor-not-allowed items-center justify-center self-center rounded-lg bg-cyan-800 p-2">
               <svg
                 aria-hidden="true"
-                className="w-6 h-6 animate-spin text-cyan-900 fill-cyan-600"
+                className="h-6 w-6 animate-spin fill-cyan-600 text-cyan-900"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ export default function Contact() {
           )}
 
           {invalidData && !loading && (
-            <div className="bg-red-100 text-red-800 font-bold text-center px-3 py-1 border-2 border-red-800 self-center w-fit">
+            <div className="w-fit self-center border-2 border-red-800 bg-red-100 px-3 py-1 text-center font-bold text-red-800">
               <small>This form has errors</small>
             </div>
           )}
@@ -154,7 +154,7 @@ export default function Contact() {
           {!loading && (
             <button
               type="submit"
-              className="bg-cyan-600 p-2 h-11 w-36 self-center rounded-lg hover:shadow-lg hover:shadow-cyan-700 transition-all"
+              className="h-11 w-36 self-center rounded-lg bg-cyan-600 p-2 transition-all hover:shadow-lg hover:shadow-cyan-700"
             >
               Send message
             </button>

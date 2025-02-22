@@ -31,17 +31,17 @@ export async function POST(request: Request) {
       template_params: {
         name,
         email,
-        message,
+        message
       },
-      accessToken: process.env.EMAIL_PRIVATE_KEY,
+      accessToken: process.env.EMAIL_PRIVATE_KEY
     };
 
     const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Content-Type': 'application/json'
+      }
     });
 
     if (!response.ok) {
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
   } catch (error) {
     return NextResponse.json(
       { message: error instanceof Error ? error.message : 'Something went wrong' },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

@@ -8,7 +8,7 @@ type SectionLayoutType = {
 
 export default function SectionLayout({ children, className, id }: SectionLayoutType) {
   return (
-    <section id={id} className={`w-full py-[76px] md:py-[74px] px-2 ${className}`}>
+    <section id={id} className={`w-full px-2 py-[76px] md:py-[74px] ${className}`}>
       {children}
     </section>
   );

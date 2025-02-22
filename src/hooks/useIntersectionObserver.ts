@@ -11,7 +11,7 @@ type Props = {
 export function useIntersectionObserver({
   threshold = 1,
   root = null,
-  rootMargin = '0%',
+  rootMargin = '0%'
 }: Props): [RefObject<HTMLElement | null>, IntersectionObserverEntry | null] {
   const ref = useRef<HTMLElement>(null);
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
@@ -27,7 +27,7 @@ export function useIntersectionObserver({
       ([entry]) => {
         setEntry(entry);
       },
-      { threshold, root: root?.current, rootMargin },
+      { threshold, root: root?.current, rootMargin }
     );
 
     observer.observe(node);
