@@ -1,12 +1,14 @@
-import LinksList from '@/components/LinksList';
-import PageLayout from '@/layouts/PageLayout';
+import { Metadata } from 'next';
+
+import LinksList from '@/components/links-list';
+
+export const metadata: Metadata = {
+  title: 'CV/Resume',
+  description: 'See my CV/Resume',
+};
 
 export default function CurriculumPage() {
-  return (
-    <PageLayout title="Manuel Salvador | CV/Resume">
-      <LinksList title="CV/Resume Manuel Salvador" links={links} />
-    </PageLayout>
-  );
+  return <LinksList title="CV/Resume Manuel Salvador" links={links} />;
 }
 
 const links = [

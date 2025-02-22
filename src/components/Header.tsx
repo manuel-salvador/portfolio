@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 import logo from '/public/logo.webp';
@@ -7,7 +9,7 @@ import Link from 'next/link';
 
 import { Pages } from '@/types';
 
-import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './Icons';
+import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './icons';
 
 const pages: Pages = [
   { label: 'Home', url: '/' },

@@ -2,7 +2,24 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['seeklogo.com', 'assets.website-files.com', 'cdn.cdnlogo.com', 'i.ibb.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'seeklogo.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.website-files.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.cdnlogo.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+      },
+    ],
   },
 };
 

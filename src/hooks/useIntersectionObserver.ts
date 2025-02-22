@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useState, useEffect, RefObject } from 'react';
 
 type Props = {

@@ -1,4 +1,4 @@
-import { LinkedInIcon, GitHubIcon, EmailIcon } from './Icons';
+import { LinkedInIcon, GitHubIcon, EmailIcon } from './icons';
 
 export default function Footer() {
   return (

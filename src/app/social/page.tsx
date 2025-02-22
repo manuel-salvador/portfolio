@@ -1,12 +1,14 @@
-import LinksList from '@/components/LinksList';
-import PageLayout from '@/layouts/PageLayout';
+import { Metadata } from 'next';
+
+import LinksList from '@/components/links-list';
+
+export const metadata: Metadata = {
+  title: 'Social Links',
+  description: 'See my social links',
+};
 
 export default function SocialPage() {
-  return (
-    <PageLayout title="Manuel Salvador | Social Links">
-      <LinksList title="Social Links - Manuel Salvador" links={links} />
-    </PageLayout>
-  );
+  return <LinksList title="Social Links - Manuel Salvador" links={links} />;
 }
 
 const links = [

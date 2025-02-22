@@ -1,7 +1,6 @@
-import { ArrowDown } from '@/components/Icons';
-import SkillsList from '@/components/SkillsList';
-
-import SectionLayout from '../layouts/SectionLayout';
+import { ArrowDown } from '@/components/icons';
+import SkillsList from '@/components/skills-list';
+import SectionLayout from '@/layouts/SectionLayout';
 
 export default function Home() {
   return (

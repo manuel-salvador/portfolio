@@ -1,5 +1,5 @@
 import { frontSkills, backSkills } from '@/constants/skills';
-import Skill from '@/components/Skill';
+import Skill from '@/components/skill';
 
 export default function SkillsList() {
   return (

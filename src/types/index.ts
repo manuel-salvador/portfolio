@@ -20,7 +20,7 @@ export type ProjectType = {
 
 export type SkillType = {
   name: string;
-  imgURL: string;
+  icon: React.ReactNode;
 };
 
 export type Pages = {

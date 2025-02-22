@@ -1,9 +1,11 @@
+'use client';
+
 import Atropos from 'atropos/react';
 import Image from 'next/image';
 
 import type { ProjectType } from '@/types';
 
-import { GitHubIcon, GlobeIcon } from './Icons';
+import { GitHubIcon, GlobeIcon } from './icons';
 
 type CardProps = {
   data: ProjectType;

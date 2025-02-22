@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { ProjectType } from '@/types';
 import SectionLayout from '@/layouts/SectionLayout';
-import Card from '@/components/Card';
+import Card from '@/components/card';
 
 type Props = { projects: ProjectType[] };
 

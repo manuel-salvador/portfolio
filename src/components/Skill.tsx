@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -20,16 +22,7 @@ export default function Skill({ index, tech, initialX }: Props) {
       }}
       viewport={{ once: true }}
     >
-      <figure className="w-6 h-6 md:w-8 md:h-8 relative">
-        <Image
-          key={`${index}${tech.name}`}
-          src={tech.imgURL}
-          alt={tech.name}
-          fill
-          sizes="10vw"
-          className="object-contain h-auto w-auto"
-        />
-      </figure>
+      <div className="w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">{tech.icon}</div>
       <p>{tech.name}</p>
     </motion.div>
   );
