@@ -1,13 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-
-import logo from '/public/logo.webp';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { Pages } from '@/types';
+import logo from 'public/logo.webp';
 
 import { CloseIcon, EmailIcon, GitHubIcon, LinkedInIcon, MenuIcon } from './icons';
 

@@ -4,7 +4,7 @@ import { useRef, useState, useEffect, RefObject } from 'react';
 
 type Props = {
   threshold?: number;
-  root?: RefObject<Element> | null;
+  root?: RefObject<Element | null> | null;
   rootMargin?: string;
 };
 
@@ -12,7 +12,7 @@ export function useIntersectionObserver({
   threshold = 1,
   root = null,
   rootMargin = '0%',
-}: Props): [RefObject<HTMLElement>, IntersectionObserverEntry | null] {
+}: Props): [RefObject<HTMLElement | null>, IntersectionObserverEntry | null] {
   const ref = useRef<HTMLElement>(null);
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
 

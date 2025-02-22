@@ -1,7 +1,7 @@
+@import 'atropos/css/min';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import 'atropos/css/min';
 
 * {
   box-sizing: border-box;
