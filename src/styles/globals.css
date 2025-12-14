@@ -1,4 +1,4 @@
-@import 'atropos/css/min';
+@import "atropos/css/min";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

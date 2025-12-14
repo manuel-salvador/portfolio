@@ -6,8 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
-    "format": "prettier --write .",
+    "lint": "biome check",
+    "format": "biome format",
+    "lint:fix": "biome check --write",
+    "format:fix": "biome format --write",
     "prepare": "lefthook install"
   },
   "dependencies": {

@@ -1,8 +1,7 @@
-import Papa from 'papaparse';
-
-import type { ApiProjectType, ProjectType } from '@/types';
-import { PROJECTS_URL } from '@/constants/urls';
-import normalizeApiData from '@/utils/normalizeApiData';
+import Papa from "papaparse";
+import { PROJECTS_URL } from "@/constants/urls";
+import type { ApiProjectType, ProjectType } from "@/types";
+import normalizeApiData from "@/utils/normalizeApiData";
 
 export const api = {
   projects: {
@@ -16,12 +15,12 @@ export const api = {
             const normalized = normalizeApiData(result.data);
             resolve(normalized);
           },
-          error: reject
+          error: reject,
         });
       });
 
       return data;
-    }
+    },
   },
   mainProjects: {
     list: async () => {
@@ -35,11 +34,11 @@ export const api = {
             const normalized = normalizeApiData(result.data);
             resolve(normalized);
           },
-          error: reject
+          error: reject,
         });
       });
 
       return data;
-    }
-  }
+    },
+  },
 };

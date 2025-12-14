@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useRef, useState, useEffect, RefObject } from 'react';
+import { type RefObject, useEffect, useRef, useState } from "react";
 
 type Props = {
   threshold?: number;
@@ -11,7 +11,7 @@ type Props = {
 export function useIntersectionObserver({
   threshold = 1,
   root = null,
-  rootMargin = '0%'
+  rootMargin = "0%",
 }: Props): [RefObject<HTMLElement | null>, IntersectionObserverEntry | null] {
   const ref = useRef<HTMLElement>(null);
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
@@ -19,7 +19,7 @@ export function useIntersectionObserver({
   useEffect(() => {
     const node = ref?.current;
 
-    if (!node || typeof IntersectionObserver !== 'function') {
+    if (!node || typeof IntersectionObserver !== "function") {
       return;
     }
 

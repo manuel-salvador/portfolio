@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { FormEvent, Ref, useRef, useState } from 'react';
+import { type FormEvent, type Ref, useRef, useState } from "react";
+import { CheckIcon } from "@/components/icons";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import SectionLayout from "@/layouts/section-layout";
+import { testContactForm } from "@/utils/testContactForm";
 
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { CheckIcon } from '@/components/icons';
-import { testContactForm } from '@/utils/testContactForm';
-import SectionLayout from '@/layouts/section-layout';
-
-const inputStyle = 'bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white';
+const inputStyle =
+  "bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white";
 
 export default function Contact() {
   const _form = useRef<HTMLFormElement>(null);
@@ -16,14 +16,17 @@ export default function Contact() {
   const [messageSent, setMessageSent] = useState<boolean>(false);
   const [invalidData, setInvalidData] = useState(false);
 
-  const [ref, entry] = useIntersectionObserver({ root: divRef, threshold: 0.3 });
+  const [ref, entry] = useIntersectionObserver({
+    root: divRef,
+    threshold: 0.3,
+  });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     setLoading(true);
 
-    if (!!process.env.NEXT_PUBLIC_PREVIEW_MODE) {
+    if (process.env.NEXT_PUBLIC_PREVIEW_MODE) {
       setTimeout(() => {
         setMessageSent(true);
         setLoading(false);
@@ -43,9 +46,9 @@ export default function Contact() {
         return;
       }
 
-      fetch('/api/contact', {
-        method: 'POST',
-        body: JSON.stringify(data)
+      fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
       })
         .then((response) => {
           if (response.status === 200) {
@@ -67,16 +70,16 @@ export default function Contact() {
   };
 
   return (
-    <SectionLayout id="contact" className="px-8 pb-16">
+    <SectionLayout className="px-8 pb-16" id="contact">
       <div
         className={`${
-          entry?.isIntersecting ? 'opacity-100' : 'opacity-0'
-        } relative mx-auto flex h-full w-full max-w-md flex-col items-center justify-center rounded-lg border-2 border-cyan-600 px-8 py-4 shadow-lg shadow-cyan-800 transition-all duration-700`}
+          entry?.isIntersecting ? "opacity-100" : "opacity-0"
+        } relative mx-auto flex h-full w-full max-w-md flex-col items-center justify-center rounded-lg border-2 border-cyan-600 px-8 py-4 shadow-cyan-800 shadow-lg transition-all duration-700`}
         ref={ref as Ref<HTMLDivElement>}
       >
         <div
           className={`${
-            messageSent ? 'opacity-100' : 'pointer-events-none opacity-0'
+            messageSent ? "opacity-100" : "pointer-events-none opacity-0"
           } absolute text-center transition-opacity duration-1000`}
         >
           <div className="mb-3">
@@ -89,48 +92,48 @@ export default function Contact() {
           <p>I will contact you as soon as possible</p>
         </div>
         <form
-          ref={_form}
           className={`${
-            messageSent ? 'opacity-0' : 'opacity-100'
+            messageSent ? "opacity-0" : "opacity-100"
           } flex w-full flex-col gap-8 transition-opacity duration-300`}
           onSubmit={handleSubmit}
+          ref={_form}
         >
           <h2 className="text-center text-3xl">Let&apos;s talk</h2>
           <input
-            className={inputStyle}
-            type="text"
-            name="name"
-            placeholder="Name"
             autoComplete="off"
-            required
+            className={inputStyle}
+            name="name"
             onChange={handleOnChange}
+            placeholder="Name"
+            required
+            type="text"
           />
           <input
-            className={inputStyle}
-            type="email"
-            name="email"
-            placeholder="Email"
             autoComplete="off"
-            required
+            className={inputStyle}
+            name="email"
             onChange={handleOnChange}
+            placeholder="Email"
+            required
+            type="email"
           />
           <textarea
-            className={inputStyle}
-            name="message"
-            cols={30}
-            rows={4}
-            placeholder="Message"
             autoComplete="off"
-            required
+            className={inputStyle}
+            cols={30}
+            name="message"
             onChange={handleOnChange}
+            placeholder="Message"
+            required
+            rows={4}
           />
           {loading && !invalidData && (
             <div className="flex h-11 w-36 cursor-not-allowed items-center justify-center self-center rounded-lg bg-cyan-800 p-2">
               <svg
                 aria-hidden="true"
                 className="h-6 w-6 animate-spin fill-cyan-600 text-cyan-900"
-                viewBox="0 0 100 101"
                 fill="none"
+                viewBox="0 0 100 101"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -153,8 +156,8 @@ export default function Contact() {
 
           {!loading && (
             <button
+              className="h-11 w-36 self-center rounded-lg bg-cyan-600 p-2 transition-all hover:shadow-cyan-700 hover:shadow-lg"
               type="submit"
-              className="h-11 w-36 self-center rounded-lg bg-cyan-600 p-2 transition-all hover:shadow-lg hover:shadow-cyan-700"
             >
               Send message
             </button>
