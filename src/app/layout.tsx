@@ -1,8 +1,9 @@
+import "@/styles/globals.css";
+import "atropos/css/min";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import "@/styles/globals.css";
-import "atropos/css/min";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 
