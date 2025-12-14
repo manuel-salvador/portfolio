@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { type FormEvent, type Ref, useRef, useState } from "react";
-
+import { sendEmail } from "@/app/actions";
 import { CheckIcon } from "@/components/icons";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import SectionLayout from "@/layouts/section-layout";
@@ -21,7 +21,7 @@ export default function Contact() {
     threshold: 0.3,
   });
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     setLoading(true);
@@ -46,20 +46,15 @@ export default function Contact() {
         return;
       }
 
-      fetch("/api/contact", {
-        method: "POST",
-        body: JSON.stringify(data),
-      })
-        .then((response) => {
-          if (response.status === 200) {
-            setMessageSent(true);
-          } else {
-            setInvalidData(true);
-          }
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      const response = await sendEmail(new FormData(_form.current));
+
+      if (response.status === 200) {
+        setMessageSent(true);
+      } else {
+        setInvalidData(true);
+      }
+
+      setLoading(false);
     }
   };
 
