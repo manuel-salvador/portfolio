@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "atropos": "^2.0.2",
@@ -21,19 +22,22 @@
     "tailwind-merge": "^3.0.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.8",
     "@types/node": "22.13.5",
     "@types/papaparse": "^5.3.15",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
     "autoprefixer": "^10.4.13",
-    "eslint": "9.21.0",
-    "eslint-config-next": "16.0.10",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-prettier": "^5.2.3",
+    "lefthook": "^2.0.11",
+    "lint-staged": "^16.2.7",
     "postcss": "^8.4.21",
-    "prettier": "^3.5.2",
-    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.2.6",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "ultracite": "6.4.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
+      "pnpm dlx ultracite fix"
+    ]
   }
 }
