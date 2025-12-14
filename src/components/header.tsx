@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "public/logo.webp";
 import { useEffect, useState } from "react";
+import SocialLinkIcon from "@/components/social-link-icon";
 import type { Pages } from "@/types";
-
 import {
   CloseIcon,
   EmailIcon,
@@ -91,15 +91,15 @@ export default function Header() {
             <div className="h-4 w-px bg-slate-700" />
 
             <div className="flex items-center gap-3">
-              <SocialLink
+              <SocialLinkIcon
                 href="https://www.linkedin.com/in/manuel-salvador/"
                 icon={<LinkedInIcon />}
               />
-              <SocialLink
+              <SocialLinkIcon
                 href="https://github.com/manuel-salvador"
                 icon={<GitHubIcon />}
               />
-              <SocialLink
+              <SocialLinkIcon
                 href="mailto:manu.sacr@hotmail.com"
                 icon={<EmailIcon />}
               />
@@ -136,17 +136,17 @@ export default function Header() {
             ))}
           </ul>
           <div className="mt-8 flex gap-6">
-            <SocialLink
+            <SocialLinkIcon
               href="https://www.linkedin.com/in/manuel-salvador/"
               icon={<LinkedInIcon />}
               size="lg"
             />
-            <SocialLink
+            <SocialLinkIcon
               href="https://github.com/manuel-salvador"
               icon={<GitHubIcon />}
               size="lg"
             />
-            <SocialLink
+            <SocialLinkIcon
               href="mailto:manu.sacr@hotmail.com"
               icon={<EmailIcon />}
               size="lg"
@@ -155,27 +155,5 @@ export default function Header() {
         </div>
       </div>
     </>
-  );
-}
-
-function SocialLink({
-  href,
-  icon,
-  size = "sm",
-}: {
-  href: string;
-  icon: React.ReactNode;
-  size?: "sm" | "lg";
-}) {
-  const sizeClasses = size === "sm" ? "h-8 w-8 p-1.5" : "h-12 w-12 p-3";
-  return (
-    <a
-      className={`flex ${sizeClasses} items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 hover:border-cyan-500/50 hover:bg-cyan-500/20 hover:text-cyan-400`}
-      href={href}
-      rel="noreferrer"
-      target="_blank"
-    >
-      {icon}
-    </a>
   );
 }

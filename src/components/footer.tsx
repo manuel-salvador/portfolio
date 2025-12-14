@@ -1,4 +1,5 @@
-import { EmailIcon, GitHubIcon, LinkedInIcon } from "./icons";
+import { EmailIcon, GitHubIcon, LinkedInIcon } from "@/components/icons";
+import SocialLinkIcon from "@/components/social-link-icon";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,37 +15,21 @@ export default function Footer() {
 
           {/* Social Links */}
           <div className="order-1 flex items-center gap-4 md:order-2">
-            <a
-              aria-label="LinkedIn"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/50 bg-slate-800/50 p-2 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10"
+            <SocialLinkIcon
               href="https://www.linkedin.com/in/manuel-salvador/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div className="text-slate-400 transition-colors group-hover:text-cyan-400">
-                <LinkedInIcon />
-              </div>
-            </a>
-            <a
-              aria-label="GitHub"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/50 bg-slate-800/50 p-2 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10"
+              icon={<LinkedInIcon />}
+              size="lg"
+            />
+            <SocialLinkIcon
               href="https://github.com/manuel-salvador"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div className="text-slate-400 transition-colors group-hover:text-cyan-400">
-                <GitHubIcon />
-              </div>
-            </a>
-            <a
-              aria-label="Email"
-              className="group flex h-10 w-10 items-center justify-center rounded-full border border-slate-700/50 bg-slate-800/50 p-2 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10"
+              icon={<GitHubIcon />}
+              size="lg"
+            />
+            <SocialLinkIcon
               href="mailto:manu.sacr@hotmail.com"
-            >
-              <div className="text-slate-400 transition-colors group-hover:text-cyan-400">
-                <EmailIcon />
-              </div>
-            </a>
+              icon={<EmailIcon />}
+              size="lg"
+            />
           </div>
         </div>
       </div>
