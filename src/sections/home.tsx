@@ -8,11 +8,11 @@ import SectionLayout from "@/layouts/section-layout";
 export default function Home() {
   return (
     <SectionLayout
-      className="relative mt-20 flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-12 overflow-hidden pt-0 text-center md:pt-0"
+      className="relative mt-20 flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-6 pt-0 text-center md:pt-0 2xl:gap-12"
       id="home"
     >
       {/* Background Gradient Orbs */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-1/4 left-1/4 h-96 w-96 animate-float rounded-full bg-cyan-500/20 blur-3xl" />
         <div
           className="absolute right-1/4 bottom-1/4 h-80 w-80 animate-float rounded-full bg-teal-500/15 blur-3xl"
@@ -22,13 +22,13 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col gap-6">
+      <div className="relative z-10 flex flex-col gap-5">
         <motion.div
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: -30 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="gradient-text font-bold text-5xl tracking-tight md:text-7xl">
+          <h1 className="gradient-text font-bold text-5xl tracking-tight 2xl:text-7xl">
             Manuel Salvador
           </h1>
         </motion.div>
@@ -38,7 +38,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
         >
-          <h2 className="text-slate-300 text-xl tracking-wide md:text-2xl">
+          <h2 className="text-slate-300 text-xl tracking-wide 2xl:text-2xl">
             <span className="text-cyan-400">&lt;</span>
             Full-Stack Web Developer
             <span className="text-cyan-400"> /&gt;</span>
@@ -74,7 +74,9 @@ export default function Home() {
         initial={{ opacity: 0 }}
         transition={{ delay: 1.2 }}
       >
-        <span className="text-xs uppercase tracking-widest">Scroll</span>
+        <span className="text-xs uppercase tracking-widest md:hidden 2xl:block">
+          Scroll
+        </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           className="h-6 w-6 md:h-8 md:w-8"
