@@ -9,7 +9,7 @@ type Props = {
 
 export default function LinksList({ title, links }: Props) {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-6 py-20">
+    <div className="flex min-h-screen flex-col items-center justify-center px-6 py-20 md:py-28">
       {/* Background Elements */}
       <div className="-z-10 pointer-events-none fixed inset-0 overflow-hidden">
         <div className="absolute top-1/3 left-1/4 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
@@ -24,10 +24,9 @@ export default function LinksList({ title, links }: Props) {
       >
         {/* Header */}
         <div className="mb-10 text-center">
-          <span className="mb-2 block text-cyan-500 text-xs uppercase tracking-widest">
-            Documents
-          </span>
-          <h1 className="font-bold text-3xl text-white md:text-4xl">{title}</h1>
+          <h1 className="gradient-text font-bold text-3xl md:text-4xl">
+            {title}
+          </h1>
         </div>
 
         {/* Links */}
@@ -45,19 +44,6 @@ export default function LinksList({ title, links }: Props) {
                 rel="noreferrer"
                 target="_blank"
               >
-                <svg
-                  className="h-5 w-5 text-cyan-400 transition-colors group-hover:text-cyan-300"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                  />
-                </svg>
                 <span className="transition-colors group-hover:text-cyan-300">
                   {link.slug}
                 </span>
@@ -67,6 +53,7 @@ export default function LinksList({ title, links }: Props) {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
+                  <title>Open in new tab</title>
                   <path
                     d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                     strokeLinecap="round"

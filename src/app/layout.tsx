@@ -6,8 +6,6 @@ import { Inter, Space_Grotesk } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import "@/styles/globals.css";
-import "atropos/css/min";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -71,7 +69,7 @@ export default function RootLayout({
     <html className={`${inter.variable} ${spaceGrotesk.variable}`} lang="en">
       <body className={`${inter.className} antialiased`}>
         <Header />
-        <main className="min-h-screen">{children}</main>
+        <main className="mx-auto min-h-screen max-w-7xl">{children}</main>
         <Footer />
       </body>
     </html>

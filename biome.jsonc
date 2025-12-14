@@ -5,9 +5,8 @@
     "includes": [
       "**/*",
       "!.next/*",
-      "!components/ui/*",
-      "!app/globals.css",
-      "!hooks"
+      "!src/components/ui/*",
+      "!src/app/styles/globals.css"
     ]
   },
   "linter": {

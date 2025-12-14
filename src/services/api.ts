@@ -1,7 +1,8 @@
 import Papa from "papaparse";
+
 import { PROJECTS_URL } from "@/constants/urls";
 import type { ApiProjectType, ProjectType } from "@/types";
-import normalizeApiData from "@/utils/normalizeApiData";
+import normalizeApiData from "@/utils/noremalize-api-data";
 
 export const api = {
   projects: {

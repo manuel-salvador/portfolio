@@ -24,8 +24,8 @@ export function useIntersectionObserver({
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setEntry(entry);
+      ([intersectionEntry]) => {
+        setEntry(intersectionEntry);
       },
       { threshold, root: root?.current, rootMargin }
     );

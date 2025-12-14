@@ -3,11 +3,12 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import profileImage from "public/profile-image.webp";
+
 import SectionLayout from "@/layouts/section-layout";
 
 export default function AboutMe() {
   return (
-    <SectionLayout className="px-6 py-24 md:px-8" id="aboutMe">
+    <SectionLayout className="px-6 pb-24 md:px-8 md:pt-28" id="aboutMe">
       <motion.div
         className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 md:flex-row md:gap-16"
         initial={{ opacity: 0, y: 40 }}
@@ -17,7 +18,7 @@ export default function AboutMe() {
       >
         {/* Profile Image with Glow Ring */}
         <motion.div
-          className="relative flex-shrink-0"
+          className="relative shrink-0"
           initial={{ scale: 0.8, opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
@@ -29,7 +30,7 @@ export default function AboutMe() {
           {/* Animated gradient ring */}
           <div className="relative h-[180px] w-[180px] md:h-[220px] md:w-[220px]">
             <div
-              className="absolute inset-0 animate-gradient-shift rounded-full bg-gradient-to-r from-cyan-400 via-teal-400 to-cyan-400 p-[3px]"
+              className="absolute inset-0 animate-gradient-shift rounded-full bg-linear-to-r from-cyan-400 via-teal-400 to-cyan-400 p-[3px]"
               style={{ backgroundSize: "200% 200%" }}
             >
               <div className="h-full w-full rounded-full bg-slate-900" />

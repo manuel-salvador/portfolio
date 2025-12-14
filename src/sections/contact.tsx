@@ -2,17 +2,18 @@
 
 import { motion } from "framer-motion";
 import { type FormEvent, type Ref, useRef, useState } from "react";
+
 import { CheckIcon } from "@/components/icons";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import SectionLayout from "@/layouts/section-layout";
-import { testContactForm } from "@/utils/testContactForm";
+import { testContactForm } from "@/utils/test-contact-form";
 
 export default function Contact() {
   const _form = useRef<HTMLFormElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [messageSent, setMessageSent] = useState<boolean>(false);
-  const [invalidData, setInvalidData] = useState(false);
+  const [invalidData, setInvalidData] = useState<boolean>(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const [ref, entry] = useIntersectionObserver({
@@ -110,7 +111,7 @@ export default function Contact() {
         >
           <motion.div
             animate={messageSent ? { scale: 1 } : {}}
-            className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-teal-500"
+            className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-r from-cyan-500 to-teal-500"
             initial={{ scale: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
           >
@@ -208,7 +209,7 @@ export default function Contact() {
           </div>
 
           {/* Error State */}
-          {invalidData && !loading && (
+          {!!invalidData && !loading && (
             <motion.div
               animate={{ opacity: 1, y: 0 }}
               className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-center"
@@ -222,14 +223,14 @@ export default function Contact() {
 
           {/* Submit Button */}
           <motion.button
-            className="relative w-full overflow-hidden rounded-xl py-4 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            className="relative w-full cursor-pointer overflow-hidden rounded-xl py-4 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
             disabled={loading}
             type="submit"
             whileHover={{ scale: loading ? 1 : 1.02 }}
             whileTap={{ scale: loading ? 1 : 0.98 }}
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-teal-500" />
-            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 opacity-0 transition-opacity duration-300 hover:opacity-100" />
+            <span className="absolute inset-0 bg-linear-to-r from-cyan-500 to-teal-500" />
+            <span className="absolute inset-0 bg-linear-to-r from-cyan-400 to-teal-400 opacity-0 transition-opacity duration-300 hover:opacity-100" />
 
             {loading ? (
               <span className="relative z-10 flex items-center justify-center gap-2">
@@ -238,6 +239,7 @@ export default function Contact() {
                   fill="none"
                   viewBox="0 0 24 24"
                 >
+                  <title>Loading</title>
                   <circle
                     className="opacity-25"
                     cx="12"

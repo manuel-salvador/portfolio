@@ -61,8 +61,8 @@ export default function Projects({ projects }: Props) {
           className="group relative overflow-hidden rounded-full px-8 py-3 transition-all duration-300"
           href="/projects"
         >
-          <span className="absolute inset-0 rounded-full border border-slate-600 bg-gradient-to-r from-slate-800 to-slate-700 transition-all duration-300 group-hover:border-cyan-500/40" />
-          <span className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500/10 to-teal-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="absolute inset-0 rounded-full border border-slate-600 bg-linear-to-r from-slate-800 to-slate-700 transition-all duration-300 group-hover:border-cyan-500/40" />
+          <span className="absolute inset-0 rounded-full bg-linear-to-r from-cyan-500/10 to-teal-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           <span className="relative z-10 flex items-center gap-2 font-medium text-white">
             View all projects
             <motion.span
