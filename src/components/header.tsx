@@ -54,7 +54,7 @@ export default function Header() {
       <div
         className={`${
           menuOpen ? "h-screen gap-4 pt-4 pb-0" : "gap-0"
-        } mx-auto flex w-screen max-w-screen-xl flex-col items-center py-4 md:flex-row md:justify-between md:gap-4 md:px-10`}
+        } mx-auto flex w-screen max-w-(--breakpoint-xl) flex-col items-center py-4 md:flex-row md:justify-between md:gap-4 md:px-10`}
       >
         <div className="z-10 flex w-full items-center justify-between px-8 md:w-auto md:px-0">
           <Link className="relative block h-11 w-16" href="/">
@@ -119,7 +119,7 @@ export default function Header() {
             </a>
           </div>
           <Link
-            className="flex items-center rounded-md border p-2 transition-all hover:bg-gradient-to-br hover:from-cyan-700 hover:to-cyan-400 hover:shadow-cyan-700 hover:shadow-lg"
+            className="flex items-center rounded-md border p-2 transition-all hover:bg-linear-to-br hover:from-cyan-700 hover:to-cyan-400 hover:shadow-cyan-700 hover:shadow-lg"
             href="/#contact"
             onClick={handleCloseMenu}
           >

@@ -7,7 +7,7 @@ import SectionLayout from "@/layouts/section-layout";
 import { testContactForm } from "@/utils/testContactForm";
 
 const inputStyle =
-  "bg-transparent border-b-2 border-cyan-600 outline-none p-2 text-white";
+  "bg-transparent border-b-2 border-cyan-600 outline-hidden p-2 text-white";
 
 export default function Contact() {
   const _form = useRef<HTMLFormElement>(null);
@@ -156,7 +156,7 @@ export default function Contact() {
 
           {!loading && (
             <button
-              className="h-11 w-36 self-center rounded-lg bg-cyan-600 p-2 transition-all hover:shadow-cyan-700 hover:shadow-lg"
+              className="h-11 w-36 cursor-pointer self-center rounded-lg bg-cyan-600 p-2 transition-all hover:shadow-cyan-700 hover:shadow-lg"
               type="submit"
             >
               Send message
