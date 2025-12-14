@@ -40,7 +40,6 @@ export default function Card({ data, lazy = true }: CardProps) {
               className="relative aspect-video w-full"
               data-atropos-offset="6"
             >
-              <div className="absolute inset-0 z-10 bg-linear-to-t from-slate-900/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <Image
                 alt={data.name}
                 className="h-auto w-auto object-contain transition-transform duration-500 group-hover:scale-105"

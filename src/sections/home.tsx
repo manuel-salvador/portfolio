@@ -47,12 +47,12 @@ export default function Home() {
 
         <motion.p
           animate={{ opacity: 1 }}
-          className="mx-auto max-w-xl text-slate-400 text-sm md:text-base"
+          className="mx-auto text-balance text-slate-400 text-sm md:text-base"
           initial={{ opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          Creando experiencias digitales modernas con código limpio y diseño
-          intuitivo
+          Building modern digital experiences with clean, scalable code and
+          intuitive design.
         </motion.p>
       </div>
 

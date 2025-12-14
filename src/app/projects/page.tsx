@@ -21,9 +21,9 @@ export default async function ProjectsPage() {
           <h1 className="mb-4 font-bold text-4xl text-white md:text-5xl">
             All <span className="gradient-text">Projects</span>
           </h1>
-          <p className="mx-auto max-w-xl text-slate-400">
-            Explora todos mis proyectos y descubre cómo transformo ideas en
-            experiencias digitales
+          <p className="mx-auto text-balance text-slate-400">
+            Explore my projects and discover how I transform ideas into digital
+            experiences.
           </p>
         </div>
 

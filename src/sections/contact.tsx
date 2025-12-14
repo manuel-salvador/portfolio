@@ -74,13 +74,13 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
       >
         <span className="mb-2 block text-cyan-500 text-xs uppercase tracking-widest">
-          Contacto
+          Contact
         </span>
         <h2 className="font-bold text-3xl text-white md:text-4xl">
           Let&apos;s <span className="gradient-text">Talk</span>
         </h2>
         <p className="mx-auto mt-4 max-w-md text-slate-400">
-          ¿Tienes un proyecto en mente? Me encantaría escucharte
+          Do you have a project in mind? I&apos;d love to hear about it.
         </p>
       </motion.div>
 

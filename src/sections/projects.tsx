@@ -27,9 +27,9 @@ export default function Projects({ projects }: Props) {
           <h2 className="font-bold text-3xl text-white md:text-4xl">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-slate-400">
-            Una selección de proyectos que demuestran mis habilidades y pasión
-            por crear experiencias web excepcionales
+          <p className="mx-auto mt-4 text-balance text-slate-400">
+            Selected projects that reflect my skills and passion for building
+            outstanding web products.
           </p>
         </motion.div>
 
