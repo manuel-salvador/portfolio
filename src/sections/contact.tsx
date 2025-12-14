@@ -84,7 +84,7 @@ export default function Contact() {
         >
           <div className="mb-3">
             <span className="mx-auto mb-1 block w-fit text-center">
-              <CheckIcon size={40} />
+              <CheckIcon className="fill-teal-500" size={40} />
             </span>
             <p>Message sent successfully</p>
           </div>

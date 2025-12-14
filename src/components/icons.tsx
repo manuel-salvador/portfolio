@@ -40,9 +40,15 @@ export const GlobeIcon = () => (
   </svg>
 );
 
-export const CheckIcon = ({ size }: { size: number }) => (
+export const CheckIcon = ({
+  size,
+  className,
+}: {
+  size: number;
+  className?: string;
+}) => (
   <svg
-    className="fill-[#1daf12]"
+    className={`fill-[#1daf12] ${className}`}
     height={size}
     viewBox="0 0 512 512"
     width={size}
