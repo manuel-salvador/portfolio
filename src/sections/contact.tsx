@@ -1,13 +1,11 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { type FormEvent, type Ref, useRef, useState } from "react";
 import { CheckIcon } from "@/components/icons";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import SectionLayout from "@/layouts/section-layout";
 import { testContactForm } from "@/utils/testContactForm";
-
-const inputStyle =
-  "bg-transparent border-b-2 border-cyan-600 outline-hidden p-2 text-white";
 
 export default function Contact() {
   const _form = useRef<HTMLFormElement>(null);
@@ -15,6 +13,7 @@ export default function Contact() {
   const [loading, setLoading] = useState<boolean>(false);
   const [messageSent, setMessageSent] = useState<boolean>(false);
   const [invalidData, setInvalidData] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const [ref, entry] = useIntersectionObserver({
     root: divRef,
@@ -70,100 +69,197 @@ export default function Contact() {
   };
 
   return (
-    <SectionLayout className="px-8 pb-16" id="contact">
-      <div
+    <SectionLayout className="px-6 py-24 md:px-8" id="contact">
+      <motion.div
+        className="mb-12 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+      >
+        <span className="mb-2 block text-cyan-500 text-xs uppercase tracking-widest">
+          Contacto
+        </span>
+        <h2 className="font-bold text-3xl text-white md:text-4xl">
+          Let&apos;s <span className="gradient-text">Talk</span>
+        </h2>
+        <p className="mx-auto mt-4 max-w-md text-slate-400">
+          ¿Tienes un proyecto en mente? Me encantaría escucharte
+        </p>
+      </motion.div>
+
+      <motion.div
         className={`${
           entry?.isIntersecting ? "opacity-100" : "opacity-0"
-        } relative mx-auto flex h-full w-full max-w-md flex-col items-center justify-center rounded-lg border-2 border-cyan-600 px-8 py-4 shadow-cyan-800 shadow-lg transition-all duration-700`}
+        } glass-card relative mx-auto flex h-full w-full max-w-lg flex-col items-center justify-center rounded-2xl p-8 transition-all duration-700 md:p-10`}
+        initial={{ opacity: 0, y: 30 }}
         ref={ref as Ref<HTMLDivElement>}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
       >
+        {/* Decorative elements */}
+        <div className="-top-20 -right-20 pointer-events-none absolute h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="-bottom-20 -left-20 pointer-events-none absolute h-40 w-40 rounded-full bg-teal-500/10 blur-3xl" />
+
+        {/* Success State */}
         <div
           className={`${
             messageSent ? "opacity-100" : "pointer-events-none opacity-0"
-          } absolute text-center transition-opacity duration-1000`}
+          } absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-opacity duration-500`}
         >
-          <div className="mb-3">
-            <span className="mx-auto mb-1 block w-fit text-center">
-              <CheckIcon className="fill-teal-500" size={40} />
-            </span>
-            <p>Message sent successfully</p>
-          </div>
-          <p>Thank you!</p>
-          <p>I will contact you as soon as possible</p>
+          <motion.div
+            animate={messageSent ? { scale: 1 } : {}}
+            className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-teal-500"
+            initial={{ scale: 0 }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          >
+            <CheckIcon className="fill-white" size={40} />
+          </motion.div>
+          <h3 className="mb-2 font-bold text-white text-xl">Message sent!</h3>
+          <p className="text-slate-400">Thank you for reaching out.</p>
+          <p className="text-slate-400">I&apos;ll get back to you soon.</p>
         </div>
+
+        {/* Form */}
         <form
           className={`${
-            messageSent ? "opacity-0" : "opacity-100"
-          } flex w-full flex-col gap-8 transition-opacity duration-300`}
+            messageSent ? "pointer-events-none opacity-0" : "opacity-100"
+          } relative z-10 flex w-full flex-col gap-6 transition-opacity duration-300`}
           onSubmit={handleSubmit}
           ref={_form}
         >
-          <h2 className="text-center text-3xl">Let&apos;s talk</h2>
-          <input
-            autoComplete="off"
-            className={inputStyle}
-            name="name"
-            onChange={handleOnChange}
-            placeholder="Name"
-            required
-            type="text"
-          />
-          <input
-            autoComplete="off"
-            className={inputStyle}
-            name="email"
-            onChange={handleOnChange}
-            placeholder="Email"
-            required
-            type="email"
-          />
-          <textarea
-            autoComplete="off"
-            className={inputStyle}
-            cols={30}
-            name="message"
-            onChange={handleOnChange}
-            placeholder="Message"
-            required
-            rows={4}
-          />
-          {loading && !invalidData && (
-            <div className="flex h-11 w-36 cursor-not-allowed items-center justify-center self-center rounded-lg bg-cyan-800 p-2">
-              <svg
-                aria-hidden="true"
-                className="h-6 w-6 animate-spin fill-cyan-600 text-cyan-900"
-                fill="none"
-                viewBox="0 0 100 101"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                  fill="currentFill"
-                />
-              </svg>
-            </div>
-          )}
-
-          {invalidData && !loading && (
-            <div className="w-fit self-center border-2 border-red-800 bg-red-100 px-3 py-1 text-center font-bold text-red-800">
-              <small>This form has errors</small>
-            </div>
-          )}
-
-          {!loading && (
-            <button
-              className="h-11 w-36 cursor-pointer self-center rounded-lg bg-cyan-600 p-2 transition-all hover:shadow-cyan-700 hover:shadow-lg"
-              type="submit"
+          {/* Name Field */}
+          <div className="relative">
+            <input
+              autoComplete="off"
+              className="peer w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-4 text-white placeholder-transparent outline-none transition-all duration-300 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20"
+              id="name"
+              name="name"
+              onBlur={() => setFocusedField(null)}
+              onChange={handleOnChange}
+              onFocus={() => setFocusedField("name")}
+              placeholder="Name"
+              required
+              type="text"
+            />
+            <label
+              className={`pointer-events-none absolute left-4 transition-all duration-300 ${
+                focusedField === "name"
+                  ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
+                  : "peer-[:not(:placeholder-shown)]:-top-2 top-4 text-slate-500 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
+              }`}
+              htmlFor="name"
             >
-              Send message
-            </button>
+              Name
+            </label>
+          </div>
+
+          {/* Email Field */}
+          <div className="relative">
+            <input
+              autoComplete="off"
+              className="peer w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-4 text-white placeholder-transparent outline-none transition-all duration-300 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20"
+              id="email"
+              name="email"
+              onBlur={() => setFocusedField(null)}
+              onChange={handleOnChange}
+              onFocus={() => setFocusedField("email")}
+              placeholder="Email"
+              required
+              type="email"
+            />
+            <label
+              className={`pointer-events-none absolute left-4 transition-all duration-300 ${
+                focusedField === "email"
+                  ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
+                  : "peer-[:not(:placeholder-shown)]:-top-2 top-4 text-slate-500 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
+              }`}
+              htmlFor="email"
+            >
+              Email
+            </label>
+          </div>
+
+          {/* Message Field */}
+          <div className="relative">
+            <textarea
+              autoComplete="off"
+              className="peer w-full resize-none rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-4 text-white placeholder-transparent outline-none transition-all duration-300 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20"
+              id="message"
+              name="message"
+              onBlur={() => setFocusedField(null)}
+              onChange={handleOnChange}
+              onFocus={() => setFocusedField("message")}
+              placeholder="Message"
+              required
+              rows={4}
+            />
+            <label
+              className={`pointer-events-none absolute left-4 transition-all duration-300 ${
+                focusedField === "message"
+                  ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
+                  : "peer-[:not(:placeholder-shown)]:-top-2 top-4 text-slate-500 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
+              }`}
+              htmlFor="message"
+            >
+              Message
+            </label>
+          </div>
+
+          {/* Error State */}
+          {invalidData && !loading && (
+            <motion.div
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-center"
+              initial={{ opacity: 0, y: -10 }}
+            >
+              <p className="text-red-400 text-sm">
+                Please check your information and try again
+              </p>
+            </motion.div>
           )}
+
+          {/* Submit Button */}
+          <motion.button
+            className="relative w-full overflow-hidden rounded-xl py-4 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
+            disabled={loading}
+            type="submit"
+            whileHover={{ scale: loading ? 1 : 1.02 }}
+            whileTap={{ scale: loading ? 1 : 0.98 }}
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-teal-500" />
+            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 opacity-0 transition-opacity duration-300 hover:opacity-100" />
+
+            {loading ? (
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <svg
+                  className="h-5 w-5 animate-spin"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    fill="currentColor"
+                  />
+                </svg>
+                Sending...
+              </span>
+            ) : (
+              <span className="relative z-10">Send message</span>
+            )}
+          </motion.button>
         </form>
-      </div>
+      </motion.div>
     </SectionLayout>
   );
 }

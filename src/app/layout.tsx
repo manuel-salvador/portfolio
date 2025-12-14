@@ -2,12 +2,22 @@ import "@/styles/globals.css";
 import "atropos/css/min";
 
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import "@/styles/globals.css";
+import "atropos/css/min";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 const SITE_NAME = "Manuel Salvador | Portfolio";
 const SITE_DESCRIPTION =
@@ -58,12 +68,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html className={`${inter.variable} ${spaceGrotesk.variable}`} lang="en">
+      <body className={`${inter.className} antialiased`}>
         <Header />
-        <main className="min-h-screen bg-background antialiased">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
     </html>
