@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "public/logo.webp";
 import { useEffect, useState } from "react";
+
 import SocialLinkIcon from "@/components/social-link-icon";
 import type { Pages } from "@/types";
 import {
@@ -34,11 +35,21 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+
     if (menuOpen) {
-      document.body.classList.add("overflow-hidden");
+      root.classList.add("overflow-hidden");
+      body.classList.add("overflow-hidden");
     } else {
-      document.body.classList.remove("overflow-hidden");
+      root.classList.remove("overflow-hidden");
+      body.classList.remove("overflow-hidden");
     }
+
+    return () => {
+      root.classList.remove("overflow-hidden");
+      body.classList.remove("overflow-hidden");
+    };
   }, [menuOpen]);
 
   const handleToggleMenu = () => setMenuOpen((prev) => !prev);
@@ -108,7 +119,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="rounded-full p-2 text-white transition-colors hover:bg-white/10 md:hidden"
+            className="h-10 w-10 rounded-full p-2 text-white transition-colors hover:bg-white/10 md:hidden"
             onClick={handleToggleMenu}
             type="button"
           >
@@ -119,7 +130,7 @@ export default function Header() {
 
       {/* Mobile Nav Overlay */}
       <div
-        className={`fixed inset-0 z-40 flex items-center justify-center bg-slate-950/95 backdrop-blur-xl transition-all duration-300 md:hidden ${menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-40 flex items-center justify-center bg-cyan-950/50 backdrop-blur-xl transition-all duration-300 md:hidden ${menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
       >
         <div className="flex flex-col items-center gap-8">
           <ul className="flex flex-col items-center gap-6 font-light text-2xl">
