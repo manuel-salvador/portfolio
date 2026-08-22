@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import LinksList from "@/components/links-list";
 
 export const metadata: Metadata = {
-  title: "CV/Resume",
   description: "See my CV/Resume",
+  title: "CV/Resume",
 };
 
 export default function CurriculumPage() {

@@ -5,37 +5,37 @@ import type { ApiProjectType, ProjectType } from "@/types";
 import normalizeApiData from "@/utils/noremalize-api-data";
 
 export const api = {
-  projects: {
-    list: async () => {
-      const res = await fetch(PROJECTS_URL);
-      const text = await res.text();
-      const data = await new Promise<ProjectType[]>((resolve, reject) => {
-        Papa.parse<ApiProjectType>(text, {
-          header: true,
-          complete: (result) => {
-            const normalized = normalizeApiData(result.data);
-            resolve(normalized);
-          },
-          error: reject,
-        });
-      });
-
-      return data;
-    },
-  },
   mainProjects: {
     list: async () => {
       const res = await fetch(PROJECTS_URL);
       const text = await res.text();
       const data = await new Promise<ProjectType[]>((resolve, reject) => {
         Papa.parse<ApiProjectType>(text, {
-          header: true,
           complete: (result) => {
             result.data = result.data.filter((project) => !!project.isMain);
             const normalized = normalizeApiData(result.data);
             resolve(normalized);
           },
           error: reject,
+          header: true,
+        });
+      });
+
+      return data;
+    },
+  },
+  projects: {
+    list: async () => {
+      const res = await fetch(PROJECTS_URL);
+      const text = await res.text();
+      const data = await new Promise<ProjectType[]>((resolve, reject) => {
+        Papa.parse<ApiProjectType>(text, {
+          complete: (result) => {
+            const normalized = normalizeApiData(result.data);
+            resolve(normalized);
+          },
+          error: reject,
+          header: true,
         });
       });
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 type Props = {
   title: string;
@@ -11,7 +11,7 @@ export default function LinksList({ title, links }: Props) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-20 md:py-28">
       {/* Background Elements */}
-      <div className="-z-10 pointer-events-none fixed inset-0 overflow-hidden">
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute top-1/3 left-1/4 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
         <div className="absolute right-1/4 bottom-1/3 h-64 w-64 rounded-full bg-teal-500/8 blur-3xl" />
       </div>
@@ -36,7 +36,7 @@ export default function LinksList({ title, links }: Props) {
               animate={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 20 }}
               key={link.slug}
-              transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
+              transition={{ delay: 0.1 + index * 0.1, duration: 0.4 }}
             >
               <a
                 className="group glass-card flex w-full items-center justify-center gap-3 rounded-xl px-6 py-4 text-center font-medium text-lg text-white"

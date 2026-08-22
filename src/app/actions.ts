@@ -12,70 +12,70 @@ export const sendEmail = async (formData: FormData) => {
 
     if (!(name && email && message)) {
       return {
-        status: 400,
         message: "All fields are required",
+        status: 400,
       };
     }
 
     if (!nameRegex.test(name)) {
       return {
-        status: 400,
         message: "Invalid name format",
+        status: 400,
       };
     }
 
     if (!emailRegex.test(email)) {
       return {
-        status: 400,
         message: "Invalid email format",
+        status: 400,
       };
     }
 
     if (!messageRegex.test(message)) {
       return {
-        status: 400,
         message: "Invalid message format",
+        status: 400,
       };
     }
 
     const data = {
+      accessToken: process.env.EMAIL_PRIVATE_KEY,
       service_id: process.env.EMAIL_SERVICE_ID,
       template_id: process.env.EMAIL_TEMPLATE_ID,
-      user_id: process.env.EMAIL_PUBLIC_KEY,
       template_params: {
-        name,
         email,
         message,
+        name,
       },
-      accessToken: process.env.EMAIL_PRIVATE_KEY,
+      user_id: process.env.EMAIL_PUBLIC_KEY,
     };
 
     const response = await fetch(
       "https://api.emailjs.com/api/v1.0/email/send",
       {
-        method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },
+        method: "POST",
       }
     );
 
     if (!response.ok) {
       return {
-        status: 500,
         message: "Failed to send email",
+        status: 500,
       };
     }
 
     return {
-      status: 200,
       message: "OK",
+      status: 200,
     };
   } catch (error) {
     return {
-      status: 500,
       message: error instanceof Error ? error.message : "Something went wrong",
+      status: 500,
     };
   }
 };

@@ -27,36 +27,36 @@ const SITE_IMAGE = "https://i.imgur.com/kBZaSjc.png";
 const TWITTER_HANDLE = "@manu_svd";
 
 export const metadata: Metadata = {
-  title: {
-    default: SITE_NAME,
-    template: "Manuel Salvador | %s",
-  },
   description: SITE_DESCRIPTION,
   icons: {
     icon: "/favicon.ico",
   },
   metadataBase: new URL(SITE_URL),
   openGraph: {
-    title: SITE_NAME,
     description: SITE_DESCRIPTION,
-    url: SITE_URL,
-    siteName: "ManuelSalvadorPortfolio",
     images: [
       {
+        alt: "manuelSalvador",
+        height: 630,
         url: SITE_IMAGE,
         width: 1200,
-        height: 630,
-        alt: "manuelSalvador",
       },
     ],
+    siteName: "ManuelSalvadorPortfolio",
+    title: SITE_NAME,
     type: "website",
+    url: SITE_URL,
+  },
+  title: {
+    default: SITE_NAME,
+    template: "Manuel Salvador | %s",
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE_NAME,
-    description: SITE_DESCRIPTION,
     creator: TWITTER_HANDLE,
+    description: SITE_DESCRIPTION,
     images: [SITE_IMAGE],
+    title: SITE_NAME,
   },
 };
 

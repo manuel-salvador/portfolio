@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { type FormEvent, type Ref, useRef, useState } from "react";
 import { sendEmail } from "@/app/actions";
 import { CheckIcon } from "@/components/icons";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import SectionLayout from "@/layouts/section-layout";
 import { testContactForm } from "@/utils/test-contact-form";
+import { motion } from "motion/react";
+import { type FormEvent, type Ref, useRef, useState } from "react";
 
 export default function Contact() {
   const _form = useRef<HTMLFormElement>(null);
@@ -95,8 +95,8 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
       >
         {/* Decorative elements */}
-        <div className="-top-20 -right-20 pointer-events-none absolute h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="-bottom-20 -left-20 pointer-events-none absolute h-40 w-40 rounded-full bg-teal-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute -top-20 -right-20 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-teal-500/10 blur-3xl" />
 
         {/* Success State */}
         <div
@@ -108,7 +108,7 @@ export default function Contact() {
             animate={messageSent ? { scale: 1 } : {}}
             className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-r from-cyan-500 to-teal-500"
             initial={{ scale: 0 }}
-            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            transition={{ damping: 15, stiffness: 200, type: "spring" }}
           >
             <CheckIcon className="fill-white" size={40} />
           </motion.div>
@@ -143,7 +143,7 @@ export default function Contact() {
               className={`pointer-events-none absolute left-4 transition-all duration-300 ${
                 focusedField === "name"
                   ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
-                  : "peer-[:not(:placeholder-shown)]:-top-2 top-4 text-slate-500 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
+                  : "top-4 text-slate-500 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
               }`}
               htmlFor="name"
             >
@@ -169,7 +169,7 @@ export default function Contact() {
               className={`pointer-events-none absolute left-4 transition-all duration-300 ${
                 focusedField === "email"
                   ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
-                  : "peer-[:not(:placeholder-shown)]:-top-2 top-4 text-slate-500 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
+                  : "top-4 text-slate-500 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
               }`}
               htmlFor="email"
             >
@@ -195,7 +195,7 @@ export default function Contact() {
               className={`pointer-events-none absolute left-4 transition-all duration-300 ${
                 focusedField === "message"
                   ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
-                  : "peer-[:not(:placeholder-shown)]:-top-2 top-4 text-slate-500 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
+                  : "top-4 text-slate-500 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
               }`}
               htmlFor="message"
             >

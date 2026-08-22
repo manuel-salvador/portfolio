@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "public/logo.webp";
@@ -58,11 +58,11 @@ export default function Header() {
   return (
     <>
       <motion.header
-        animate={{ y: 0, opacity: 1 }}
+        animate={{ opacity: 1, y: 0 }}
         className={`fixed top-0 right-0 left-0 z-50 flex justify-center py-4 transition-all duration-300 ${
           scrolled ? "pt-2" : "pt-6"
         }`}
-        initial={{ y: -100, opacity: 0 }}
+        initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.5 }}
       >
         <div

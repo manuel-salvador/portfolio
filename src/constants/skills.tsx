@@ -15,51 +15,51 @@ import type { SkillType } from "@/types";
 
 export const frontSkills: SkillType[] = [
   {
-    name: "HTML5",
     icon: <HtmlIcon size={30} />,
+    name: "HTML5",
   },
   {
-    name: "CSS3",
     icon: <CSSIcon size={30} />,
+    name: "CSS3",
   },
   {
-    name: "TypeScript",
     icon: <TypeScriptIcon size={30} />,
+    name: "TypeScript",
   },
   {
-    name: "React",
     icon: <ReactIcon size={30} />,
+    name: "React",
   },
   {
-    name: "NextJs",
     icon: <NextJsIcon size={30} />,
+    name: "NextJs",
   },
 
   {
-    name: "Tailwind CSS",
     icon: <TailwindIcon size={30} />,
+    name: "Tailwind CSS",
   },
 ];
 
 export const backSkills: SkillType[] = [
   {
-    name: "Node",
     icon: <NodeIcon size={30} />,
+    name: "Node",
   },
   {
-    name: "Express.js",
     icon: <ExpressIcon size={30} />,
+    name: "Express.js",
   },
   {
-    name: "MySQL",
     icon: <MySqlIcon size={30} />,
+    name: "MySQL",
   },
   {
-    name: "PostgreSQL",
     icon: <PostgresIcon size={30} />,
+    name: "PostgreSQL",
   },
   {
-    name: "MongoDB",
     icon: <MongoIcon size={30} />,
+    name: "MongoDB",
   },
 ];

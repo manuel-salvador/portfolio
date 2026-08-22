@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import LinksList from "@/components/links-list";
 
 export const metadata: Metadata = {
-  title: "Social Links",
   description: "See my social links",
+  title: "Social Links",
 };
 
 export default function SocialPage() {

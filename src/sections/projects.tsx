@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 import Card from "@/components/card";
@@ -39,7 +39,7 @@ export default function Projects({ projects }: Props) {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               key={project.name}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
               whileInView={{ opacity: 1, y: 0 }}
             >
@@ -53,7 +53,7 @@ export default function Projects({ projects }: Props) {
       <motion.div
         className="mt-12 flex justify-center"
         initial={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
         viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >

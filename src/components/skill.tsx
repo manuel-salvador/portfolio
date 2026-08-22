@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import type { SkillType } from "@/types";
+import { motion } from "motion/react";
 
 type Props = {
   index: number;
@@ -13,16 +13,16 @@ export default function Skill({ index, tech, initialX }: Props) {
   return (
     <motion.div
       className="group flex flex-col items-center gap-3"
-      initial={{ x: initialX, opacity: 0 }}
+      initial={{ opacity: 0, x: initialX }}
       transition={{
-        type: "spring",
-        stiffness: 100,
         damping: 15,
         delay: index * 0.1,
+        stiffness: 100,
+        type: "spring",
       }}
       viewport={{ once: true }}
       whileHover={{ y: -4 }}
-      whileInView={{ x: 0, opacity: 1 }}
+      whileInView={{ opacity: 1, x: 0 }}
     >
       <div className="relative">
         {/* Glow effect on hover */}

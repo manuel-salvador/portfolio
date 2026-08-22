@@ -1,14 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowDown } from "@/components/icons";
 import SkillsList from "@/components/skills-list";
 import SectionLayout from "@/layouts/section-layout";
+import { motion } from "motion/react";
 
 export default function Home() {
   return (
     <SectionLayout
-      className="relative mt-20 flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-6 pt-0 text-center md:pt-0 2xl:gap-12"
+      className="relative mt-32 flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-6 pt-0 text-center md:mt-20 md:pt-0 2xl:gap-12"
       id="home"
     >
       {/* Background Gradient Orbs */}
@@ -18,7 +18,7 @@ export default function Home() {
           className="absolute right-1/4 bottom-1/4 h-80 w-80 animate-float rounded-full bg-teal-500/15 blur-3xl"
           style={{ animationDelay: "-3s" }}
         />
-        <div className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 h-[600px] w-[600px] rounded-full bg-gradient-radial from-cyan-500/10 to-transparent blur-2xl" />
+        <div className="absolute top-1/2 left-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-cyan-500/10 to-transparent blur-2xl" />
       </div>
 
       {/* Main Content */}
@@ -36,7 +36,7 @@ export default function Home() {
         <motion.div
           animate={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
         >
           <h2 className="text-slate-300 text-xl tracking-wide 2xl:text-2xl">
             <span className="text-cyan-400">&lt;</span>
@@ -49,7 +49,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           className="mx-auto text-balance text-slate-400 text-sm md:text-base"
           initial={{ opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
         >
           Building modern digital experiences with clean, scalable code and
           intuitive design.
@@ -61,7 +61,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         className="relative z-10"
         initial={{ opacity: 0, y: 30 }}
-        transition={{ duration: 0.8, delay: 0.6 }}
+        transition={{ delay: 0.6, duration: 0.8 }}
       >
         <SkillsList />
       </motion.div>
@@ -82,8 +82,8 @@ export default function Home() {
           className="h-6 w-6 md:h-8 md:w-8"
           transition={{
             duration: 1.5,
-            repeat: Number.POSITIVE_INFINITY,
             ease: "easeInOut",
+            repeat: Number.POSITIVE_INFINITY,
           }}
         >
           <ArrowDown />
