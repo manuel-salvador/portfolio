@@ -10,10 +10,11 @@ import { GitHubIcon, GlobeIcon } from "./icons";
 
 type CardProps = {
   data: ProjectType;
+  featured?: boolean;
   lazy?: boolean;
 };
 
-export default function Card({ data, lazy = true }: CardProps) {
+export default function Card({ data, featured = false, lazy = true }: CardProps) {
   return (
     <motion.div
       className="h-full w-full"
@@ -31,7 +32,11 @@ export default function Card({ data, lazy = true }: CardProps) {
         >
           <div className="flex flex-col gap-2 lg:px-4">
             {/* Project Title */}
-            <h3 className="font-semibold text-lg text-white transition-colors duration-300 group-hover:text-cyan-300">
+            <h3
+              className={`font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300 ${
+                featured ? "text-2xl" : "text-lg"
+              }`}
+            >
               {data.name}
             </h3>
 
@@ -40,6 +45,12 @@ export default function Card({ data, lazy = true }: CardProps) {
               className="relative aspect-video w-full"
               data-atropos-offset="6"
             >
+              {!!data.badge && (
+                <span className="absolute top-3 left-3 z-10 flex items-center gap-2 rounded-full border border-cyan-500/30 bg-slate-900/70 px-3 py-1 text-cyan-300 text-xs uppercase tracking-widest backdrop-blur-md">
+                  <span className="h-1.5 w-1.5 animate-glow-pulse rounded-full bg-cyan-400" />
+                  {data.badge}
+                </span>
+              )}
               <Image
                 alt={data.name}
                 className="h-auto w-auto object-contain transition-transform duration-500 group-hover:scale-105"
@@ -72,7 +83,11 @@ export default function Card({ data, lazy = true }: CardProps) {
         </Atropos>
 
         {/* Description */}
-        <p className="text-center text-slate-400 text-sm leading-relaxed">
+        <p
+          className={`text-center text-slate-400 leading-relaxed ${
+            featured ? "mx-auto max-w-2xl text-base" : "text-sm"
+          }`}
+        >
           {data.description}
         </p>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowDown } from "@/components/icons";
-import SkillsList from "@/components/skills-list";
 import SectionLayout from "@/layouts/section-layout";
 import { motion } from "motion/react";
 
@@ -56,14 +55,25 @@ export default function Home() {
         </motion.p>
       </div>
 
-      {/* Skills Section */}
+      {/* Call to Action */}
       <motion.div
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10"
+        className="relative z-10 flex flex-wrap items-center justify-center gap-4"
         initial={{ opacity: 0, y: 30 }}
         transition={{ delay: 0.6, duration: 0.8 }}
       >
-        <SkillsList />
+        <a
+          className="btn-primary rounded-xl px-8 py-3 font-medium text-white"
+          href="#projects"
+        >
+          See my work
+        </a>
+        <a
+          className="rounded-full border border-slate-600 bg-slate-800/50 px-8 py-3 font-medium text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-white"
+          href="#contact"
+        >
+          Get in touch
+        </a>
       </motion.div>
 
       {/* Scroll Indicator */}

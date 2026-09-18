@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import profileImage from "public/profile-image.webp";
 
+import SkillsList from "@/components/skills-list";
 import SectionLayout from "@/layouts/section-layout";
 
 export default function AboutMe() {
@@ -113,6 +114,17 @@ export default function AboutMe() {
             </div>
           </motion.div>
         </div>
+      </motion.div>
+
+      {/* Skills */}
+      <motion.div
+        className="mt-20"
+        initial={{ opacity: 0, y: 30 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ margin: "-100px", once: true }}
+        whileInView={{ opacity: 1, y: 0 }}
+      >
+        <SkillsList />
       </motion.div>
     </SectionLayout>
   );

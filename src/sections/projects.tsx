@@ -10,6 +10,8 @@ import type { ProjectType } from "@/types";
 type Props = { projects: ProjectType[] };
 
 export default function Projects({ projects }: Props) {
+  const [featuredProject, ...restProjects] = projects;
+
   return (
     <SectionLayout className="py-24" id="projects">
       <div className="flex flex-col gap-8 px-4 md:px-8">
@@ -33,9 +35,21 @@ export default function Projects({ projects }: Props) {
           </p>
         </motion.div>
 
+        {/* Featured Project */}
+        {!!featuredProject && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            <Card data={featuredProject} featured lazy={false} />
+          </motion.div>
+        )}
+
         {/* Projects Grid */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {projects.map((project, index) => (
+          {restProjects.map((project, index) => (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               key={project.name}

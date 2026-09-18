@@ -1,4 +1,5 @@
 export type ApiProjectType = {
+  badge?: string;
   name: string;
   image: string;
   skills: string;
@@ -9,6 +10,7 @@ export type ApiProjectType = {
 };
 
 export type ProjectType = {
+  badge?: string;
   name: string;
   image: string;
   skills: string[];

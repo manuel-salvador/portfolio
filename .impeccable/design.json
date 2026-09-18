@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-22T15:59:48.460Z",
+  "title": "Design System: Manuel Salvador — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "sonar-cyan": { "role": "primary", "displayName": "Sonar Cyan", "canonical": "#06b6d4", "tonalRamp": ["#164e63", "#0e7490", "#0891b2", "#06b6d4", "#22d3ee", "#67e8f9", "#a5f3fc", "#cffafe"] },
+      "deep-current-teal": { "role": "secondary", "displayName": "Deep Current Teal", "canonical": "#0d9488", "tonalRamp": ["#134e4a", "#115e59", "#0f766e", "#0d9488", "#14b8a6", "#2dd4bf", "#5eead4", "#99f6e4"] },
+      "abyss-navy": { "role": "neutral", "displayName": "Abyss Navy", "canonical": "#020617", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1"] },
+      "ice-mist": { "role": "neutral", "displayName": "Ice Mist", "canonical": "#f1f5f9", "tonalRamp": ["#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9", "#f8fafc", "#ffffff"] },
+      "signal-red": { "role": "tertiary", "displayName": "Signal Red", "canonical": "#f87171", "tonalRamp": ["#7f1d1d", "#991b1b", "#b91c1c", "#dc2626", "#ef4444", "#f87171", "#fca5a5", "#fecaca"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero name only, rendered with the animated gradient-text treatment." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles, typically with a single gradient-text word." },
+      "title": { "displayName": "Title", "purpose": "Card titles; shift from white to cyan-pale on card hover." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs and descriptions in Misted Slate." },
+      "label": { "displayName": "Label", "purpose": "Uppercase section eyebrows and skill-group captions in Sonar Cyan." }
+    },
+    "shadows": [
+      { "name": "glow-sm", "value": "0 0 15px rgba(6, 182, 212, 0.3)", "purpose": "Subtle emphasis on small accent elements." },
+      { "name": "glow-md", "value": "0 0 30px rgba(6, 182, 212, 0.4)", "purpose": "Medium emphasis." },
+      { "name": "glow-lg", "value": "0 0 60px rgba(6, 182, 212, 0.5)", "purpose": "Maximum broadcast; use sparingly." },
+      { "name": "glass-hover", "value": "0 8px 32px rgba(6, 182, 212, 0.15), 0 0 0 1px rgba(6, 182, 212, 0.1)", "purpose": "Glass-card hover state, paired with translateY(-4px) and border brightening to rgba(6, 182, 212, 0.4)." },
+      { "name": "primary-hover", "value": "0 10px 40px rgba(6, 182, 212, 0.4)", "purpose": "Primary button hover, paired with a lift." },
+      { "name": "input-focus", "value": "0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 20px rgba(6, 182, 212, 0.2)", "purpose": "Focus ring as a cyan halo rather than a flat ring." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for glass cards, image zooms, and state transitions (300-400ms)." },
+      { "name": "reveal", "value": "0.5-0.8s ease-out, once: true", "purpose": "Fade-up entrance for sections and cards (y: 20-40px), 0.1s stagger between siblings." },
+      { "name": "spring-skill", "value": "spring stiffness 100, damping 15", "purpose": "Skill tile hover lift and staggered entrance." },
+      { "name": "spring-success", "value": "spring stiffness 200, damping 15", "purpose": "Success checkmark scale-in on the contact form." },
+      { "name": "float", "value": "float 6s ease-in-out infinite", "purpose": "Ambient drift of background orbs (translateY -10px/+5px, 1deg rotation)." },
+      { "name": "glow-pulse", "value": "glow-pulse 2s ease-in-out infinite", "purpose": "Breathing opacity/scale on ambient glow halos." },
+      { "name": "gradient-shift", "value": "gradient-shift 8s ease infinite", "purpose": "Animated background-position behind gradient text, profile ring, and animated borders." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Contact-form submit: cyan-teal gradient with shimmer sweep and glow on hover.",
+      "html": "<button class=\"ds-btn-primary\">Send message</button>",
+      "css": ".ds-btn-primary { position: relative; overflow: hidden; background: linear-gradient(to right, #06b6d4, #14b8a6); color: #fff; border: none; border-radius: 12px; padding: 16px 32px; font-family: Inter, system-ui, sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; } .ds-btn-primary::before { content: \"\"; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; } .ds-btn-primary:hover { background: linear-gradient(to right, #22d3ee, #2dd4bf); transform: scale(1.02); box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4); } .ds-btn-primary:hover::before { left: 100%; } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.3); }"
+    },
+    {
+      "name": "Pill CTA",
+      "kind": "button",
+      "refersTo": "button-pill",
+      "description": "Capsule secondary CTA ('View all projects') with slate gradient and cyan hover overlay.",
+      "html": "<a class=\"ds-btn-pill\" href=\"#\">View all projects <span class=\"ds-btn-pill-arrow\">&rarr;</span></a>",
+      "css": ".ds-btn-pill { position: relative; display: inline-flex; align-items: center; gap: 8px; overflow: hidden; background: linear-gradient(to right, #1e293b, #334155); border: 1px solid #475569; border-radius: 9999px; padding: 12px 32px; color: #f1f5f9; font-family: Inter, system-ui, sans-serif; font-size: 1rem; font-weight: 500; text-decoration: none; transition: border-color 0.3s ease; } .ds-btn-pill::before { content: \"\"; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(to right, rgba(6,182,212,0.12), rgba(20,184,166,0.12)); opacity: 0; transition: opacity 0.3s ease; } .ds-btn-pill:hover { border-color: rgba(6, 182, 212, 0.4); } .ds-btn-pill:hover::before { opacity: 1; } .ds-btn-pill-arrow { display: inline-block; animation: ds-nudge 1.5s ease-in-out infinite; } @keyframes ds-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Card 'Code' action: quiet slate ghost that tints cyan on hover.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.67.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z\"/></svg> Code</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(51, 65, 85, 0.5); border-radius: 8px; padding: 8px 16px; color: #cbd5e1; font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; text-decoration: none; transition: all 0.3s ease; } .ds-btn-ghost svg { color: #94a3b8; transition: color 0.3s ease; } .ds-btn-ghost:hover { border-color: rgba(6, 182, 212, 0.4); background: rgba(6, 182, 212, 0.1); color: #fff; } .ds-btn-ghost:hover svg { color: #22d3ee; } .ds-btn-ghost:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3); }"
+    },
+    {
+      "name": "Accent Outline Button",
+      "kind": "button",
+      "refersTo": "button-accent-outline",
+      "description": "Card 'Demo' action: translucent cyan-teal gradient fill with cyan hairline.",
+      "html": "<a class=\"ds-btn-accent\" href=\"#\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z\"/></svg> Demo</a>",
+      "css": ".ds-btn-accent { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(to right, rgba(6,182,212,0.2), rgba(20,184,166,0.2)); border: 1px solid rgba(6, 182, 212, 0.3); border-radius: 8px; padding: 8px 16px; color: #67e8f9; font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; text-decoration: none; transition: all 0.3s ease; } .ds-btn-accent:hover { background: linear-gradient(to right, rgba(6,182,212,0.3), rgba(20,184,166,0.3)); color: #fff; } .ds-btn-accent:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3); }"
+    },
+    {
+      "name": "Glass Card",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "The signature surface: translucent slate panel with cyan hairline, lifting with glow on hover.",
+      "html": "<article class=\"ds-card-glass\"><h3 class=\"ds-card-glass-title\">Portal Bosque</h3><p class=\"ds-card-glass-body\">Website for a nature-based family club showcasing activities, workshops, and cultural events.</p></article>",
+      "css": ".ds-card-glass { background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.5) 100%); border: 1px solid rgba(6, 182, 212, 0.15); border-radius: 16px; padding: 20px 24px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); display: flex; flex-direction: column; gap: 12px; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); } .ds-card-glass:hover { border-color: rgba(6, 182, 212, 0.4); box-shadow: 0 8px 32px rgba(6, 182, 212, 0.15), 0 0 0 1px rgba(6, 182, 212, 0.1); transform: translateY(-4px); } .ds-card-glass-title { margin: 0; color: #fff; font-family: Inter, system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; transition: color 0.3s ease; } .ds-card-glass:hover .ds-card-glass-title { color: #67e8f9; } .ds-card-glass-body { margin: 0; color: #94a3b8; font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; line-height: 1.625; text-align: center; }"
+    },
+    {
+      "name": "Skill Chip",
+      "kind": "chip",
+      "refersTo": "chip-skill",
+      "description": "Capsule tag for technologies; hairline slate at rest, cyan on hover.",
+      "html": "<ul class=\"ds-chip-row\"><li class=\"ds-chip\">Next.js</li><li class=\"ds-chip\">TypeScript</li><li class=\"ds-chip\">Tailwind</li></ul>",
+      "css": ".ds-chip-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; list-style: none; margin: 0; padding: 0; } .ds-chip { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(51, 65, 85, 0.5); border-radius: 9999px; padding: 4px 12px; color: #cbd5e1; font-family: Inter, system-ui, sans-serif; font-size: 0.75rem; transition: all 0.3s ease; } .ds-chip:hover { border-color: rgba(6, 182, 212, 0.3); color: #67e8f9; }"
+    },
+    {
+      "name": "Floating Label Input",
+      "kind": "input",
+      "refersTo": "input-floating-label",
+      "description": "Contact-form field: dark translucent fill, label shrinks onto the top border, cyan halo on focus.",
+      "html": "<div class=\"ds-input-field\"><input class=\"ds-input\" id=\"ds-name\" type=\"text\" placeholder=\" \" /><label class=\"ds-input-label\" for=\"ds-name\">Name</label></div>",
+      "css": ".ds-input-field { position: relative; width: 100%; } .ds-input { width: 100%; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(51, 65, 85, 0.5); border-radius: 12px; padding: 16px; color: #f1f5f9; font-family: Inter, system-ui, sans-serif; font-size: 1rem; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; } .ds-input:focus { border-color: rgba(6, 182, 212, 0.5); box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2); } .ds-input-label { position: absolute; left: 16px; top: 16px; color: #64748b; font-family: Inter, system-ui, sans-serif; font-size: 1rem; pointer-events: none; transition: all 0.3s ease; } .ds-input:focus + .ds-input-label, .ds-input:not(:placeholder-shown) + .ds-input-label { top: -8px; background: #0f172a; padding: 0 8px; color: #22d3ee; font-size: 0.75rem; }"
+    },
+    {
+      "name": "Nav Pill",
+      "kind": "nav",
+      "refersTo": "nav-pill",
+      "description": "Floating capsule header fragment: translucent slate with blur, hairline border, logo, links, and a social icon.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-logo\">MS</span><a class=\"ds-nav-link\" href=\"#\">Home</a><a class=\"ds-nav-link\" href=\"#\">Projects</a><a class=\"ds-nav-link\" href=\"#\">CV</a><span class=\"ds-nav-divider\"></span><a class=\"ds-nav-social\" href=\"#\" aria-label=\"GitHub\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.21.67.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z\"/></svg></a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 24px; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(51, 65, 85, 0.5); border-radius: 9999px; padding: 12px 32px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); } .ds-nav-logo { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; background: linear-gradient(135deg, #06b6d4, #0d9488); color: #020617; font-family: Inter, system-ui, sans-serif; font-weight: 700; font-size: 0.875rem; } .ds-nav-link { color: #cbd5e1; font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: color 0.3s ease, transform 0.3s ease; } .ds-nav-link:hover { color: #fff; transform: scale(1.05); } .ds-nav-divider { width: 1px; height: 16px; background: #334155; } .ds-nav-social { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); color: #cbd5e1; transition: all 0.3s ease; } .ds-nav-social:hover { border-color: rgba(6, 182, 212, 0.5); background: rgba(6, 182, 212, 0.2); color: #22d3ee; }"
+    },
+    {
+      "name": "Social Icon Button",
+      "kind": "nav",
+      "refersTo": "social-icon-button",
+      "description": "Circular glass icon button for social links; cyan bloom on hover.",
+      "html": "<a class=\"ds-social\" href=\"#\" aria-label=\"LinkedIn\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z\"/></svg></a>",
+      "css": ".ds-social { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05); color: #cbd5e1; transition: all 0.3s ease; } .ds-social:hover { border-color: rgba(6, 182, 212, 0.5); background: rgba(6, 182, 212, 0.2); color: #22d3ee; box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); } .ds-social:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Deep-Sea Observatory",
+    "overview": "The site reads as a research station sunk into dark water: everything beyond the glass is deep navy void, and everything worth noticing arrives as light. Calm, precise, luminous. Color behaves like sonar — a single cyan family sweeping across slate depths, marking what is interactive or important, while teal rides as the warm undercurrent that keeps the space from feeling clinical. Surfaces are instruments: translucent glass panels with hairline cyan borders, quiet at rest, brightening when touched.\n\nDensity is deliberate and spacious. Sections float as full-width stages with one focal composition each; content gathers into narrow glass containers rather than filling the frame. Motion is the observatory's pulse, never decoration: elements surface with slow fade-up reveals, ambient orbs drift and breathe behind the glass, and interaction answers with lift and glow. The personality is welcoming without chasing — light signals that reward attention, in line with a professional who is open to offers rather than chasing them.",
+    "keyCharacteristics": [
+      "Dark navy depth (#020617 → #0f172a diagonal gradient) as the permanent field — no light mode, no pure black.",
+      "One signal family: cyan and teal only; slate neutrals carry everything else.",
+      "Glassmorphism as the surface language: translucent panels, backdrop-blur, hairline cyan borders.",
+      "Glow as the elevation vocabulary: ambient on focal elements at rest, interactive lift + glow on state.",
+      "Slow, deliberate motion: 0.5–0.8s fade-up reveals, drifting ambient orbs, gradient text that shifts like light through water.",
+      "Capsule geometry for navigation and actions; soft 12–16px radii for content containers."
+    ],
+    "rules": [
+      { "name": "The Sonar Rule", "body": "Cyan is signal, not decoration. It marks what is interactive, focused, or important; on any given screen it should occupy a small minority of the pixels. If everything glows, nothing does.", "section": "colors" },
+      { "name": "The Two-Current Rule", "body": "Hue lives only in the cyan→teal current and the slate depths. The single exception is error red; no other hue family enters the system.", "section": "colors" },
+      { "name": "The Abyss Floor Rule", "body": "The darkest value in play is Abyss Navy (#020617). Pure black (#000000) backgrounds never appear — the depth is navy water, not a void.", "section": "colors" },
+      { "name": "The One Face Rule", "body": "Inter alone carries every level of the hierarchy today; differentiate by weight and size, not by font mixing. Introducing Space Grotesk as the display face is an open decision, never a silent drift.", "section": "typography" },
+      { "name": "The Single Glowing Word Rule", "body": "Gradient text appears once per section at most — a single word in a headline, or the hero name. It is a beacon, not a highlighter.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces rest as quiet glass. Glow and lift appear as a response to state — hover, focus, success — with ambient glow reserved for designated focal elements (hero orbs, profile ring) only.", "section": "elevation" },
+      { "name": "The Cyan Glow Rule", "body": "Every glow in the system is the cyan family at 10–50% alpha. Never white glow, never gray/black drop shadows for elevation.", "section": "elevation" },
+      { "name": "The Capsule Rule", "body": "Actions and navigation are capsules (fully rounded); content containers are soft rectangles (12–16px). The two never swap.", "section": "shapes" },
+      { "name": "The Gradient Text Is a Beacon Rule", "body": "Reserve it for the hero name and one word per section headline. Body copy never shimmers.", "section": "components" }
+    ],
+    "dos": [
+      "Do keep the body field as the Abyss Navy → Observatory Slate 135° gradient; new sections inherit it rather than painting their own backgrounds.",
+      "Do use glass surfaces (translucent slate fill + cyan hairline + backdrop-blur) for any new floating container, matching the 12px blur / 15%-alpha border defaults.",
+      "Do answer interaction with the paired lift + glow (translateY(-2px…-4px) plus a cyan glow from the Shadow Vocabulary), at 300–400ms with cubic-bezier(0.4, 0, 0.2, 1).",
+      "Do enter new content with slow fade-up reveals (0.5–0.8s, once: true) and 0.1s stagger between siblings.",
+      "Do keep ambient motion (orbs, rings, gradient text) confined to designated focal elements — one ambient moment per viewport.",
+      "Do keep labels uppercase, 0.75rem, 0.1em tracking, in the cyan family at ≤70% opacity.",
+      "Do treat Space Grotesk (--font-display, already loaded) as the sanctioned upgrade path if a distinct display face is ever needed."
+    ],
+    "donts": [
+      "Don't ship a light theme or any light-mode variant — dark navy is the identity.",
+      "Don't reach for neon-green-on-black terminal/hacker aesthetics; the darkness here is navy water, and the accent is cyan.",
+      "Don't introduce hue outside the cyan→teal current and slate neutrals (error red is the single exception).",
+      "Don't use white glows or gray/black drop shadows for elevation — glow is always cyan-family.",
+      "Don't use pure black (#000000) surfaces anywhere.",
+      "Don't spread gradient text across whole paragraphs or multiple words per headline.",
+      "Don't hard-radius anything: no 0px corners on UI surfaces, and no radius larger than a capsule for interactive elements."
+    ]
+  }
+}
