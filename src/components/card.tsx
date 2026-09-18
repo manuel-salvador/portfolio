@@ -14,7 +14,11 @@ type CardProps = {
   lazy?: boolean;
 };
 
-export default function Card({ data, featured = false, lazy = true }: CardProps) {
+export default function Card({
+  data,
+  featured = false,
+  lazy = true,
+}: CardProps) {
   return (
     <motion.div
       className="h-full w-full"

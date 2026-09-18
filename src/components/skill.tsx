@@ -1,7 +1,7 @@
 "use client";
 
-import type { SkillType } from "@/types";
 import { motion } from "motion/react";
+import type { SkillType } from "@/types";
 
 type Props = {
   index: number;

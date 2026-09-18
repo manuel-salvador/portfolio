@@ -4,35 +4,172 @@
   "title": "Design System: Manuel Salvador — Portfolio",
   "extensions": {
     "colorMeta": {
-      "sonar-cyan": { "role": "primary", "displayName": "Sonar Cyan", "canonical": "#06b6d4", "tonalRamp": ["#164e63", "#0e7490", "#0891b2", "#06b6d4", "#22d3ee", "#67e8f9", "#a5f3fc", "#cffafe"] },
-      "deep-current-teal": { "role": "secondary", "displayName": "Deep Current Teal", "canonical": "#0d9488", "tonalRamp": ["#134e4a", "#115e59", "#0f766e", "#0d9488", "#14b8a6", "#2dd4bf", "#5eead4", "#99f6e4"] },
-      "abyss-navy": { "role": "neutral", "displayName": "Abyss Navy", "canonical": "#020617", "tonalRamp": ["#020617", "#0f172a", "#1e293b", "#334155", "#475569", "#64748b", "#94a3b8", "#cbd5e1"] },
-      "ice-mist": { "role": "neutral", "displayName": "Ice Mist", "canonical": "#f1f5f9", "tonalRamp": ["#475569", "#64748b", "#94a3b8", "#cbd5e1", "#e2e8f0", "#f1f5f9", "#f8fafc", "#ffffff"] },
-      "signal-red": { "role": "tertiary", "displayName": "Signal Red", "canonical": "#f87171", "tonalRamp": ["#7f1d1d", "#991b1b", "#b91c1c", "#dc2626", "#ef4444", "#f87171", "#fca5a5", "#fecaca"] }
+      "sonar-cyan": {
+        "role": "primary",
+        "displayName": "Sonar Cyan",
+        "canonical": "#06b6d4",
+        "tonalRamp": [
+          "#164e63",
+          "#0e7490",
+          "#0891b2",
+          "#06b6d4",
+          "#22d3ee",
+          "#67e8f9",
+          "#a5f3fc",
+          "#cffafe"
+        ]
+      },
+      "deep-current-teal": {
+        "role": "secondary",
+        "displayName": "Deep Current Teal",
+        "canonical": "#0d9488",
+        "tonalRamp": [
+          "#134e4a",
+          "#115e59",
+          "#0f766e",
+          "#0d9488",
+          "#14b8a6",
+          "#2dd4bf",
+          "#5eead4",
+          "#99f6e4"
+        ]
+      },
+      "abyss-navy": {
+        "role": "neutral",
+        "displayName": "Abyss Navy",
+        "canonical": "#020617",
+        "tonalRamp": [
+          "#020617",
+          "#0f172a",
+          "#1e293b",
+          "#334155",
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1"
+        ]
+      },
+      "ice-mist": {
+        "role": "neutral",
+        "displayName": "Ice Mist",
+        "canonical": "#f1f5f9",
+        "tonalRamp": [
+          "#475569",
+          "#64748b",
+          "#94a3b8",
+          "#cbd5e1",
+          "#e2e8f0",
+          "#f1f5f9",
+          "#f8fafc",
+          "#ffffff"
+        ]
+      },
+      "signal-red": {
+        "role": "tertiary",
+        "displayName": "Signal Red",
+        "canonical": "#f87171",
+        "tonalRamp": [
+          "#7f1d1d",
+          "#991b1b",
+          "#b91c1c",
+          "#dc2626",
+          "#ef4444",
+          "#f87171",
+          "#fca5a5",
+          "#fecaca"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero name only, rendered with the animated gradient-text treatment." },
-      "headline": { "displayName": "Headline", "purpose": "Section titles, typically with a single gradient-text word." },
-      "title": { "displayName": "Title", "purpose": "Card titles; shift from white to cyan-pale on card hover." },
-      "body": { "displayName": "Body", "purpose": "Paragraphs and descriptions in Misted Slate." },
-      "label": { "displayName": "Label", "purpose": "Uppercase section eyebrows and skill-group captions in Sonar Cyan." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero name only, rendered with the animated gradient-text treatment."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles, typically with a single gradient-text word."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles; shift from white to cyan-pale on card hover."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs and descriptions in Misted Slate."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase section eyebrows and skill-group captions in Sonar Cyan."
+      }
     },
     "shadows": [
-      { "name": "glow-sm", "value": "0 0 15px rgba(6, 182, 212, 0.3)", "purpose": "Subtle emphasis on small accent elements." },
-      { "name": "glow-md", "value": "0 0 30px rgba(6, 182, 212, 0.4)", "purpose": "Medium emphasis." },
-      { "name": "glow-lg", "value": "0 0 60px rgba(6, 182, 212, 0.5)", "purpose": "Maximum broadcast; use sparingly." },
-      { "name": "glass-hover", "value": "0 8px 32px rgba(6, 182, 212, 0.15), 0 0 0 1px rgba(6, 182, 212, 0.1)", "purpose": "Glass-card hover state, paired with translateY(-4px) and border brightening to rgba(6, 182, 212, 0.4)." },
-      { "name": "primary-hover", "value": "0 10px 40px rgba(6, 182, 212, 0.4)", "purpose": "Primary button hover, paired with a lift." },
-      { "name": "input-focus", "value": "0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 20px rgba(6, 182, 212, 0.2)", "purpose": "Focus ring as a cyan halo rather than a flat ring." }
+      {
+        "name": "glow-sm",
+        "value": "0 0 15px rgba(6, 182, 212, 0.3)",
+        "purpose": "Subtle emphasis on small accent elements."
+      },
+      {
+        "name": "glow-md",
+        "value": "0 0 30px rgba(6, 182, 212, 0.4)",
+        "purpose": "Medium emphasis."
+      },
+      {
+        "name": "glow-lg",
+        "value": "0 0 60px rgba(6, 182, 212, 0.5)",
+        "purpose": "Maximum broadcast; use sparingly."
+      },
+      {
+        "name": "glass-hover",
+        "value": "0 8px 32px rgba(6, 182, 212, 0.15), 0 0 0 1px rgba(6, 182, 212, 0.1)",
+        "purpose": "Glass-card hover state, paired with translateY(-4px) and border brightening to rgba(6, 182, 212, 0.4)."
+      },
+      {
+        "name": "primary-hover",
+        "value": "0 10px 40px rgba(6, 182, 212, 0.4)",
+        "purpose": "Primary button hover, paired with a lift."
+      },
+      {
+        "name": "input-focus",
+        "value": "0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 20px rgba(6, 182, 212, 0.2)",
+        "purpose": "Focus ring as a cyan halo rather than a flat ring."
+      }
     ],
     "motion": [
-      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for glass cards, image zooms, and state transitions (300-400ms)." },
-      { "name": "reveal", "value": "0.5-0.8s ease-out, once: true", "purpose": "Fade-up entrance for sections and cards (y: 20-40px), 0.1s stagger between siblings." },
-      { "name": "spring-skill", "value": "spring stiffness 100, damping 15", "purpose": "Skill tile hover lift and staggered entrance." },
-      { "name": "spring-success", "value": "spring stiffness 200, damping 15", "purpose": "Success checkmark scale-in on the contact form." },
-      { "name": "float", "value": "float 6s ease-in-out infinite", "purpose": "Ambient drift of background orbs (translateY -10px/+5px, 1deg rotation)." },
-      { "name": "glow-pulse", "value": "glow-pulse 2s ease-in-out infinite", "purpose": "Breathing opacity/scale on ambient glow halos." },
-      { "name": "gradient-shift", "value": "gradient-shift 8s ease infinite", "purpose": "Animated background-position behind gradient text, profile ring, and animated borders." }
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default easing for glass cards, image zooms, and state transitions (300-400ms)."
+      },
+      {
+        "name": "reveal",
+        "value": "0.5-0.8s ease-out, once: true",
+        "purpose": "Fade-up entrance for sections and cards (y: 20-40px), 0.1s stagger between siblings."
+      },
+      {
+        "name": "spring-skill",
+        "value": "spring stiffness 100, damping 15",
+        "purpose": "Skill tile hover lift and staggered entrance."
+      },
+      {
+        "name": "spring-success",
+        "value": "spring stiffness 200, damping 15",
+        "purpose": "Success checkmark scale-in on the contact form."
+      },
+      {
+        "name": "float",
+        "value": "float 6s ease-in-out infinite",
+        "purpose": "Ambient drift of background orbs (translateY -10px/+5px, 1deg rotation)."
+      },
+      {
+        "name": "glow-pulse",
+        "value": "glow-pulse 2s ease-in-out infinite",
+        "purpose": "Breathing opacity/scale on ambient glow halos."
+      },
+      {
+        "name": "gradient-shift",
+        "value": "gradient-shift 8s ease infinite",
+        "purpose": "Animated background-position behind gradient text, profile ring, and animated borders."
+      }
     ],
     "breakpoints": [
       { "name": "sm", "value": "640px" },
@@ -128,15 +265,51 @@
       "Capsule geometry for navigation and actions; soft 12–16px radii for content containers."
     ],
     "rules": [
-      { "name": "The Sonar Rule", "body": "Cyan is signal, not decoration. It marks what is interactive, focused, or important; on any given screen it should occupy a small minority of the pixels. If everything glows, nothing does.", "section": "colors" },
-      { "name": "The Two-Current Rule", "body": "Hue lives only in the cyan→teal current and the slate depths. The single exception is error red; no other hue family enters the system.", "section": "colors" },
-      { "name": "The Abyss Floor Rule", "body": "The darkest value in play is Abyss Navy (#020617). Pure black (#000000) backgrounds never appear — the depth is navy water, not a void.", "section": "colors" },
-      { "name": "The One Face Rule", "body": "Inter alone carries every level of the hierarchy today; differentiate by weight and size, not by font mixing. Introducing Space Grotesk as the display face is an open decision, never a silent drift.", "section": "typography" },
-      { "name": "The Single Glowing Word Rule", "body": "Gradient text appears once per section at most — a single word in a headline, or the hero name. It is a beacon, not a highlighter.", "section": "typography" },
-      { "name": "The Flat-By-Default Rule", "body": "Surfaces rest as quiet glass. Glow and lift appear as a response to state — hover, focus, success — with ambient glow reserved for designated focal elements (hero orbs, profile ring) only.", "section": "elevation" },
-      { "name": "The Cyan Glow Rule", "body": "Every glow in the system is the cyan family at 10–50% alpha. Never white glow, never gray/black drop shadows for elevation.", "section": "elevation" },
-      { "name": "The Capsule Rule", "body": "Actions and navigation are capsules (fully rounded); content containers are soft rectangles (12–16px). The two never swap.", "section": "shapes" },
-      { "name": "The Gradient Text Is a Beacon Rule", "body": "Reserve it for the hero name and one word per section headline. Body copy never shimmers.", "section": "components" }
+      {
+        "name": "The Sonar Rule",
+        "body": "Cyan is signal, not decoration. It marks what is interactive, focused, or important; on any given screen it should occupy a small minority of the pixels. If everything glows, nothing does.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Current Rule",
+        "body": "Hue lives only in the cyan→teal current and the slate depths. The single exception is error red; no other hue family enters the system.",
+        "section": "colors"
+      },
+      {
+        "name": "The Abyss Floor Rule",
+        "body": "The darkest value in play is Abyss Navy (#020617). Pure black (#000000) backgrounds never appear — the depth is navy water, not a void.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Face Rule",
+        "body": "Inter alone carries every level of the hierarchy today; differentiate by weight and size, not by font mixing. Introducing Space Grotesk as the display face is an open decision, never a silent drift.",
+        "section": "typography"
+      },
+      {
+        "name": "The Single Glowing Word Rule",
+        "body": "Gradient text appears once per section at most — a single word in a headline, or the hero name. It is a beacon, not a highlighter.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces rest as quiet glass. Glow and lift appear as a response to state — hover, focus, success — with ambient glow reserved for designated focal elements (hero orbs, profile ring) only.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Cyan Glow Rule",
+        "body": "Every glow in the system is the cyan family at 10–50% alpha. Never white glow, never gray/black drop shadows for elevation.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Capsule Rule",
+        "body": "Actions and navigation are capsules (fully rounded); content containers are soft rectangles (12–16px). The two never swap.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Gradient Text Is a Beacon Rule",
+        "body": "Reserve it for the hero name and one word per section headline. Body copy never shimmers.",
+        "section": "components"
+      }
     ],
     "dos": [
       "Do keep the body field as the Abyss Navy → Observatory Slate 135° gradient; new sections inherit it rather than painting their own backgrounds.",

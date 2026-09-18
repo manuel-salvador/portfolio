@@ -1,12 +1,12 @@
 "use client";
 
+import { motion } from "motion/react";
+import { type FormEvent, type Ref, useRef, useState } from "react";
 import { sendEmail } from "@/app/actions";
 import { CheckIcon } from "@/components/icons";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import SectionLayout from "@/layouts/section-layout";
 import { testContactForm } from "@/utils/test-contact-form";
-import { motion } from "motion/react";
-import { type FormEvent, type Ref, useRef, useState } from "react";
 
 export default function Contact() {
   const _form = useRef<HTMLFormElement>(null);

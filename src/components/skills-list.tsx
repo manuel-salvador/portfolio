@@ -1,8 +1,8 @@
 "use client";
 
+import { motion } from "motion/react";
 import Skill from "@/components/skill";
 import { backSkills, frontSkills } from "@/constants/skills";
-import { motion } from "motion/react";
 
 export default function SkillsList() {
   return (

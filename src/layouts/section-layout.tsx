@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 type SectionLayoutType = {
   children: ReactNode;
@@ -13,7 +14,7 @@ export default function SectionLayout({
 }: SectionLayoutType) {
   return (
     <section
-      className={`w-full px-2 py-[76px] md:py-[74px] ${className}`}
+      className={cn("w-full px-2 py-[76px] md:py-[74px]", className)}
       id={id}
     >
       {children}

@@ -1,13 +1,13 @@
 "use client";
 
+import { motion } from "motion/react";
 import { ArrowDown } from "@/components/icons";
 import SectionLayout from "@/layouts/section-layout";
-import { motion } from "motion/react";
 
 export default function Home() {
   return (
     <SectionLayout
-      className="relative mt-32 flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-6 pt-0 text-center md:mt-20 md:pt-0 2xl:gap-12"
+      className="relative flex h-dvh max-h-dvh flex-col items-center justify-center gap-6 py-0 pt-32 text-center md:py-0 md:pt-20 2xl:gap-12"
       id="home"
     >
       {/* Background Gradient Orbs */}
