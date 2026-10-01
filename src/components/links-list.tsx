@@ -11,11 +11,6 @@ export default function LinksList({ title, links }: Props) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-6 py-20 md:py-28">
       {/* Background Elements */}
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/3 left-1/4 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute right-1/4 bottom-1/3 h-64 w-64 rounded-full bg-teal-500/8 blur-3xl" />
-      </div>
-
       <motion.div
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md"
@@ -24,7 +19,7 @@ export default function LinksList({ title, links }: Props) {
       >
         {/* Header */}
         <div className="mb-10 text-center">
-          <h1 className="gradient-text font-bold text-3xl md:text-4xl">
+          <h1 className="hero-heading font-black text-4xl uppercase leading-none tracking-tight md:text-6xl">
             {title}
           </h1>
         </div>
@@ -39,16 +34,14 @@ export default function LinksList({ title, links }: Props) {
               transition={{ delay: 0.1 + index * 0.1, duration: 0.4 }}
             >
               <a
-                className="group glass-card flex w-full items-center justify-center gap-3 rounded-xl px-6 py-4 text-center font-medium text-lg text-white"
+                className="group flex w-full items-center justify-center gap-3 rounded-full border-2 border-[#D7E2EA] px-6 py-4 text-center font-medium text-[#D7E2EA] text-lg uppercase tracking-wider transition-colors hover:bg-[#D7E2EA]/10"
                 href={link.path}
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="transition-colors group-hover:text-cyan-300">
-                  {link.slug}
-                </span>
+                <span>{link.slug}</span>
                 <svg
-                  className="h-4 w-4 text-slate-500 transition-all group-hover:translate-x-1 group-hover:text-cyan-400"
+                  className="h-4 w-4 transition-transform group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -74,7 +67,7 @@ export default function LinksList({ title, links }: Props) {
           transition={{ delay: 0.5 }}
         >
           <a
-            className="text-slate-500 text-sm transition-colors hover:text-cyan-400"
+            className="text-[#D7E2EA] text-sm uppercase tracking-widest transition-opacity hover:opacity-70"
             href="/"
           >
             ← Back to home

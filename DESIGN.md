@@ -1,283 +1,261 @@
 ---
 name: Manuel Salvador — Portfolio
-description: A deep-sea observatory — dark navy depth, sonar-cyan signals, glass instruments
+description: A studio poster for Manuel Salvador, a full-stack developer.
 colors:
-  sonar-cyan: "#06b6d4"
-  sonar-cyan-bright: "#22d3ee"
-  sonar-cyan-pale: "#67e8f9"
-  sonar-cyan-deep: "#0891b2"
-  deep-current-teal: "#0d9488"
-  living-teal: "#14b8a6"
-  abyss-navy: "#020617"
-  observatory-slate: "#0f172a"
-  instrument-slate: "#1e293b"
-  slate-hairline: "rgba(51, 65, 85, 0.5)"
-  ice-mist: "#f1f5f9"
-  dim-slate: "#cbd5e1"
-  misted-slate: "#94a3b8"
-  faint-slate: "#64748b"
-  glass-bg: "rgba(15, 23, 42, 0.6)"
-  glass-border: "rgba(6, 182, 212, 0.15)"
-  glass-border-hover: "rgba(6, 182, 212, 0.4)"
-  signal-red: "#f87171"
+  studio-black: "#0C0C0C"
+  ice-ink: "#D7E2EA"
+  steel-shadow: "#646973"
+  steel-light: "#BBCCD7"
+  white-sheet: "#FFFFFF"
+  ember-root: "#18011F"
+  ember-magenta: "#B600A8"
+  ember-violet: "#7621B0"
+  ember-heat: "#BE4C00"
+  ember-gradient: "linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)"
 typography:
   display:
-    fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "clamp(3rem, 5vw, 4.5rem)"
-    fontWeight: 700
+    fontFamily: "Kanit, sans-serif"
+    fontSize: "clamp(3rem, 12vw, 160px)"
+    fontWeight: 900
+    lineHeight: 1
     letterSpacing: "-0.025em"
   headline:
-    fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "clamp(1.875rem, 3vw, 2.25rem)"
-    fontWeight: 700
+    fontFamily: "Kanit, sans-serif"
+    fontSize: "clamp(3rem, 10vw, 140px)"
+    fontWeight: 900
+    lineHeight: 1
   title:
-    fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "1.125rem"
-    fontWeight: 600
+    fontFamily: "Kanit, sans-serif"
+    fontSize: "clamp(1rem, 2.2vw, 2.1rem)"
+    fontWeight: 500
+    lineHeight: 1
   body:
-    fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "0.875rem"
+    fontFamily: "Kanit, sans-serif"
+    fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.625
+    letterSpacing: "normal"
   label:
-    fontFamily: "Inter, system-ui, sans-serif"
-    fontSize: "0.75rem"
+    fontFamily: "Kanit, sans-serif"
+    fontSize: "0.875rem"
     fontWeight: 500
     letterSpacing: "0.1em"
 rounded:
-  lg: "8px"
-  xl: "12px"
-  2xl: "16px"
-  full: "9999px"
+  poster: "40px"
+  poster-sm: "50px"
+  poster-md: "60px"
+  index: "32px"
+  field: "16px"
+  pill: "9999px"
 spacing:
-  xs: "8px"
-  sm: "16px"
-  md: "24px"
-  lg: "32px"
-  section: "76px"
+  row: "12px"
+  gutter: "20px"
+  gutter-wide: "40px"
+  offset: "28px"
+  stack: "32px"
+  section: "80px"
+  sheet: "128px"
 components:
-  button-primary:
-    backgroundColor: "linear-gradient(to right, #06b6d4, #14b8a6)"
-    textColor: "#ffffff"
-    rounded: "{rounded.xl}"
-    padding: "16px 24px"
-  button-primary-hover:
-    backgroundColor: "linear-gradient(to right, #22d3ee, #2dd4bf)"
-  button-pill:
-    backgroundColor: "linear-gradient(to right, #1e293b, #334155)"
-    textColor: "{colors.ice-mist}"
-    rounded: "{rounded.full}"
+  button-contact:
+    backgroundColor: "{colors.ember-gradient}"
+    textColor: "{colors.white-sheet}"
+    rounded: "{rounded.pill}"
     padding: "12px 32px"
   button-ghost:
-    backgroundColor: "rgba(30, 41, 59, 0.5)"
-    textColor: "{colors.dim-slate}"
-    rounded: "{rounded.lg}"
-    padding: "8px 16px"
-  button-accent-outline:
-    backgroundColor: "linear-gradient(to right, rgba(6, 182, 212, 0.2), rgba(20, 184, 166, 0.2))"
-    textColor: "{colors.sonar-cyan-pale}"
-    rounded: "{rounded.lg}"
-    padding: "8px 16px"
-  card-glass:
-    backgroundColor: "linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 41, 59, 0.5) 100%)"
-    textColor: "{colors.misted-slate}"
-    rounded: "{rounded.2xl}"
-    padding: "20px"
-  chip-skill:
-    backgroundColor: "rgba(30, 41, 59, 0.8)"
-    textColor: "{colors.dim-slate}"
-    rounded: "{rounded.full}"
-    padding: "4px 12px"
-  input-floating-label:
-    backgroundColor: "rgba(30, 41, 59, 0.5)"
-    textColor: "{colors.ice-mist}"
-    rounded: "{rounded.xl}"
-    padding: "16px"
-  nav-pill:
-    backgroundColor: "rgba(15, 23, 42, 0.4)"
-    textColor: "{colors.dim-slate}"
-    rounded: "{rounded.full}"
+    backgroundColor: "transparent"
+    textColor: "{colors.ice-ink}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pill}"
     padding: "12px 32px"
-  social-icon-button:
-    backgroundColor: "rgba(255, 255, 255, 0.05)"
-    textColor: "{colors.dim-slate}"
-    rounded: "{rounded.full}"
-    size: "32px"
+  button-ghost-hover:
+    backgroundColor: "rgba(215, 226, 234, 0.1)"
+    textColor: "{colors.ice-ink}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pill}"
+    padding: "12px 32px"
+  field:
+    backgroundColor: "transparent"
+    textColor: "{colors.ice-ink}"
+    typography: "{typography.body}"
+    rounded: "{rounded.field}"
+    padding: "16px"
+  card-stack:
+    backgroundColor: "{colors.studio-black}"
+    textColor: "{colors.ice-ink}"
+    rounded: "{rounded.poster}"
+    padding: "16px"
+  sheet-services:
+    backgroundColor: "{colors.white-sheet}"
+    textColor: "{colors.studio-black}"
+    rounded: "{rounded.poster}"
+    padding: "80px 20px"
+  chip:
+    backgroundColor: "transparent"
+    textColor: "{colors.ice-ink}"
+    rounded: "{rounded.pill}"
+    padding: "4px 12px"
 ---
 
 # Design System: Manuel Salvador — Portfolio
 
 ## Overview
 
-**Creative North Star: "The Deep-Sea Observatory"**
+**Creative North Star: "The Studio Poster"**
 
-The site reads as a research station sunk into dark water: everything beyond the glass is deep navy void, and everything worth noticing arrives as light. Calm, precise, luminous. Color behaves like sonar — a single cyan family sweeping across slate depths, marking what is interactive or important, while teal rides as the warm undercurrent that keeps the space from feeling clinical. Surfaces are instruments: translucent glass panels with hairline cyan borders, quiet at rest, brightening when touched.
+The homepage is a poster on a dark studio floor. One black field, one white services sheet, steel display type, and a single magenta-to-ember action. Scale is dense at the headline and quiet in the paragraph. The name on the poster is Manuel Salvador; the work is full-stack product delivery.
 
-Density is deliberate and spacious. Sections float as full-width stages with one focal composition each; content gathers into narrow glass containers rather than filling the frame. Motion is the observatory's pulse, never decoration: elements surface with slow fade-up reveals, ambient orbs drift and breathe behind the glass, and interaction answers with lift and glow. The personality is welcoming without chasing — light signals that reward attention, in line with a professional who is open to offers rather than chasing them.
+The previous observatory is rejected: glass cards, sonar cyan, and a floating pill nav do not belong on this floor. Generic purple-on-black chrome is rejected too. Magenta lives inside one pill. It is a pinned accent, not a theme.
 
 **Key Characteristics:**
 
-- Dark navy depth (`#020617` → `#0f172a` diagonal gradient) as the permanent field — no light mode, no pure black.
-- One signal family: cyan and teal only; slate neutrals carry everything else.
-- Glassmorphism as the surface language: translucent panels, `backdrop-blur`, hairline cyan borders.
-- Glow as the elevation vocabulary: ambient on focal elements at rest, interactive lift + glow on state.
-- Slow, deliberate motion: 0.5–0.8s fade-up reveals, drifting ambient orbs, gradient text that shifts like light through water.
-- Capsule geometry for navigation and actions; soft 12–16px radii for content containers.
+- Studio black field, ice ink, steel gradient display on that field
+- One white sheet with 40–60px top corners
+- One filled pill; every other action is a ghost stroke
+- Uppercase tracked labels, then quiet body copy
+- Kanit only, in the weights the site loads: 300, 400, 500, 700, and 900
+- Depth from an overlapping sheet and a sticky project stack, not glow
 
 ## Colors
 
-A two-current palette: cyan signals over abyssal navy, teal as the companion current, slate as the water itself.
+The floor is near-black, the type is a cool ice, and the only saturated color is the contact pill’s ember gradient.
 
 ### Primary
 
-- **Sonar Cyan** (#06b6d4): the system's single accent. Interactive states, focus rings, section eyebrows, hover borders, gradient endpoints, the scrollbar, and every glow. If it glows, it is this family.
-- **Sonar Cyan Bright** (#22d3ee): the gradient-text entry point and hover brightening of cyan elements.
-- **Sonar Cyan Pale** (#67e8f9): hover text on cards and chips — the brightest signal, reserved for interaction feedback.
-- **Sonar Cyan Deep** (#0891b2): gradient anchor at the dark end; button starts, scrollbar thumb.
-
-### Secondary
-
-- **Deep Current Teal** (#0d9488): the warm undercurrent. Gradient terminus of headline text and buttons; keeps the cyan family from reading as a single flat hue.
-- **Living Teal** (#14b8a6): animated-border segments, stat highlights, gradient midpoints.
+- **Ember Root** (#18011F): the dark start of the contact pill, at 7% along a 123deg gradient.
+- **Ember Magenta** (#B600A8): the pinned accent, at 37%. This is the one saturated voice on the poster.
+- **Ember Violet** (#7621B0): the mid-to-late stop, at 72%. It stays inside the pill.
+- **Ember Heat** (#BE4C00): the warm end, at 100%. White pill type sits on this whole gradient.
 
 ### Neutral
 
-- **Abyss Navy** (#020617) and **Observatory Slate** (#0f172a): the body field as a 135° diagonal gradient between them — the water the whole site floats in.
-- **Instrument Slate** (#1e293b): surface tone for glass fills, chip backgrounds, and card gradient endpoints, always at partial opacity.
-- **Slate Hairline** (rgba(51, 65, 85, 0.5)): default borders on chips, badges, skill tiles, and ghost buttons.
-- **Ice Mist** (#f1f5f9): body text and the base for all headings.
-- **Dim Slate** (#cbd5e1): secondary text, nav links, chip labels.
-- **Misted Slate** (#94a3b8): paragraphs, descriptions, supporting copy.
-- **Faint Slate** (#64748b): tertiary copy — footer line, back-links.
-- **Signal Red** (#f87171): the only warm alarm — form error states exclusively.
+- **Studio Black** (#0C0C0C): the page field, the project stack, the contact sheet, the footer, and type on the white sheet. Selection inverts to this on ice.
+- **Ice Ink** (#D7E2EA): default text, ghost strokes, nav, focus outlines’ companion, and the selection highlight. Muted lines use the same ink at 80% (project descriptions) or 70% (resting field labels).
+- **Steel Shadow** (#646973): the top stop of display type on the black field. It is not a body color; alone on studio black it is too dim to read.
+- **Steel Light** (#BBCCD7): the bottom stop of that same vertical gradient, and the color that makes the headline readable.
+- **White Sheet** (#FFFFFF): the services block, and the contact pill’s type and ring. Scrollbar chrome is steel shadow on studio black.
 
 ### Named Rules
 
-**The Sonar Rule.** Cyan is signal, not decoration. It marks what is interactive, focused, or important; on any given screen it should occupy a small minority of the pixels. If everything glows, nothing does.
-
-**The Two-Current Rule.** Hue lives only in the cyan→teal current and the slate depths. The single exception is error red; no other hue family enters the system.
-
-**The Abyss Floor Rule.** The darkest value in play is Abyss Navy (#020617). Pure black (#000000) backgrounds never appear — the depth is navy water, not a void.
+**The One Pill Rule.** Ember magenta, ember violet, and ember heat appear only inside the contact pill (including the sent-state disc that reuses that control). No other surface, rule, or heading takes this gradient. If a screen needs a second filled color, it does not get one.
 
 ## Typography
 
-**Body Font:** Inter (with system-ui fallback), loaded with feature settings `"cv02", "cv03", "cv04", "cv11"` and antialiasing.
-**Display Font:** Space Grotesk is loaded as `--font-display` but is not used by any component today — a ready display face awaiting an explicit decision. All current headings render in Inter.
+**Display Font:** Kanit (with sans-serif)
+**Body Font:** Kanit (with sans-serif)
+**Label Font:** Kanit (with sans-serif)
 
-**Character:** A single disciplined face carries the entire hierarchy through weight and scale — engineered, legible, unhurried. The personality lives in color and motion, not in letterforms.
+**Character:** One family. Display is black, uppercase, and packed tight. Body stays in the same face at a reading size. Nothing else is loaded.
 
 ### Hierarchy
 
-- **Display** (700, clamp 3rem→4.5rem, tight tracking): hero name only. Rendered with the animated gradient-text treatment — the one place type itself becomes light.
-- **Headline** (700, 1.875rem → 2.25rem at md): section titles ("About me", "Featured Projects", "Let's Talk"), typically with a single gradient-text word.
-- **Title** (600, 1.125rem): card titles; shift from white to cyan-pale on card hover.
-- **Body** (400, 0.875rem–1rem, line-height 1.625): paragraphs and descriptions in Misted Slate; inline emphasis spans step up to medium weight with cyan/teal/white color.
-- **Label** (500, 0.75rem, 0.1em tracking, uppercase): section eyebrows ("Portfolio", "Contact", "Sobre mí") in Sonar Cyan, and skill-group captions at reduced opacity.
+- **Display** (900, clamp(3rem, 12vw, 160px), line-height 1, tracking -0.025em): section titles, uppercase. On studio black they use the steel gradient (180deg, steel shadow to steel light). The hero line is the same face, weight, case, and gradient at 10.2vw, then 11vw from 640px, 12vw from 768px, and 12.6vw from 1024px, kept on one line. The projects index caps the same treatment at 8rem. Contact, inside its sheet, steps down to 3rem and 4.5rem from 768px.
+- **Headline** (900, clamp(3rem, 10vw, 140px), line-height 1): the two-digit index beside a service or a stacked project. Not a second typeface and not the steel gradient on the white sheet.
+- **Title** (500, clamp(1rem, 2.2vw, 2.1rem), line-height 1): service and project names, uppercase, under the index.
+- **Body** (400, 1rem, line-height 1.625): unset reading text, including the contact intro and footer. About steps up to 500 at clamp(1rem, 2vw, 1.35rem), max 560px. Supporting lines drop to 300: the hero caption at clamp(0.75rem, 1.4vw, 1.5rem), and sheet descriptions at clamp(0.85rem, 1.6vw, 1.25rem).
+- **Label** (500, 0.875rem, tracking 0.1em): ghost actions, uppercase. The contact pill uses the same weight, case, and tracking at 0.75rem, 0.875rem from 640px, and 1rem from 768px. Poster nav is uppercase at tracking 0.05em, from 0.875rem to 1.125rem at 768px and 1.4rem at 1024px.
 
 ### Named Rules
 
-**The One Face Rule.** Inter alone carries every level of the hierarchy today; differentiate by weight and size, not by font mixing. Introducing Space Grotesk as the display face is an open decision, never a silent drift.
+**The Poster Then Quiet Rule.** Headlines are black weight, uppercase, and leading-none. Paragraphs do not inherit that size. On the white sheet, display type is solid studio black. The steel gradient is only for display type on the black field.
 
-**The Single Glowing Word Rule.** Gradient text appears once per section at most — a single word in a headline, or the hero name. It is a beacon, not a highlighter.
+**The Steel On Black Rule.** Clip the gradient to the glyphs. Do not paint a flat white headline on the field, and do not run the steel gradient across the white sheet.
 
 ## Layout
 
-A single-column stage with centered compositions. The app frame is a centered `max-w-7xl` (80rem) column; individual sections narrow their content further — `max-w-4xl` for the about composition, `max-w-6xl` for the projects grid, `max-w-lg` for the contact form, `max-w-md` for link-list pages. Sections are full-width stages separated by generous vertical rhythm (`py-[76px]` baseline from the section layout, commonly overridden toward `py-24` / 96px).
+The poster is a full-bleed column. The field has no container; the sections do. About centers at 48rem. Services and the contact sheet stop at 64rem. The project stack and the projects index stop at 72rem. The footer stops at 80rem.
 
-The hero occupies nearly the full viewport (`calc(100vh - 5rem)`) as a centered vertical composition; every other section stacks one focal idea per screen. Project grids are `md:grid-cols-2` with `gap-8` (32px); component gaps run 8/16/32px. Responsive behavior is column-first: grids collapse to one column, the floating nav pill swaps to a full-screen blurred overlay, and typographic steps widen at `md` (768px) and `2xl` (1536px) breakpoints.
+Poster gutters are 20px, widening to 32px and then 40px. The hero uses 24px, then 40px from 768px. Vertical rhythm is 80px (about), 80px / 96px / 128px (services), 96px (contact), and a marquee pad of 96px / 128px / 160px above a 40px foot. Stacked projects sit 32px apart in the column, but each card is a sticky viewport of 85vh.
+
+The white sheet overlaps nothing above it. The black project sheet pulls back over it by 40px, 48px from 640px, and 56px from 768px, with the same top radius as the sheet. Sticky cards pin at 72px plus 28px per index, and at 96px plus that offset from 768px. Each card behind scales down by 0.03 as it sticks.
+
+The hero fills the dynamic viewport. Four text links spread across the first row. There is no fixed bar on `/`. Inner pages keep a fixed studio-black bar and clear it with 112px of top padding. The contact block is the only poster section with a scroll margin, and that margin is 8px. Do not also set a document scroll-padding; the offsets would stack.
+
+The screenshot marquee is two rows of 420×270 stills, 12px apart, radius 16px, translated from scroll at 0.3. It does not run when reduced motion is requested. Poster entrances fade and rise over 0.7s (stills 0.9s) on cubic-bezier(0.25, 0.1, 0.25, 1), once. The contact sheet rises 28px over 0.6s.
+
+Breakpoints in use are 640px, 768px, and 1024px.
 
 ## Elevation & Depth
 
-Depth here is hydraulic, not stacked: layering comes from glass translucency and blur (surfaces at 40–80% opacity with 12–20px backdrop blur float over the gradient field), while glow replaces the traditional shadow scale. Two glow registers coexist — ambient glow that focal elements carry at rest (hero orbs, the profile ring, gradient halos), and interactive glow that answers hover and focus. Lift always accompanies interactive glow (`translateY(-2px)` to `-4px`). Traditional dark drop shadows are effectively absent; the only dark shadow is a faint one under the nav pill.
+The poster is flat. Cards do not lift, glow, or blur. Depth is a white sheet laid on the black field, then a black sheet laid back over it, then a stack of project cards that stick and scale down. The inner-page bar is studio black at 90% with a backdrop blur; that blur is not a material for cards or the poster.
 
 ### Shadow Vocabulary
 
-- **Glow sm** (`box-shadow: 0 0 15px rgba(6, 182, 212, 0.3)`): subtle emphasis on small accent elements.
-- **Glow md** (`box-shadow: 0 0 30px rgba(6, 182, 212, 0.4)`): medium emphasis.
-- **Glow lg** (`box-shadow: 0 0 60px rgba(6, 182, 212, 0.5)`): maximum broadcast; use sparingly.
-- **Glass hover** (`box-shadow: 0 8px 32px rgba(6, 182, 212, 0.15), 0 0 0 1px rgba(6, 182, 212, 0.1)`): glass-card hover state, paired with `translateY(-4px)` and a border brightening to `rgba(6, 182, 212, 0.4)`.
-- **Primary hover** (`box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4)`): primary button hover, paired with `translateY(-2px)`.
-- **Input focus** (`box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 20px rgba(6, 182, 212, 0.2)`): focus ring as a cyan halo rather than a flat ring.
+- **Contact pill** (`box-shadow: 0 4px 4px rgba(181, 1, 167, 0.25), inset 4px 4px 12px #7721b1`): the only shadow. It belongs to that one control, including the sent-state disc. It is not a card elevation.
 
 ### Named Rules
 
-**The Flat-By-Default Rule.** Surfaces rest as quiet glass. Glow and lift appear as a response to state — hover, focus, success — with ambient glow reserved for designated focal elements (hero orbs, profile ring) only.
-
-**The Cyan Glow Rule.** Every glow in the system is the cyan family at 10–50% alpha. Never white glow, never gray/black drop shadows for elevation.
+**The Flat Field Rule.** Surfaces are flat at rest and on hover. Do not add a drop shadow, a glow, or a glass blur to a sheet, a card, or a field. Hover on a ghost pill is a 10% ice wash. Hover on the contact pill is opacity 0.85. Disabled pill opacity is 0.5.
 
 ## Shapes
 
-The form language splits cleanly by role. Everything you act on is a capsule: navigation pills, social icon buttons, skill chips, tag pills, and pill CTAs are fully rounded (`border-radius: 9999px`). Everything that holds content gets a soft rectangle: 12px (`rounded-xl`) for inputs, skill tiles, and image frames; 16px (`rounded-2xl`) for cards and the contact form. Borders are hairlines — 1px at 50% alpha slate for neutral containers, cyan at 15% alpha for glass, brightening to 40% on interaction.
+Poster sheets and stack cards share one corner: 40px, 50px from 640px, and 60px from 768px. The services sheet rounds only the top. Stack screenshots use the same three steps. The projects index uses a smaller card radius, 32px, with a 2px ice stroke. Marquee tiles and contact fields use 16px. Actions, skill chips, and the sent-state disc are full pills.
 
-Signature geometry includes the animated gradient ring around the profile image (a rotating cyan→teal border on a circle), circular blurred orbs as background bodies, and the masked animated-border treatment (gradient stroke revealed on hover via mask-composite). Dividers are 1px gradient lines fading transparent→cyan→transparent.
+Strokes are ice. Stack cards and ghost pills use 2px solid ice. The contact sheet uses 2px ice at 25%. Fields use 1px ice at 35%. Service rows use a bottom rule of studio black at 15%; the footer uses an ice hairline at 15%. Focus is a 2px white outline, offset 3px on pills and fields’ companions and 4px on nav and linked screenshots. The contact pill’s resting ring is that same white outline pulled inside by 3px.
 
-**The Capsule Rule.** Actions and navigation are capsules (fully rounded); content containers are soft rectangles (12–16px). The two never swap.
+Original stills (portrait, moon, brick, sculpture, forms) sit unframed on the field. They are not clipped into cards.
+
+### Named Rules
+
+**The Big Corner Rule.** A poster sheet or a stacked project card uses the 40 / 50 / 60px steps. Do not drop those surfaces back to an 8px or 12px radius. Pills stay fully round. The 16px radius is for fields and marquee tiles, not for the sheet.
 
 ## Components
 
-**The Gradient Text Is a Beacon Rule.** Reserve it for the hero name and one word per section headline. Body copy never shimmers.
+Actions are either the one ember pill or an ice ghost. Labels are uppercase. The poster’s own actions are words, not icons.
 
 ### Buttons
 
-The system has four distinct button species, all sharing smooth 300ms transitions and the gradient-forward primary.
-
-- **Shape:** primary and inputs share a gentle 12px radius (rounded-xl); the secondary CTA is a full capsule; small card actions use 8px (rounded-lg).
-- **Primary** (contact submit): full-width, cyan→teal horizontal gradient, white medium text, `py-4` (16px vertical). Overflow-hidden with a built-in shimmer sweep on hover (a white 20%-alpha band traveling left→right via `::before`).
-- **Primary Hover/Focus:** gradient brightens one step (cyan-400→teal-400), `translateY(-2px)`-style lift via scale (1.02), glow bloom. Disabled: 50% opacity, not-allowed cursor. Loading: spinner replaces label.
-- **Pill CTA** ("View all projects"): capsule with slate-800→slate-700 gradient fill, slate-600 border; hover adds a cyan/teal 10%-alpha overlay and brightens the border. Contains a perpetually nudging arrow (`x: 0→4→0`, 1.5s loop).
-- **Ghost** (card "Code"): 8px radius, slate-800 at 50% fill, slate-700/50 hairline, dim-slate label with icon; hover: cyan-tinted border and background (`cyan-500/10`), icon and text shift cyan.
-- **Accent Outline** (card "Demo"): 8px radius, cyan→teal 20%-alpha gradient fill over transparent, cyan-500/30 border, cyan-pale text; hover deepens the gradient to 30%.
+- **Shape:** full pill (9999px). Minimum hit height on ghost actions is 44px.
+- **Contact pill:** white type on the ember gradient, padding 12px 32px, then 14px 40px from 640px and 16px 48px from 768px. Type is 500, uppercase, tracking 0.1em, at 0.75rem / 0.875rem / 1rem. Resting inset white ring (outline 2px, offset -3px) plus the pill shadow. Hover opacity 0.85 over 200ms. Focus moves the white outline outside by 3px. Disabled opacity 0.5. The hero, the about block, and the contact submit all use this control. The sent state reuses it as an 80px disc.
+- **Ghost:** transparent, 2px ice stroke, ice type, padding 12px 32px, label size 0.875rem, tracking 0.1em, uppercase. Hover washes ice at 10%. Focus outline is white, offset 3px. This is “Live Project”, “Code”, “All projects”, “View CV”, and “Send another”. “Email me” is the same pill with the stroke at 40% until hover, when it becomes solid ice. The live-project control grows to 40px horizontal padding and 1rem type from 640px.
 
 ### Chips
 
-- **Skill tags:** full capsule, slate-800 at 80% fill, slate-700/50 hairline, dim-slate 0.75rem text, `px-3 py-1`. Hover: border cyan-500/30, text cyan-pale. Enter with 50ms-staggered scale-in.
+- **Style:** skill chips are full pills, 1px ice at 30%, ice type, 0.75rem, uppercase, tracking 0.05em, padding 4px 12px. No fill.
+- **State:** they are not toggles. A “Live client” mark on an index screenshot is a separate status chip: ice at 40% stroke, studio black at 80% fill, 0.75rem uppercase, tracking 0.1em, with a 6px ice dot.
 
 ### Cards / Containers
 
-- **Glass Card** (project cards, link-list rows, contact form shell): the signature surface. 16px radius, 135° gradient from slate-900/70 to slate-800/50, cyan 15%-alpha hairline, 12px backdrop blur, `transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1)`.
-- **Hover:** border brightens to 40%, glass-hover glow + ring shadow, `translateY(-4px)`.
-- **Internal padding:** 20px vertical / 20–24px horizontal (`px-5 py-4 md:px-6 md:py-5`).
-- **Project card anatomy:** title (semibold 1.125rem) → 16:9 image frame (12px radius, image scales to 1.05 on group-hover) → centered skill chips → centered description → centered Code/Demo action pair. The image block sits inside an Atropos 3D tilt wrapper (shadow and highlight off) — a signature interaction.
+- **Corner Style:** stack cards follow the big corner (40px, 50px, 60px). Index cards use 32px. Screenshot crops inside a stack card repeat the big corner.
+- **Background:** studio black. The services list is the white sheet, not a card grid.
+- **Shadow Strategy:** none. See Elevation. Stack cards stick and scale; they do not cast.
+- **Border:** 2px solid ice on the stack and the index card. The contact container is a two-column sheet (0.9fr / 1.1fr from 768px) with 2px ice at 25% and a 40px radius.
+- **Internal Padding:** stack cards pad 16px, 24px from 640px, and 32px from 768px. Index cards pad 20px 16px vertically and horizontally, 24px 20px from 768px. Service rows pad 32px / 40px / 48px vertically.
 
 ### Inputs / Fields
 
-- **Style:** 12px radius, slate-800 at 50% fill, slate-700/50 hairline, generous `px-4 py-4` (16px) padding. Floating labels: positioned absolutely, they shrink to a 0.75rem cyan label seated on the top border when focused or filled (peer `:placeholder-shown` mechanics).
-- **Focus:** border shifts to cyan-500/50 plus a two-layer ring (`ring-2 ring-cyan-500/20`); the `.input-premium` variant adds the halo shadow from the Shadow Vocabulary.
-- **Error:** red-500/30 border, red-500/10 fill banner with Signal Red text ("Please check your information and try again").
-- **Success state:** the form cross-fades to a centered confirmation — cyan→teal gradient circle with a spring-scaled white check, then message.
+- **Style:** transparent, 1px ice at 35%, radius 16px, padding 16px, ice type at 1rem. The label sits inside, then rises to 0.75rem on a studio-black chip when the field is focused, filled, or autofilled.
+- **Focus:** border becomes solid ice; a 2px ring of ice at 30% replaces the outline.
+- **Error / Disabled:** an invalid field uses a red border at 70% (#f87171) and a red message (#fca5a5). A failed send keeps the draft in a red-tinted note (#fecaca on a 10% red fill, 1px border at 40%). The pill’s disabled state is the only disabled treatment.
 
 ### Navigation
 
-- **Header:** a floating capsule pill, fixed and centered near the top: slate-900 at 40% opacity, backdrop-blur-md, slate-700/50 hairline, faint dark shadow. Contains logo (40px image) → links → divider → circular social icons. On scroll it compacts (width 95%→90%, padding `py-3`→`py-2`). Links: dim-slate 0.875rem medium, hover white with `scale(1.05)`.
-- **Mobile:** the pill collapses to logo + hamburger; the menu is a full-screen overlay (`bg-cyan-950/50`, backdrop-blur-xl) with centered 1.5rem light links and large 48px social icons. Body scroll locks while open.
-- **Footer:** quiet horizontal band — slate-800/50 top border, slate-900/30 fill with light blur, faint-slate copyright, large social icons.
+The poster nav is a single row of four uppercase ice links — About, Services, Projects, Contact — spread across the hero, not fixed and not a pill. Hover drops opacity to 0.7. Focus is a 2px white outline, offset 4px. Current location is not drawn there.
 
-### Skill Tile (signature)
+Inner pages use a fixed full-width bar, studio black at 90%, blurred, with the mark, the same uppercase ice links, and a 44px menu button below 768px. The current item is white with an ice underline. The mobile menu is a studio-black veil at 95%. That bar is not rendered on `/`.
 
-A 56px (48px at md) rounded-xl slate container holding a technology icon, label below in 0.75rem medium Misted Slate. On hover: a cyan glow bloom scales up behind the tile (blur-lg, cyan-500/40), the border brightens, the icon scales 1.1, and the whole tile springs `y: -4` (spring damping 15, stiffness 100). Entrance: staggered horizontal slide-in (±30px) from each side of the screen.
+### Project Stack
 
-### Gradient Text (signature)
+Each featured project is a sticky black card: a two-digit index, an uppercase name, ghost links for a live URL and a repo when those exist, a light description at 80% ice, and three crops of the same still. The large crop links out when a URL exists. Scroll progress scales the card from 1 toward `1 - (cards behind) × 0.03`, unless reduced motion is on.
 
-Headline emphasis treatment: `background-clip: text` over a 135° gradient (#22d3ee → #06b6d4 → #0d9488) at 200% background size, animated through `gradient-shift` over 8s — text that shimmers like light through water. Applied to the hero name and one word per section headline.
+### Services Sheet
+
+A white sheet with a solid black “Services” display line and five numbered rows. Descriptions are light weight at 60% of studio black, which lands near a 5.2:1 gray on white. The last row has no rule.
 
 ## Do's and Don'ts
 
 ### Do:
 
-- **Do** keep the body field as the Abyss Navy → Observatory Slate 135° gradient; new sections inherit it rather than painting their own backgrounds.
-- **Do** use glass surfaces (translucent slate fill + cyan hairline + backdrop-blur) for any new floating container, matching the 12px blur / 15%-alpha border defaults.
-- **Do** answer interaction with the paired lift + glow (`translateY(-2px…-4px)` plus a cyan glow from the Shadow Vocabulary), at 300–400ms with `cubic-bezier(0.4, 0, 0.2, 1)`.
-- **Do** enter new content with slow fade-up reveals (0.5–0.8s, `once: true`) and 0.1s stagger between siblings.
-- **Do** keep ambient motion (orbs, rings, gradient text) confined to designated focal elements — one ambient moment per viewport.
-- **Do** keep labels uppercase, 0.75rem, 0.1em tracking, in the cyan family at ≤70% opacity.
-- **Do** treat Space Grotesk (`--font-display`, already loaded) as the sanctioned upgrade path if a distinct display face is ever needed.
+- **Do** paint the field studio black (#0C0C0C) and set reading type in ice ink (#D7E2EA).
+- **Do** set poster display in Kanit 900, uppercase, leading-none, tracking -0.025em, and clip it to the steel gradient only on the black field.
+- **Do** keep a single filled action: the contact pill, white type on the ember gradient, fully round, with its own inset ring and shadow.
+- **Do** draw every other action as a ghost pill: 2px ice stroke, ice type, uppercase, tracking 0.1em.
+- **Do** round poster sheets and stack cards at 40px, 50px from 640px, and 60px from 768px.
+- **Do** place the original stills unframed on the field.
 
 ### Don't:
 
-- **Don't** ship a light theme or any light-mode variant — dark navy is the identity.
-- **Don't** reach for neon-green-on-black terminal/hacker aesthetics; the darkness here is navy water, and the accent is cyan.
-- **Don't** introduce hue outside the cyan→teal current and slate neutrals (error red is the single exception).
-- **Don't** use white glows or gray/black drop shadows for elevation — glow is always cyan-family.
-- **Don't** use pure black (#000000) surfaces anywhere.
-- **Don't** spread gradient text across whole paragraphs or multiple words per headline.
-- **Don't** hard-radius anything: no 0px corners on UI surfaces, and no radius larger than a capsule for interactive elements.
+- **Don't** revive the observatory: glass cards, sonar cyan, glow shadows, or a floating pill nav.
+- **Don't** theme the page in purple. Magenta is a stop inside the one pill, not a surface color.
+- **Don't** set body copy in the display clamp, or introduce a second typeface. The face is Kanit.
+- **Don't** add hard offset shadows, eyebrows, or kickers. The floor is flat except for the contact pill’s own shadow.
+- **Don't** invent another name, 3D services, or prices. The poster is Manuel Salvador’s.

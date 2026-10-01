@@ -2,19 +2,14 @@ import "@/styles/globals.css";
 import "atropos/css/min";
 
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Kanit } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 
-const inter = Inter({
+const kanit = Kanit({
   subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
+  weight: ["300", "400", "500", "700", "900"],
 });
 
 const SITE_NAME = "Manuel Salvador | Portfolio";
@@ -72,10 +67,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={`${inter.variable} ${spaceGrotesk.variable}`} lang="en">
-      <body className={`${inter.className} antialiased`}>
+    <html lang="en">
+      <body
+        className={`${kanit.className} bg-[#0C0C0C] text-[#D7E2EA] antialiased`}
+      >
         <Header />
-        <main className="mx-auto min-h-screen max-w-7xl">{children}</main>
+        <main className="min-h-screen overflow-x-clip">{children}</main>
         <Footer />
       </body>
     </html>

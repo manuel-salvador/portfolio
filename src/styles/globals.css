@@ -310,7 +310,7 @@
 
 /* Premium Scrollbar */
 * {
-  scrollbar-color: #0891b2 #0f172a;
+  scrollbar-color: #646973 #0c0c0c;
   scrollbar-width: thin;
 }
 
@@ -319,12 +319,12 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #0891b2 0%, #06b6d4 100%);
+  background: #646973;
   border-radius: 5px;
 }
 
 body::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #0c0c0c;
 }
 
 html,
@@ -338,19 +338,85 @@ html {
 }
 
 ::selection {
-  color: #f8fafc;
-  background-color: rgba(6, 182, 212, 0.45);
+  color: #0c0c0c;
+  background-color: #d7e2ea;
 }
 
 body {
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  color: #f1f5f9;
+  color: #d7e2ea;
+  background: #0c0c0c;
+}
+
+.hero-heading {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  outline: 2px solid #fff;
+  outline-offset: -3px;
   background: linear-gradient(
-    135deg,
-    rgba(2, 6, 23, 1) 0%,
-    rgba(15, 23, 42, 1) 50%,
-    rgba(2, 6, 23, 1) 100%
+    123deg,
+    #18011f 7%,
+    #b600a8 37%,
+    #7621b0 72%,
+    #be4c00 100%
   );
+  border-radius: 9999px;
+  box-shadow:
+    0 4px 4px rgba(181, 1, 167, 0.25),
+    inset 4px 4px 12px #7721b1;
+  transition: opacity 200ms ease;
+}
+
+.contact-pill:hover {
+  opacity: 0.85;
+}
+
+.contact-pill:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+.contact-pill:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (min-width: 640px) {
+  .contact-pill {
+    padding: 0.875rem 2.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-pill {
+    padding: 1rem 3rem;
+    font-size: 1rem;
+  }
+}
+
+.project-sticky {
+  top: calc(4.5rem + var(--stack, 0px));
+}
+
+@media (min-width: 768px) {
+  .project-sticky {
+    top: calc(6rem + var(--stack, 0px));
+  }
 }
 
 a {

@@ -99,9 +99,9 @@ function useNavItems(): NavItem[] {
 
 function linkClass(current: Current | false, mobile: boolean): string {
   return cn(
-    "font-medium underline-offset-8 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-4",
-    mobile ? "text-2xl" : "text-sm",
-    current ? "text-white underline decoration-cyan-300" : "text-slate-200"
+    "font-medium uppercase tracking-wider underline-offset-8 transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4",
+    mobile ? "text-2xl" : "text-sm md:text-base",
+    current ? "text-white underline decoration-[#D7E2EA]" : "text-[#D7E2EA]"
   );
 }
 
@@ -172,13 +172,18 @@ export default function Header() {
 
   const handleToggleMenu = () => setMenuOpen((open) => !open);
   const handleCloseMenu = () => setMenuOpen(false);
+  const pathname = usePathname();
+
+  if (pathname === "/") {
+    return null;
+  }
 
   return (
     <>
       <motion.header
         animate={{ opacity: 1, y: 0 }}
         className={cn(
-          "fixed top-0 right-0 left-0 z-50 flex justify-center py-4 transition-all duration-300",
+          "fixed top-0 right-0 left-0 z-50 flex justify-center bg-[#0C0C0C]/90 py-4 backdrop-blur-md transition-all duration-300",
           scrolled ? "pt-2" : "pt-6"
         )}
         initial={{ opacity: 0, y: -100 }}
@@ -186,14 +191,12 @@ export default function Header() {
       >
         <div
           className={cn(
-            "relative flex items-center justify-between rounded-full border border-slate-700/50 bg-slate-900/40 shadow-black/10 shadow-lg backdrop-blur-md transition-all duration-300",
-            scrolled
-              ? "w-[90%] px-4 py-2 md:w-[78%] md:px-6"
-              : "w-[95%] px-4 py-3 md:w-[82%] md:px-8"
+            "relative flex w-full max-w-6xl items-center justify-between px-5 transition-all duration-300 md:px-8",
+            scrolled ? "py-2" : "py-3"
           )}
         >
           <Link
-            className="relative block h-10 w-10 shrink-0 rounded-full transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
+            className="relative block h-10 w-10 shrink-0 rounded-full transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
             href="/"
           >
             <Image
@@ -246,7 +249,7 @@ export default function Header() {
             aria-controls="site-menu"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-cyan-300 md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-[#D7E2EA] transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white md:hidden"
             onClick={handleToggleMenu}
             ref={menuButtonRef}
             type="button"
@@ -259,7 +262,7 @@ export default function Header() {
       <div
         aria-hidden={menuOpen ? undefined : true}
         className={cn(
-          "fixed inset-0 z-40 flex items-center justify-center bg-cyan-950/50 backdrop-blur-xl transition-opacity duration-300 md:hidden",
+          "fixed inset-0 z-40 flex items-center justify-center bg-[#0C0C0C]/95 backdrop-blur-xl transition-opacity duration-300 md:hidden",
           menuOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"

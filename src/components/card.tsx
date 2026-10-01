@@ -25,20 +25,14 @@ function ActionLink({
   href,
   icon,
   label,
-  tone,
 }: {
   href: string;
   icon: ReactNode;
   label: string;
-  tone: "code" | "live";
 }) {
   return (
     <a
-      className={
-        tone === "live"
-          ? "group/btn inline-flex min-h-11 items-center gap-2 rounded-lg border border-cyan-400/40 bg-linear-to-r from-cyan-500/20 to-teal-500/20 px-4 py-2 transition-all duration-300 hover:from-cyan-500/30 hover:to-teal-500/30 focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
-          : "group/btn inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-600/60 bg-slate-800/50 px-4 py-2 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10 focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
-      }
+      className="group/btn inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-[#D7E2EA] px-5 py-2 transition-colors duration-200 hover:bg-[#D7E2EA]/10 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
       href={href}
       rel="noopener noreferrer"
       target="_blank"
@@ -46,13 +40,7 @@ function ActionLink({
       <span className="block h-5 w-5 [&_svg]:h-full [&_svg]:w-full">
         {icon}
       </span>
-      <span
-        className={
-          tone === "live"
-            ? "font-medium text-cyan-100 text-sm"
-            : "text-slate-200 text-sm transition-colors group-hover/btn:text-white"
-        }
-      >
+      <span className="font-medium text-[#D7E2EA] text-sm uppercase tracking-widest">
         {label}
       </span>
     </a>
@@ -86,7 +74,7 @@ function ProjectShot({
 
   if (!href) {
     return (
-      <figure className="relative aspect-video w-full overflow-hidden rounded-xl">
+      <figure className="relative aspect-video w-full overflow-hidden rounded-2xl">
         {image}
       </figure>
     );
@@ -95,7 +83,7 @@ function ProjectShot({
   return (
     <a
       aria-label={`${data.name} screenshot`}
-      className="relative block aspect-video w-full overflow-hidden rounded-xl focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
+      className="relative block aspect-video w-full overflow-hidden rounded-2xl focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
       data-atropos-offset="6"
       href={href}
       rel="noopener noreferrer"
@@ -104,9 +92,9 @@ function ProjectShot({
       {badge ? (
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute top-3 left-3 z-10 flex items-center gap-2 rounded-full border border-cyan-500/30 bg-slate-950/75 px-3 py-1 text-cyan-200 text-xs uppercase tracking-widest backdrop-blur-md"
+          className="pointer-events-none absolute top-3 left-3 z-10 flex items-center gap-2 rounded-full border border-[#D7E2EA]/40 bg-[#0C0C0C]/80 px-3 py-1 text-[#D7E2EA] text-xs uppercase tracking-widest"
         >
-          <span className="h-1.5 w-1.5 animate-glow-pulse rounded-full bg-cyan-300" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[#D7E2EA]" />
           {badge}
         </span>
       ) : null}
@@ -137,8 +125,8 @@ export default function Card({ data, lazy = true, lead = false }: CardProps) {
       <div
         className={
           lead
-            ? "group glass-card grid gap-6 rounded-2xl px-5 py-5 md:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)] md:items-center md:gap-10 md:px-6 md:py-6"
-            : "group glass-card mx-auto flex h-full flex-col justify-between gap-3 rounded-2xl px-5 py-4 md:px-6 md:py-5"
+            ? "group grid gap-6 rounded-[32px] border-2 border-[#D7E2EA] bg-[#0C0C0C] px-5 py-5 md:grid-cols-[minmax(0,1.35fr)_minmax(0,0.8fr)] md:items-center md:gap-10 md:px-6 md:py-6"
+            : "group mx-auto flex h-full flex-col justify-between gap-3 rounded-[32px] border-2 border-[#D7E2EA] bg-[#0C0C0C] px-5 py-4 md:px-6 md:py-5"
         }
       >
         <Atropos
@@ -151,7 +139,7 @@ export default function Card({ data, lazy = true, lead = false }: CardProps) {
             <ProjectShot badge={badge} data={data} lazy={lazy} />
           ) : (
             <div className="flex flex-col gap-2 lg:px-4">
-              <h3 className="font-semibold text-lg text-white transition-colors duration-300 group-hover:text-cyan-200">
+              <h3 className="font-medium text-[#D7E2EA] text-lg uppercase tracking-wide">
                 {data.name}
               </h3>
               <ProjectShot badge={badge} data={data} lazy={lazy} />
@@ -167,12 +155,12 @@ export default function Card({ data, lazy = true, lead = false }: CardProps) {
           }
         >
           {lead ? (
-            <h3 className="font-semibold text-2xl text-white md:text-3xl">
+            <h3 className="font-medium text-2xl text-[#D7E2EA] uppercase md:text-3xl">
               {data.name}
             </h3>
           ) : null}
 
-          <p className="text-pretty text-slate-300 text-sm leading-relaxed">
+          <p className="text-pretty text-[#D7E2EA]/80 text-sm leading-relaxed">
             {data.description}
           </p>
 
@@ -185,7 +173,7 @@ export default function Card({ data, lazy = true, lead = false }: CardProps) {
           >
             {skills.map((skill) => (
               <li
-                className="rounded-full border border-slate-600/60 bg-slate-800/80 px-3 py-1 text-slate-200 text-xs"
+                className="rounded-full border border-[#D7E2EA]/30 px-3 py-1 text-[#D7E2EA] text-xs uppercase tracking-wider"
                 key={`${data.name}-${skill}`}
               >
                 {skill}
@@ -206,7 +194,6 @@ export default function Card({ data, lazy = true, lead = false }: CardProps) {
                   href={liveHref}
                   icon={<GlobeIcon />}
                   label="Live site"
-                  tone="live"
                 />
               ) : null}
               {codeHref ? (
@@ -214,7 +201,6 @@ export default function Card({ data, lazy = true, lead = false }: CardProps) {
                   href={codeHref}
                   icon={<GitHubIcon />}
                   label="Code"
-                  tone="code"
                 />
               ) : null}
             </div>

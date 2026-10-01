@@ -1,12 +1,11 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import {
   type ChangeEvent,
   type FocusEvent,
   type FormEvent,
-  type Ref,
   useCallback,
   useEffect,
   useRef,
@@ -14,7 +13,6 @@ import {
 } from "react";
 import { sendEmail } from "@/app/actions";
 import { CheckIcon } from "@/components/icons";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import SectionLayout from "@/layouts/section-layout";
 import { cn } from "@/lib/utils";
 import {
@@ -73,10 +71,10 @@ const fields: FieldConfig[] = [
 
 function labelClass(focused: boolean): string {
   return cn(
-    "pointer-events-none absolute left-4 bg-slate-900 px-2 transition-all duration-300",
+    "pointer-events-none absolute left-4 bg-[#0C0C0C] px-2 transition-all duration-300",
     focused
-      ? "-top-2 text-cyan-300 text-xs"
-      : "top-4 bg-transparent px-0 text-slate-300 peer-autofill:-top-2 peer-autofill:bg-slate-900 peer-autofill:px-2 peer-autofill:text-cyan-300 peer-autofill:text-xs peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-300 peer-[:not(:placeholder-shown)]:text-xs"
+      ? "-top-2 text-[#D7E2EA] text-xs"
+      : "top-4 bg-transparent px-0 text-[#D7E2EA]/70 peer-autofill:-top-2 peer-autofill:bg-[#0C0C0C] peer-autofill:px-2 peer-autofill:text-[#D7E2EA] peer-autofill:text-xs peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-[#0C0C0C] peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-[#D7E2EA] peer-[:not(:placeholder-shown)]:text-xs"
   );
 }
 
@@ -99,10 +97,10 @@ function ContactControl({
 }) {
   const errorId = `${field.id}-error`;
   const controlClass = cn(
-    "peer w-full rounded-xl border bg-slate-800/50 px-4 py-4 text-base text-slate-50 outline-none transition-colors placeholder:text-transparent focus-visible:ring-2",
+    "peer w-full rounded-2xl border bg-transparent px-4 py-4 text-[#D7E2EA] text-base outline-none transition-colors placeholder:text-transparent focus-visible:ring-2",
     error
       ? "border-red-400/70 focus-visible:border-red-300 focus-visible:ring-red-400/40"
-      : "border-slate-600/60 focus-visible:border-cyan-300/70 focus-visible:ring-cyan-300/30"
+      : "border-[#D7E2EA]/35 focus-visible:border-[#D7E2EA] focus-visible:ring-[#D7E2EA]/30"
   );
 
   return (
@@ -160,19 +158,14 @@ function ContactControl({
 
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
-  const divRef = useRef<HTMLDivElement>(null);
   const successHeadingRef = useRef<HTMLHeadingElement>(null);
+  const reduceMotion = useReducedMotion();
   const previewTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [loading, setLoading] = useState(false);
   const [messageSent, setMessageSent] = useState(false);
   const [sendFailed, setSendFailed] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
   const [focusedField, setFocusedField] = useState<ContactField | null>(null);
-
-  const [ref, entry] = useIntersectionObserver({
-    root: divRef,
-    threshold: 0.3,
-  });
 
   useEffect(
     () => () => {
@@ -299,31 +292,33 @@ export default function Contact() {
   );
 
   return (
-    <SectionLayout className="px-6 py-24 md:px-8" id="contact">
+    <SectionLayout
+      className="scroll-mt-8 bg-[#0C0C0C] px-5 py-24 sm:px-8 md:px-10"
+      id="contact"
+    >
       <motion.div
-        className="glass-panel relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-2xl md:grid-cols-[0.9fr_1.1fr]"
-        initial={{ opacity: 0, y: 28 }}
+        className="relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-[40px] border-2 border-[#D7E2EA]/25 md:grid-cols-[0.9fr_1.1fr]"
+        initial={reduceMotion ? false : { opacity: 0, y: 28 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >
         <div className="relative flex flex-col justify-center gap-6 px-6 py-10 md:px-10 md:py-14">
-          <div className="pointer-events-none absolute -top-16 -left-16 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
-          <h2 className="font-bold text-3xl text-white md:text-4xl">
-            Let&apos;s <span className="gradient-text">Talk</span>
+          <h2 className="hero-heading font-black text-5xl uppercase leading-none tracking-tight md:text-7xl">
+            Contact
           </h2>
-          <p className="max-w-sm text-slate-300 leading-relaxed">
+          <p className="max-w-sm text-[#D7E2EA] leading-relaxed">
             Recruiters and clients can reach me here, or start with the CV.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              className="inline-flex min-h-11 items-center rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2 font-medium text-cyan-100 text-sm transition-all duration-300 hover:border-cyan-400/50 hover:bg-cyan-500/20 focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
+              className="inline-flex min-h-11 items-center rounded-full border-2 border-[#D7E2EA] px-5 py-2 font-medium text-[#D7E2EA] text-sm uppercase tracking-widest transition-colors hover:bg-[#D7E2EA]/10 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
               href="/curriculum"
             >
               View CV
             </Link>
             <a
-              className="inline-flex min-h-11 items-center rounded-full border border-slate-600 bg-slate-800/50 px-5 py-2 font-medium text-slate-100 text-sm transition-all duration-300 hover:border-cyan-500/40 hover:text-white focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
+              className="inline-flex min-h-11 items-center rounded-full border-2 border-[#D7E2EA]/40 px-5 py-2 font-medium text-[#D7E2EA] text-sm uppercase tracking-widest transition-colors hover:border-[#D7E2EA] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
               href="mailto:manu.sacr@hotmail.com"
             >
               Email me
@@ -331,35 +326,27 @@ export default function Contact() {
           </div>
         </div>
 
-        <div
-          className={cn(
-            "relative flex h-full w-full flex-col items-center justify-center p-6 transition-opacity duration-700 md:p-10",
-            entry?.isIntersecting ? "opacity-100" : "opacity-0"
-          )}
-          ref={ref as Ref<HTMLDivElement>}
-        >
-          <div className="pointer-events-none absolute -right-16 -bottom-16 h-40 w-40 rounded-full bg-teal-500/10 blur-3xl" />
-
+        <div className="relative flex h-full w-full flex-col items-center justify-center p-6 md:p-10">
           {messageSent ? (
             <div className="flex flex-col items-center px-4 py-8 text-center">
               <motion.div
                 animate={{ scale: 1 }}
-                className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-r from-cyan-500 to-teal-500"
+                className="contact-pill mb-6 flex h-20 w-20 items-center justify-center rounded-full p-0"
                 initial={{ scale: 0 }}
                 transition={{ damping: 15, stiffness: 200, type: "spring" }}
               >
-                <CheckIcon className="fill-slate-950" size={40} />
+                <CheckIcon className="fill-white" size={40} />
               </motion.div>
               <h3
-                className="mb-2 rounded-md font-bold text-white text-xl outline-none focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-4"
+                className="mb-2 rounded-md font-bold text-[#D7E2EA] text-xl outline-none focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4"
                 ref={successHeadingRef}
                 tabIndex={-1}
               >
                 Message sent
               </h3>
-              <p className="text-slate-300">I&apos;ll reply by email.</p>
+              <p className="text-[#D7E2EA]">I&apos;ll reply by email.</p>
               <button
-                className="mt-6 inline-flex min-h-11 items-center rounded-full border border-slate-600 bg-slate-800/50 px-6 py-3 font-medium text-slate-100 transition-colors hover:border-cyan-500/40 hover:text-white focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
+                className="mt-6 inline-flex min-h-11 items-center rounded-full border-2 border-[#D7E2EA] px-6 py-3 font-medium text-[#D7E2EA] uppercase tracking-widest transition-colors hover:bg-[#D7E2EA]/10 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
                 onClick={handleSendAnother}
                 type="button"
               >
@@ -406,13 +393,10 @@ export default function Contact() {
               ) : null}
 
               <button
-                className="relative min-h-12 w-full cursor-pointer overflow-hidden rounded-xl py-4 font-medium text-slate-950 focus-visible:outline-2 focus-visible:outline-cyan-200 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="contact-pill relative min-h-12 w-full cursor-pointer"
                 disabled={loading}
                 type="submit"
               >
-                <span className="absolute inset-0 bg-linear-to-r from-cyan-500 to-teal-500" />
-                <span className="absolute inset-0 bg-linear-to-r from-cyan-400 to-teal-400 opacity-0 transition-opacity duration-300 hover:opacity-100" />
-
                 {loading ? (
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     <svg
