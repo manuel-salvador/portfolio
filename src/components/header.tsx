@@ -35,8 +35,7 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const root = document.documentElement;
-    const body = document.body;
+    const { documentElement: root, body } = document;
 
     if (menuOpen) {
       root.classList.add("overflow-hidden");

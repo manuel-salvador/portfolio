@@ -10,7 +10,9 @@
       "**/*",
       "!.next/*",
       "!src/components/ui/*",
-      "!src/app/styles/globals.css"
+      "!src/app/styles/globals.css",
+      "!.claude/skills",
+      "!.cursor/skills"
     ]
   },
   "linter": {

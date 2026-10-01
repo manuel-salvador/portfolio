@@ -17,7 +17,7 @@ export function useIntersectionObserver({
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
 
   useEffect(() => {
-    const node = ref?.current;
+    const node = ref.current;
 
     if (!node || typeof IntersectionObserver !== "function") {
       return;

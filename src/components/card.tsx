@@ -10,15 +10,47 @@ import { GitHubIcon, GlobeIcon } from "./icons";
 
 type CardProps = {
   data: ProjectType;
-  featured?: boolean;
   lazy?: boolean;
 };
 
-export default function Card({
-  data,
-  featured = false,
-  lazy = true,
-}: CardProps) {
+function ProjectActions({ data }: { data: ProjectType }) {
+  return (
+    <div className="mt-2 flex justify-center gap-4">
+      {!!data.repo && (
+        <a
+          className="group/btn flex items-center gap-2 rounded-lg border border-slate-700/50 bg-slate-800/50 px-4 py-2 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10"
+          href={data.repo}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div className="h-5 w-5 text-slate-400 transition-colors group-hover/btn:text-cyan-400">
+            <GitHubIcon />
+          </div>
+          <span className="text-slate-300 text-sm transition-colors group-hover/btn:text-white">
+            Code
+          </span>
+        </a>
+      )}
+      {!!data.deploy && (
+        <a
+          className="group/btn flex items-center gap-2 rounded-lg border border-cyan-500/30 bg-linear-to-r from-cyan-500/20 to-teal-500/20 px-4 py-2 transition-all duration-300 hover:from-cyan-500/30 hover:to-teal-500/30"
+          href={data.deploy}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div className="h-5 w-5 text-cyan-400 transition-colors group-hover/btn:text-cyan-300">
+            <GlobeIcon />
+          </div>
+          <span className="text-cyan-300 text-sm transition-colors group-hover/btn:text-white">
+            Demo
+          </span>
+        </a>
+      )}
+    </div>
+  );
+}
+
+export default function Card({ data, lazy = true }: CardProps) {
   return (
     <motion.div
       className="h-full w-full"
@@ -35,16 +67,10 @@ export default function Card({
           shadow={false}
         >
           <div className="flex flex-col gap-2 lg:px-4">
-            {/* Project Title */}
-            <h3
-              className={`font-semibold text-white transition-colors duration-300 group-hover:text-cyan-300 ${
-                featured ? "text-2xl" : "text-lg"
-              }`}
-            >
+            <h3 className="font-semibold text-lg text-white transition-colors duration-300 group-hover:text-cyan-300">
               {data.name}
             </h3>
 
-            {/* Project Image */}
             <figure
               className="relative aspect-video w-full"
               data-atropos-offset="6"
@@ -59,13 +85,12 @@ export default function Card({
                 alt={data.name}
                 className="h-auto w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 fill
-                priority={lazy}
+                priority={!lazy}
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 src={data.image}
               />
             </figure>
 
-            {/* Skills Tags */}
             <ul
               className="flex flex-wrap justify-center gap-2"
               data-atropos-offset="8"
@@ -74,7 +99,7 @@ export default function Card({
                 <motion.li
                   className="rounded-full border border-slate-700/50 bg-slate-800/80 px-3 py-1 text-slate-300 text-xs transition-all duration-300 hover:border-cyan-500/30 hover:text-cyan-300"
                   initial={{ opacity: 0, scale: 0.8 }}
-                  key={`${data.name}${skill}${index}`}
+                  key={`${data.name}-${skill}`}
                   transition={{ delay: index * 0.05 }}
                   viewport={{ once: true }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -86,48 +111,11 @@ export default function Card({
           </div>
         </Atropos>
 
-        {/* Description */}
-        <p
-          className={`text-center text-slate-400 leading-relaxed ${
-            featured ? "mx-auto max-w-2xl text-base" : "text-sm"
-          }`}
-        >
+        <p className="text-center text-slate-400 text-sm leading-relaxed">
           {data.description}
         </p>
 
-        {/* Action Buttons */}
-        <div className="mt-2 flex justify-center gap-4">
-          {!!data.repo && (
-            <a
-              className="group/btn flex items-center gap-2 rounded-lg border border-slate-700/50 bg-slate-800/50 px-4 py-2 transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10"
-              href={data.repo}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div className="h-5 w-5 text-slate-400 transition-colors group-hover/btn:text-cyan-400">
-                <GitHubIcon />
-              </div>
-              <span className="text-slate-300 text-sm transition-colors group-hover/btn:text-white">
-                Code
-              </span>
-            </a>
-          )}
-          {!!data.deploy && (
-            <a
-              className="group/btn flex items-center gap-2 rounded-lg border border-cyan-500/30 bg-linear-to-r from-cyan-500/20 to-teal-500/20 px-4 py-2 transition-all duration-300 hover:from-cyan-500/30 hover:to-teal-500/30"
-              href={data.deploy}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <div className="h-5 w-5 text-cyan-400 transition-colors group-hover/btn:text-cyan-300">
-                <GlobeIcon />
-              </div>
-              <span className="text-cyan-300 text-sm transition-colors group-hover/btn:text-white">
-                Demo
-              </span>
-            </a>
-          )}
-        </div>
+        <ProjectActions data={data} />
       </div>
     </motion.div>
   );

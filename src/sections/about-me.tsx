@@ -11,24 +11,21 @@ export default function AboutMe() {
   return (
     <SectionLayout className="px-6 pb-24 md:px-8 md:pt-28" id="aboutMe">
       <motion.div
-        className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 md:flex-row md:gap-16"
-        initial={{ opacity: 0, y: 40 }}
+        className="mx-auto grid w-full max-w-5xl items-center gap-12 md:grid-cols-[minmax(0,220px)_1fr] md:gap-16"
+        initial={{ opacity: 0, y: 36 }}
         transition={{ duration: 0.6 }}
         viewport={{ margin: "-100px", once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >
-        {/* Profile Image with Glow Ring */}
         <motion.div
-          className="relative shrink-0"
-          initial={{ opacity: 0, scale: 0.8 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
+          className="relative mx-auto shrink-0"
+          initial={{ opacity: 0, scale: 0.88 }}
+          transition={{ delay: 0.15, duration: 0.6 }}
           viewport={{ once: true }}
           whileInView={{ opacity: 1, scale: 1 }}
         >
-          {/* Outer glow */}
           <div className="absolute inset-0 -m-8 animate-glow-pulse rounded-full bg-gradient-radial from-cyan-500/20 to-transparent blur-2xl" />
 
-          {/* Animated gradient ring */}
           <div className="relative h-45 w-45 md:h-55 md:w-55">
             <div
               className="absolute inset-0 animate-gradient-shift rounded-full bg-linear-to-r from-cyan-400 via-teal-400 to-cyan-400 p-0.75"
@@ -37,7 +34,6 @@ export default function AboutMe() {
               <div className="h-full w-full rounded-full bg-slate-900" />
             </div>
 
-            {/* Image container */}
             <div className="absolute inset-1.5 overflow-hidden rounded-full">
               <Image
                 alt="Manuel Salvador - Profile"
@@ -51,17 +47,13 @@ export default function AboutMe() {
           </div>
         </motion.div>
 
-        {/* Content */}
-        <div className="flex-1 text-center md:text-left">
+        <div className="glass-panel rounded-2xl p-6 text-center md:p-8 md:text-left">
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            initial={{ opacity: 0, y: 16 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
             viewport={{ once: true }}
-            whileInView={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
           >
-            <span className="mb-2 block text-cyan-500 text-xs uppercase tracking-widest">
-              Sobre mí
-            </span>
             <h2 className="mb-6 font-bold text-3xl text-white md:text-4xl">
               About <span className="gradient-text">me</span>
             </h2>
@@ -70,7 +62,7 @@ export default function AboutMe() {
           <motion.div
             className="flex flex-col gap-4 text-slate-400 leading-relaxed"
             initial={{ opacity: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1 }}
           >
@@ -96,11 +88,10 @@ export default function AboutMe() {
             </p>
           </motion.div>
 
-          {/* Stats or highlights */}
           <motion.div
             className="mt-8 flex flex-wrap justify-center gap-6 md:justify-start"
-            initial={{ opacity: 0, y: 20 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            initial={{ opacity: 0, y: 16 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
           >
@@ -116,10 +107,9 @@ export default function AboutMe() {
         </div>
       </motion.div>
 
-      {/* Skills */}
       <motion.div
         className="mt-20"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 28 }}
         transition={{ duration: 0.6 }}
         viewport={{ margin: "-100px", once: true }}
         whileInView={{ opacity: 1, y: 0 }}
