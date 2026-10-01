@@ -24,8 +24,3 @@ export type SkillType = {
   name: string;
   icon: React.ReactNode;
 };
-
-export type Pages = {
-  label: string;
-  url: string;
-}[];

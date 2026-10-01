@@ -64,7 +64,7 @@ export default function Home() {
 
         <motion.h2
           animate={{ opacity: 1, y: 0 }}
-          className="text-slate-300 text-xl tracking-wide 2xl:text-2xl"
+          className="text-slate-200 text-xl tracking-wide 2xl:text-2xl"
           initial={{ opacity: 0, y: 16 }}
           transition={{ delay: 0.35, duration: 0.8, ease: "easeOut" }}
         >
@@ -73,12 +73,12 @@ export default function Home() {
 
         <motion.p
           animate={{ opacity: 1 }}
-          className="mx-auto max-w-xl text-balance text-slate-400 text-sm md:text-base"
+          className="mx-auto max-w-xl text-balance text-base text-slate-300 md:text-lg"
           initial={{ opacity: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          Building modern digital experiences with clean, scalable code and
-          intuitive design.
+          Portal Bosque is live for a real client, and I&apos;m open to the next
+          role or project.
         </motion.p>
       </div>
 
@@ -89,13 +89,13 @@ export default function Home() {
         transition={{ delay: 0.62, duration: 0.8 }}
       >
         <a
-          className="btn-primary rounded-xl px-8 py-3 font-medium text-white"
+          className="btn-primary rounded-xl px-8 py-3 font-medium"
           href="#projects"
         >
           See my work
         </a>
         <a
-          className="rounded-full border border-slate-600 bg-slate-800/50 px-8 py-3 font-medium text-slate-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-white"
+          className="rounded-full border border-slate-600 bg-slate-800/50 px-8 py-3 font-medium text-slate-100 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-white focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
           href="#contact"
         >
           Get in touch
@@ -104,12 +104,16 @@ export default function Home() {
 
       <motion.a
         animate={{ opacity: 1 }}
-        className="absolute bottom-4 flex flex-col items-center gap-2 text-slate-400 transition-colors hover:text-cyan-400 md:bottom-8"
+        aria-label="Scroll to about"
+        className="absolute bottom-4 flex flex-col items-center gap-2 text-slate-300 transition-colors hover:text-cyan-300 focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-4 md:bottom-8"
         href="#aboutMe"
         initial={{ opacity: 0 }}
         transition={{ delay: 1.1 }}
       >
-        <span className="text-xs uppercase tracking-widest md:hidden 2xl:block">
+        <span
+          aria-hidden="true"
+          className="text-xs uppercase tracking-widest md:hidden 2xl:block"
+        >
           Scroll
         </span>
         <motion.div

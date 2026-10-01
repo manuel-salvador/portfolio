@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import "atropos/css/min";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 import Footer from "@/components/footer";
@@ -25,6 +25,12 @@ const SITE_URL = process.env.NEXT_PUBLIC_PREVIEW_MODE
   : "https://manuel-salvador.vercel.app";
 const SITE_IMAGE = "https://i.imgur.com/kBZaSjc.png";
 const TWITTER_HANDLE = "@manu_svd";
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  viewportFit: "cover",
+  width: "device-width",
+};
 
 export const metadata: Metadata = {
   description: SITE_DESCRIPTION,

@@ -3,11 +3,12 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import logo from "public/logo.webp";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import SocialLinkIcon from "@/components/social-link-icon";
-import type { Pages } from "@/types";
+import { cn } from "@/lib/utils";
 import {
   CloseIcon,
   EmailIcon,
@@ -16,15 +17,100 @@ import {
   MenuIcon,
 } from "./icons";
 
-const pages: Pages = [
-  { label: "Home", url: "/" },
-  { label: "Projects", url: "/projects" },
-  { label: "CV", url: "/curriculum" },
-];
+type Current = "page" | "location";
+
+type NavItem = {
+  current: Current | false;
+  href: string;
+  label: string;
+};
+
+function useNavItems(): NavItem[] {
+  const pathname = usePathname();
+  const [hash, setHash] = useState("");
+
+  useEffect(() => {
+    const readHash = () => {
+      setHash(window.location.hash);
+    };
+
+    const markClickedHash = (event: MouseEvent) => {
+      const { target } = event;
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      const anchor = target.closest("a");
+      const href = anchor?.getAttribute("href");
+      if (!href) {
+        return;
+      }
+
+      if (href === "#contact" || href === "/#contact") {
+        setHash("#contact");
+        return;
+      }
+
+      if (href.startsWith("#")) {
+        setHash(href);
+        return;
+      }
+
+      if (href.startsWith("/")) {
+        setHash("");
+      }
+    };
+
+    readHash();
+    window.addEventListener("hashchange", readHash);
+    document.addEventListener("click", markClickedHash);
+    return () => {
+      window.removeEventListener("hashchange", readHash);
+      document.removeEventListener("click", markClickedHash);
+    };
+  }, []);
+
+  const onHome = pathname === "/";
+  const contactCurrent = onHome && hash === "#contact";
+
+  return [
+    {
+      current: onHome && !contactCurrent ? "page" : false,
+      href: "/",
+      label: "Home",
+    },
+    {
+      current: pathname === "/projects" ? "page" : false,
+      href: "/projects",
+      label: "Projects",
+    },
+    {
+      current: pathname === "/curriculum" ? "page" : false,
+      href: "/curriculum",
+      label: "CV",
+    },
+    {
+      current: contactCurrent ? "location" : false,
+      href: onHome ? "#contact" : "/#contact",
+      label: "Contact",
+    },
+  ];
+}
+
+function linkClass(current: Current | false, mobile: boolean): string {
+  return cn(
+    "font-medium underline-offset-8 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-4",
+    mobile ? "text-2xl" : "text-sm",
+    current ? "text-white underline decoration-cyan-300" : "text-slate-200"
+  );
+}
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const items = useNavItems();
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstItemRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,41 +122,78 @@ export default function Header() {
 
   useEffect(() => {
     const { documentElement: root, body } = document;
+    const background = [
+      document.querySelector("main"),
+      document.querySelector("footer"),
+    ];
 
     if (menuOpen) {
       root.classList.add("overflow-hidden");
       body.classList.add("overflow-hidden");
+      for (const element of background) {
+        element?.setAttribute("inert", "");
+      }
     } else {
       root.classList.remove("overflow-hidden");
       body.classList.remove("overflow-hidden");
+      for (const element of background) {
+        element?.removeAttribute("inert");
+      }
     }
 
     return () => {
       root.classList.remove("overflow-hidden");
       body.classList.remove("overflow-hidden");
+      for (const element of background) {
+        element?.removeAttribute("inert");
+      }
     };
   }, [menuOpen]);
 
-  const handleToggleMenu = () => setMenuOpen((prev) => !prev);
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+
+    firstItemRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
+  const handleToggleMenu = () => setMenuOpen((open) => !open);
   const handleCloseMenu = () => setMenuOpen(false);
 
   return (
     <>
       <motion.header
         animate={{ opacity: 1, y: 0 }}
-        className={`fixed top-0 right-0 left-0 z-50 flex justify-center py-4 transition-all duration-300 ${
+        className={cn(
+          "fixed top-0 right-0 left-0 z-50 flex justify-center py-4 transition-all duration-300",
           scrolled ? "pt-2" : "pt-6"
-        }`}
+        )}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.5 }}
       >
         <div
-          className={`relative flex items-center justify-between rounded-full border border-slate-700/50 bg-slate-900/40 shadow-black/10 shadow-lg backdrop-blur-md transition-all duration-300 ${scrolled ? "w-[90%] px-6 py-2 md:w-[70%]" : "w-[95%] px-8 py-3 md:w-[80%]"}
-            `}
+          className={cn(
+            "relative flex items-center justify-between rounded-full border border-slate-700/50 bg-slate-900/40 shadow-black/10 shadow-lg backdrop-blur-md transition-all duration-300",
+            scrolled
+              ? "w-[90%] px-4 py-2 md:w-[78%] md:px-6"
+              : "w-[95%] px-4 py-3 md:w-[82%] md:px-8"
+          )}
         >
-          {/* Logo */}
           <Link
-            className="relative block h-10 w-10 shrink-0 transition-transform hover:scale-105"
+            className="relative block h-10 w-10 shrink-0 rounded-full transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
             href="/"
           >
             <Image
@@ -78,21 +201,24 @@ export default function Header() {
               className="object-contain"
               fill
               priority
-              sizes="50px"
+              sizes="40px"
               src={logo}
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden items-center gap-8 md:flex">
-            <ul className="flex items-center gap-6">
-              {pages.map((page) => (
-                <li key={page.url}>
+          <nav
+            aria-label="Primary"
+            className="hidden items-center gap-6 md:flex"
+          >
+            <ul className="flex items-center gap-5">
+              {items.map((item) => (
+                <li key={item.label}>
                   <Link
-                    className="font-medium text-slate-300 text-sm transition-all hover:scale-105 hover:text-white"
-                    href={page.url}
+                    aria-current={item.current || undefined}
+                    className={linkClass(item.current, false)}
+                    href={item.href}
                   >
-                    {page.label}
+                    {item.label}
                   </Link>
                 </li>
               ))}
@@ -116,10 +242,13 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
-            className="h-10 w-10 rounded-full p-2 text-white transition-colors hover:bg-white/10 md:hidden"
+            aria-controls="site-menu"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-cyan-300 md:hidden"
             onClick={handleToggleMenu}
+            ref={menuButtonRef}
             type="button"
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
@@ -127,20 +256,29 @@ export default function Header() {
         </div>
       </motion.header>
 
-      {/* Mobile Nav Overlay */}
       <div
-        className={`fixed inset-0 z-40 flex items-center justify-center bg-cyan-950/50 backdrop-blur-xl transition-all duration-300 md:hidden ${menuOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}
+        aria-hidden={menuOpen ? undefined : true}
+        className={cn(
+          "fixed inset-0 z-40 flex items-center justify-center bg-cyan-950/50 backdrop-blur-xl transition-opacity duration-300 md:hidden",
+          menuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        )}
+        id="site-menu"
+        inert={menuOpen ? undefined : true}
       >
-        <div className="flex flex-col items-center gap-8">
-          <ul className="flex flex-col items-center gap-6 font-light text-2xl">
-            {pages.map((page) => (
-              <li key={page.url}>
+        <nav aria-label="Mobile" className="flex flex-col items-center gap-8">
+          <ul className="flex flex-col items-center gap-6">
+            {items.map((item, index) => (
+              <li key={item.label}>
                 <Link
-                  className="transition-colors hover:text-cyan-400"
-                  href={page.url}
+                  aria-current={item.current || undefined}
+                  className={linkClass(item.current, true)}
+                  href={item.href}
                   onClick={handleCloseMenu}
+                  ref={index === 0 ? firstItemRef : undefined}
                 >
-                  {page.label}
+                  {item.label}
                 </Link>
               </li>
             ))}
@@ -162,7 +300,7 @@ export default function Header() {
               size="lg"
             />
           </div>
-        </div>
+        </nav>
       </div>
     </>
   );

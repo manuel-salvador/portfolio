@@ -14,7 +14,10 @@ export default function SectionLayout({
 }: SectionLayoutType) {
   return (
     <section
-      className={cn("w-full px-2 py-[76px] md:py-[74px]", className)}
+      className={cn(
+        "w-full scroll-mt-28 px-4 py-[76px] md:px-2 md:py-[74px]",
+        className
+      )}
       id={id}
     >
       {children}

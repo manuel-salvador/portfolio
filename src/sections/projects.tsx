@@ -9,57 +9,54 @@ import type { ProjectType } from "@/types";
 
 type Props = { projects: ProjectType[] };
 
+function pickLead(projects: ProjectType[]): ProjectType | undefined {
+  return (
+    projects.find(
+      (project) => project.repo.trim().length === 0 && project.deploy
+    ) ?? projects[0]
+  );
+}
+
 export default function Projects({ projects }: Props) {
+  const lead = pickLead(projects);
+
   return (
     <SectionLayout className="py-24" id="projects">
-      <div className="flex flex-col gap-10 px-4 md:px-8">
+      <div className="flex flex-col gap-8 px-1 md:px-8">
         <motion.div
-          className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+          className="max-w-xl"
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           whileInView={{ opacity: 1, y: 0 }}
         >
-          <div className="max-w-xl">
-            <h2 className="font-bold text-3xl text-white md:text-4xl">
-              Featured <span className="gradient-text">Projects</span>
-            </h2>
-            <p className="mt-4 text-balance text-slate-400">
-              Selected projects that reflect my skills and passion for building
-              outstanding web products.
-            </p>
-          </div>
-          <Link
-            className="hidden font-medium text-cyan-300 text-sm transition-colors hover:text-cyan-100 md:inline-flex"
-            href="/projects"
-          >
-            View all →
-          </Link>
+          <h2 className="font-bold text-3xl text-white md:text-4xl">
+            Shipped <span className="gradient-text">work</span>
+          </h2>
+          <p className="mt-4 text-balance text-slate-300">
+            A live client site leads. Hackathons and experiments stay on the
+            projects page.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {projects.map((project) => (
-            <Card data={project} key={project.name} lazy={false} />
-          ))}
-        </div>
+        {lead ? <Card data={lead} lazy={false} lead /> : null}
       </div>
 
       <motion.div
-        className="mt-12 flex justify-center md:hidden"
+        className="mt-10 flex justify-center"
         initial={{ opacity: 0, y: 20 }}
         transition={{ delay: 0.2, duration: 0.5 }}
         viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >
         <Link
-          className="group relative overflow-hidden rounded-full px-8 py-3 transition-all duration-300"
+          className="group relative inline-flex min-h-11 items-center overflow-hidden rounded-full px-8 py-3 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
           href="/projects"
         >
           <span className="absolute inset-0 rounded-full border border-slate-600 bg-linear-to-r from-slate-800 to-slate-700 transition-all duration-300 group-hover:border-cyan-500/40" />
           <span className="absolute inset-0 rounded-full bg-linear-to-r from-cyan-500/10 to-teal-500/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <span className="relative z-10 flex items-center gap-2 font-medium text-white">
+          <span className="relative z-10 font-medium text-slate-50">
             View all projects
-            <span className="inline-block">→</span>
           </span>
         </Link>
       </motion.div>
