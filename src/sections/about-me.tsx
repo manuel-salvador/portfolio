@@ -76,9 +76,10 @@ export default function AboutMe() {
               someone who has already put software in front of real users.
             </p>
             <p>
-              <span className="font-medium text-slate-50">Portal Bosque</span>,
-              a site for a nature-based family club, is the one in production.
-              I&apos;m open to the next role or client project.
+              <span className="font-medium text-slate-50">Portal Bosque</span>{" "}
+              is a site I shipped for a nature-based family club. I build{" "}
+              <span className="font-medium text-slate-50">Diseñar Viajes</span>,
+              the system behind a travel agency, and the products that follow.
             </p>
           </motion.div>
 

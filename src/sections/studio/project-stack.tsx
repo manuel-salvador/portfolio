@@ -8,9 +8,13 @@ import {
 } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { type CSSProperties, useRef } from "react";
+import { useRef } from "react";
 
 import LiveProjectButton from "@/components/studio/live-project-button";
+import {
+  type ProjectPageShot,
+  pageShotsFor,
+} from "@/constants/project-page-shots";
 import type { ProjectType } from "@/types";
 
 type ProjectStackProps = {
@@ -38,30 +42,49 @@ function projectContext(project: ProjectType): string {
   return "";
 }
 
-function Shot({
-  alt,
+function PageFrame({
   className,
+  href,
+  label,
   position,
   src,
-  style,
 }: {
-  alt: string;
   className: string;
+  href: string;
+  label: string;
   position: string;
   src: string;
-  style?: CSSProperties;
 }) {
-  return (
-    <div className={`relative overflow-hidden ${className}`} style={style}>
-      <Image
-        alt={alt}
-        className={`object-cover ${position}`}
-        fill
-        sizes="(max-width: 768px) 90vw, 40vw"
-        src={src}
-      />
-    </div>
+  const image = (
+    <Image
+      alt=""
+      className={`object-cover ${position}`}
+      fill
+      sizes="(max-width: 640px) 90vw, 40vw"
+      src={src}
+    />
   );
+  const frame = `relative overflow-hidden rounded-[40px] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4 sm:rounded-[50px] md:rounded-[60px] ${className}`;
+
+  if (!href) {
+    return <div className={frame}>{image}</div>;
+  }
+
+  return (
+    <a
+      aria-label={label}
+      className={`block ${frame}`}
+      href={href}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      {image}
+    </a>
+  );
+}
+
+function shotLabel(shot: ProjectPageShot): string {
+  return `Open the ${shot.alt} (opens in a new tab)`;
 }
 
 function StackCard({
@@ -83,13 +106,14 @@ function StackCard({
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
   const liveHref = project.deploy?.trim() ?? "";
   const codeHref = project.repo.trim();
-  const href = liveHref || codeHref;
+  const shots = pageShotsFor(liveHref, {
+    alt: `${project.name} screenshot`,
+    href: liveHref || codeHref,
+    src: project.image,
+  });
+  const [primary, ...sides] = shots;
   const context = projectContext(project);
   const contribution = project.contribution?.trim();
-  const screenshotLabel = liveHref
-    ? `Open ${project.name} live website (opens in a new tab)`
-    : `Open ${project.name} source code (opens in a new tab)`;
-
   return (
     <div
       className="project-sticky h-auto sm:sticky sm:h-[85vh]"
@@ -168,53 +192,30 @@ function StackCard({
           </ul>
         ) : null}
 
-        <div className="mt-6 flex min-h-0 items-stretch gap-3 sm:mt-4 sm:flex-1">
-          <div
-            aria-hidden="true"
-            className="hidden w-[40%] flex-col gap-3 sm:flex"
-          >
-            <Shot
-              alt=""
-              className="min-h-0 flex-1 rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-              position="object-top"
-              src={project.image}
-              style={{ maxHeight: "clamp(130px, 16vw, 230px)" }}
-            />
-            <Shot
-              alt=""
-              className="min-h-0 flex-[1.4] rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-              position="object-bottom"
-              src={project.image}
-              style={{ maxHeight: "clamp(160px, 22vw, 340px)" }}
-            />
-          </div>
-          {href ? (
-            <a
-              aria-label={screenshotLabel}
-              className="relative block aspect-[2/1] w-full overflow-hidden rounded-[40px] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4 sm:aspect-auto sm:w-[60%] sm:rounded-[50px] md:rounded-[60px]"
-              href={href}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <Image
-                alt={`${project.name} screenshot`}
-                className="object-contain sm:object-cover"
-                fill
-                sizes="(max-width: 640px) calc(100vw - 76px), 40vw"
-                src={project.image}
-              />
-            </a>
-          ) : (
-            <div className="relative aspect-[2/1] w-full overflow-hidden rounded-[40px] sm:aspect-auto sm:w-[60%] sm:rounded-[50px] md:rounded-[60px]">
-              <Image
-                alt={`${project.name} screenshot`}
-                className="object-contain sm:object-cover"
-                fill
-                sizes="(max-width: 640px) calc(100vw - 76px), 40vw"
-                src={project.image}
-              />
+        <div className="mt-6 flex flex-col gap-3 sm:mt-4 sm:min-h-0 sm:flex-1 sm:flex-row">
+          {sides.length > 0 ? (
+            <div className="order-2 grid grid-cols-2 gap-3 sm:order-1 sm:flex sm:w-[40%] sm:flex-col">
+              {sides.map((shot) => (
+                <PageFrame
+                  className="aspect-[16/10] sm:aspect-auto sm:min-h-0 sm:flex-1"
+                  href={shot.href}
+                  key={shot.src}
+                  label={shotLabel(shot)}
+                  position={shot.position}
+                  src={shot.src}
+                />
+              ))}
             </div>
-          )}
+          ) : null}
+          {primary ? (
+            <PageFrame
+              className={`${sides.length > 0 ? "order-1 sm:order-2 sm:w-[60%]" : "w-full"} aspect-[2/1] sm:aspect-auto sm:min-h-0 sm:flex-1`}
+              href={primary.href}
+              label={shotLabel(primary)}
+              position={primary.position}
+              src={primary.src}
+            />
+          ) : null}
         </div>
       </motion.article>
     </div>

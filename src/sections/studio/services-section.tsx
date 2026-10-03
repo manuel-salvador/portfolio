@@ -21,7 +21,7 @@ const SERVICES = [
   },
   {
     description:
-      "Production sites for real users. Portal Bosque, a nature-based family club, is the one in front of a client today.",
+      "Shipped products for real users. Portal Bosque is a site I delivered for a family club. Diseñar Viajes is a travel-agency system, and new work joins as it ships.",
     name: "Client sites",
     number: "04",
   },

@@ -5,7 +5,7 @@ import ContactButton from "@/components/studio/contact-button";
 import FadeIn from "@/components/studio/fade-in";
 
 const ABOUT_COPY =
-  "With more than three years building for the web, I focus on TypeScript, interfaces, and the systems behind them. Portal Bosque, a site for a nature-based family club, is in production for a real client. I'm available for the next product. Let's build something that ships.";
+  "With more than three years building for the web, I focus on TypeScript, interfaces, and the systems behind them. I shipped Portal Bosque for a nature-based family club. I build Diseñar Viajes, the system behind a travel agency, and the products that follow. Let's build something that ships.";
 
 const TOP_STILLS = [
   {

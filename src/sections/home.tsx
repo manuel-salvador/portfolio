@@ -77,8 +77,9 @@ export default function Home() {
           initial={{ opacity: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          Portal Bosque is live for a real client, and I&apos;m open to the next
-          role or project.
+          I shipped Portal Bosque for a real client. Diseñar Viajes is the
+          system I&apos;m building now, and I&apos;m open to the next role or
+          project.
         </motion.p>
       </div>
 

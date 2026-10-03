@@ -21,7 +21,7 @@ Manuel Salvador's personal portfolio: a marketing surface that converts visits i
 
 ## Positioning
 
-Real client delivery. The portfolio's differentiator is production work for a real client (Portal Bosque): Manuel ships for real users, not just practice projects. Supporting facts: 3+ years of experience, 10+ projects, and a full-stack TypeScript toolkit.
+Shipped client work, plus the products he is building now. Portal Bosque stays as a site he delivered for a nature-based family club. As of 2026-10-03 he no longer continues there. Current work includes Diseñar Viajes, the internal system for a travel agency (packages, reservations, and the team that sells them), and later products as they ship. Supporting facts: 3+ years of experience, 10+ projects, and a full-stack TypeScript toolkit. Do not write copy that puts him at Portal Bosque today.
 
 ## Operating Context
 
@@ -47,7 +47,8 @@ Real client delivery. The portfolio's differentiator is production work for a re
 
 ## Evidence on Hand
 
-- **Portal Bosque** — live client website (portalbosque.com), the headline proof of real client delivery.
+- **Portal Bosque** — shipped client website (portalbosque.com). It stays as proof of work he did. He does not continue on it as of 2026-10-03.
+- **Diseñar Viajes** — travel-agency system he is building: an internal backoffice for packages, stock, reservations, and the team. Public agency site: diseñarviajes.com. The backoffice is not a public portfolio link and is not in the projects spreadsheet yet. Do not invent a screenshot or a public repo.
 - **Projects spreadsheet** — 11 projects in the Google Sheets CSV: hackathon builds (Tuse, Sportsbook), a published npm CLI (`create-manu-app`), and practice apps; screenshots hosted on ibb.co.
 - **CV/Resume** — Google Drive PDFs, EN and ES versions (`src/app/curriculum/page.tsx`).
 - **Assets** — profile photo and logo in `public/`.
@@ -56,7 +57,7 @@ Real client delivery. The portfolio's differentiator is production work for a re
 ## Product Principles
 
 1. **Two doors, one stage.** Every surface must serve recruiters and clients equally; neither audience gets a second-class path to contact.
-2. **Proof over claims.** Shipped, real-user work (Portal Bosque first) outranks self-description; claims stay verifiable.
+2. **Proof over claims.** Shipped work (Portal Bosque first) outranks self-description. Current work such as Diseñar Viajes can be named once it is real. Claims stay verifiable. New projects join through the spreadsheet when there is an image and an honest description.
 3. **Open, not chasing.** Availability is warm and easy to act on, never desperate in tone.
 4. **Both languages count.** EN and ES audiences are first-class; future surfaces must plan for both.
 5. **Data stays editable.** Manuel maintains content in the spreadsheet and CVs; the design must not hardcode what the data source should own.

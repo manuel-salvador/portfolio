@@ -98,6 +98,15 @@ components:
 
 # Design System: Manuel Salvador — Portfolio
 
+## Palette update — 2026-10-03
+
+The user's latest direction replaces the steel headings and ember contact palette below with the brand colors from `main`. The studio composition, neutral surfaces, typography, and spacing remain in place. This palette update takes precedence over the original color rules.
+
+- Display headings: vertical cyan-to-teal gradient, #22D3EE → #06B6D4 → #0D9488.
+- Contact actions, including submit and sent state: main's primary gradient, #0891B2 → #06B6D4, with #020617 text, #A5F3FC inset ring, and #67E8F9 focus ring. Dark text preserves contrast across the gradient.
+- Browser chrome: #0891B2 scrollbar thumb and #A5F3FC selection highlight on #0C0C0C.
+- Purple, magenta, and orange contact stops are retired. Other actions retain their ice ghost treatment.
+
 ## Overview
 
 **Creative North Star: "The Studio Poster"**

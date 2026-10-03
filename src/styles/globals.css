@@ -310,7 +310,7 @@
 
 /* Premium Scrollbar */
 * {
-  scrollbar-color: #646973 #0c0c0c;
+  scrollbar-color: var(--color-accent-600) #0c0c0c;
   scrollbar-width: thin;
 }
 
@@ -319,7 +319,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #646973;
+  background: var(--color-accent-600);
   border-radius: 5px;
 }
 
@@ -345,7 +345,7 @@ html {
 
 ::selection {
   color: #0c0c0c;
-  background-color: #d7e2ea;
+  background-color: var(--color-accent-200);
 }
 
 body {
@@ -356,7 +356,12 @@ body {
 .hero-heading {
   color: transparent;
   -webkit-text-fill-color: transparent;
-  background: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-400) 0%,
+    var(--color-accent-500) 50%,
+    #0d9488 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -368,22 +373,20 @@ body {
   padding: 0.75rem 2rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #fff;
+  color: #020617;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-accent-200);
   outline-offset: -3px;
   background: linear-gradient(
-    123deg,
-    #18011f 7%,
-    #b600a8 37%,
-    #7621b0 72%,
-    #be4c00 100%
+    135deg,
+    var(--color-accent-600) 0%,
+    var(--color-accent-500) 100%
   );
   border-radius: 9999px;
   box-shadow:
-    0 4px 4px rgba(181, 1, 167, 0.25),
-    inset 4px 4px 12px #7721b1;
+    0 4px 12px rgba(6, 182, 212, 0.25),
+    inset 4px 4px 12px var(--color-accent-600);
   transition: opacity 200ms ease;
 }
 
@@ -392,7 +395,7 @@ body {
 }
 
 .contact-pill:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-accent-300);
   outline-offset: 3px;
 }
 

@@ -16,7 +16,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Project content
 
-Project descriptions, screenshots, and comma-separated `skills` are maintained in the published Google Sheet referenced by `src/constants/urls.ts`.
+Project descriptions, the index screenshot, and comma-separated `skills` are maintained in the published Google Sheet referenced by `src/constants/urls.ts`. The homepage stack shows extra page stills hosted on UploadThing for sites that have more than one public page. Those stills are real captures of distinct pages, not crops of the sheet image. The URLs live in `src/constants/project-page-shots.ts`.
 
 Two optional columns add context to the featured projects:
 
@@ -33,4 +33,4 @@ The existing Next.js image configuration allows the UploadThing host `gqbv64qxck
 
 Source `assets/`, temporary `.tmp/` and `tmp/` folders, and the prepared `public/studio/manuel-character.mp4` and `public/studio/manuel-character-poster.webp` copies are ignored by Git. Upload these prepared files when replacing the character, then update the media URLs. Before deployment, ensure both URLs point to UploadThing because local media copies are not included in the repository.
 
-The atmospheric hero background is also served from UploadThing; its URL lives in `src/constants/hero-background-media.ts`. Two forward-playing video layers overlap for 1.5 seconds to conceal the loop boundary. A pause/play button controls the background, and playback stops when the hero is offscreen, the tab is hidden, or reduced motion is enabled. The avatar's mouse interaction remains independent.
+The atmospheric hero background is also served from UploadThing; its URL lives in `src/constants/hero-background-media.ts`. Two forward-playing video layers overlap for 1.5 seconds to conceal the loop boundary. The decorative background has no visible playback controls. Playback stops when the hero is offscreen, the tab is hidden, or reduced motion is enabled. The avatar's mouse interaction remains independent.

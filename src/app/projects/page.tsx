@@ -16,8 +16,8 @@ export default async function ProjectsPage() {
             Projects
           </h1>
           <p className="mx-auto max-w-xl text-balance text-[#D7E2EA]">
-            Shipped sites, hackathons, and experiments. Portal Bosque is the
-            live client.
+            Shipped sites, client systems, and experiments. Portal Bosque stays
+            as work I delivered.
           </p>
         </div>
 
