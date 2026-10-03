@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import ContactButton from "@/components/studio/contact-button";
 import FadeIn from "@/components/studio/fade-in";
-import Magnet from "@/components/studio/magnet";
+import HeroBackground from "@/components/studio/hero-background";
+import HeroCharacter from "@/components/studio/hero-character";
 
 const NAV_LINKS = [
   { href: "#about", label: "About" },
@@ -14,7 +14,11 @@ const NAV_LINKS = [
 
 export default function HeroSection() {
   return (
-    <section className="relative flex h-dvh flex-col overflow-x-clip" id="home">
+    <section
+      className="relative isolate flex h-dvh flex-col overflow-x-clip"
+      id="home"
+    >
+      <HeroBackground />
       <FadeIn
         as="nav"
         className="z-30 flex items-center justify-between px-6 pt-6 md:px-10 md:pt-8"
@@ -46,24 +50,11 @@ export default function HeroSection() {
       </FadeIn>
 
       <FadeIn
-        className="pointer-events-none absolute top-1/2 left-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 sm:top-auto sm:bottom-0 sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]"
+        className="pointer-events-none absolute top-1/2 left-1/2 z-10 w-[280px] -translate-x-1/2 -translate-y-1/2 mix-blend-lighten sm:top-auto sm:bottom-0 sm:w-[360px] sm:translate-y-0 md:w-[440px] lg:w-[520px]"
         delay={0.6}
         y={30}
       >
-        <Magnet
-          className="pointer-events-auto w-full"
-          padding={150}
-          strength={3}
-        >
-          <Image
-            alt="Illustrated portrait used on Manuel Salvador’s portfolio"
-            className="h-auto w-full"
-            height={1024}
-            priority
-            src="/studio/portrait.png"
-            width={1024}
-          />
-        </Magnet>
+        <HeroCharacter />
       </FadeIn>
 
       <div className="relative z-30 mt-auto flex items-end justify-between gap-4 px-6 pt-6 pb-7 sm:pb-8 md:px-10 md:pb-10">

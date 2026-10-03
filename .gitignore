@@ -20,6 +20,13 @@
 .DS_Store
 *.pem
 
+# local source assets and temporary work
+/assets/
+/.tmp/
+/tmp/
+/public/studio/manuel-character.mp4
+/public/studio/manuel-character-poster.webp
+
 # debug
 npm-debug.log*
 yarn-debug.log*
