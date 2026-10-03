@@ -298,7 +298,7 @@ export default function Contact() {
     >
       <motion.div
         className="relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-[40px] border-2 border-[#D7E2EA]/25 md:grid-cols-[0.9fr_1.1fr]"
-        initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+        initial={reduceMotion ? false : { opacity: 0.85, y: 28 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -332,7 +332,7 @@ export default function Contact() {
               <motion.div
                 animate={{ scale: 1 }}
                 className="contact-pill mb-6 flex h-20 w-20 items-center justify-center rounded-full p-0"
-                initial={{ scale: 0 }}
+                initial={reduceMotion ? false : { scale: 0 }}
                 transition={{ damping: 15, stiffness: 200, type: "spring" }}
               >
                 <CheckIcon className="fill-white" size={40} />

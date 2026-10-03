@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import ContactButton from "@/components/studio/contact-button";
 import FadeIn from "@/components/studio/fade-in";
@@ -20,11 +21,11 @@ export default function HeroSection() {
         delay={0}
         y={-20}
       >
-        <ul className="flex w-full items-center justify-between gap-3">
+        <ul className="flex w-full items-center justify-between gap-1 sm:gap-3">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <a
-                className="font-medium text-[#D7E2EA] text-sm uppercase tracking-wider transition-opacity duration-200 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4 md:text-lg lg:text-[1.4rem]"
+                className="inline-flex min-h-11 items-center font-medium text-[#D7E2EA] text-sm uppercase tracking-wider transition-opacity duration-200 hover:opacity-70 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4 md:text-lg lg:text-[1.4rem]"
                 href={link.href}
               >
                 {link.label}
@@ -66,7 +67,7 @@ export default function HeroSection() {
       </FadeIn>
 
       <div className="relative z-30 mt-auto flex items-end justify-between gap-4 px-6 pt-6 pb-7 sm:pb-8 md:px-10 md:pb-10">
-        <FadeIn delay={0.35} y={20}>
+        <FadeIn className="flex flex-col items-start gap-3" delay={0.35} y={20}>
           <p
             className="max-w-[160px] font-light text-[#D7E2EA] uppercase leading-snug tracking-wide sm:max-w-[220px] md:max-w-[260px]"
             style={{ fontSize: "clamp(0.75rem, 1.4vw, 1.5rem)" }}
@@ -74,6 +75,12 @@ export default function HeroSection() {
             a full-stack developer shipping web products for real clients and
             teams
           </p>
+          <Link
+            className="inline-flex min-h-11 items-center rounded-full border-2 border-[#D7E2EA] px-5 py-2 font-medium text-[#D7E2EA] text-sm uppercase tracking-widest transition-colors hover:bg-[#D7E2EA]/10 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-3"
+            href="/curriculum"
+          >
+            View CV
+          </Link>
         </FadeIn>
         <FadeIn delay={0.5} y={20}>
           <ContactButton href="#contact" />

@@ -40,7 +40,7 @@ export default function FadeIn({
   return (
     <Tag
       className={className}
-      initial={reduce ? false : { opacity: 0, x, y }}
+      initial={reduce ? false : { opacity: 0.85, x, y }}
       transition={{ delay, duration, ease: EASE }}
       viewport={{ amount: 0, margin: "50px", once: true }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}

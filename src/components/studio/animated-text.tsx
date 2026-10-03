@@ -15,31 +15,26 @@ type AnimatedTextProps = {
   text: string;
 };
 
-function Character({
-  character,
+function Word({
+  word,
   index,
   progress,
   total,
 }: {
-  character: string;
+  word: string;
   index: number;
   progress: MotionValue<number>;
   total: number;
 }) {
   const start = index / total;
   const end = Math.min(start + 1 / total, 1);
-  const opacity = useTransform(progress, [start, end], [0.2, 1]);
-  const glyph = character === " " ? "\u00A0" : character;
+  const opacity = useTransform(progress, [start, end], [0.8, 1]);
+  const y = useTransform(progress, [start, end], [2, 0]);
 
   return (
-    <span className="relative inline-block whitespace-pre">
-      <span aria-hidden="true" className="invisible">
-        {glyph}
-      </span>
-      <motion.span className="absolute inset-0" style={{ opacity }}>
-        {glyph}
-      </motion.span>
-    </span>
+    <motion.span className="inline-block" style={{ opacity, y }}>
+      {word}
+    </motion.span>
   );
 }
 
@@ -54,13 +49,13 @@ export default function AnimatedText({
     offset: ["start 0.8", "end 0.2"],
     target: ref,
   });
-  const characters = Array.from(text);
-  const tokens: { character: string; index: number; key: string }[] = [];
+  const words = text.split(" ");
+  const tokens: { word: string; index: number; key: string }[] = [];
   let prefix = "";
 
-  for (const character of characters) {
-    prefix += character === " " ? "·" : character;
-    tokens.push({ character, index: tokens.length, key: prefix });
+  for (const word of words) {
+    prefix += `${word} `;
+    tokens.push({ index: tokens.length, key: prefix, word });
   }
 
   if (reduce) {
@@ -73,15 +68,20 @@ export default function AnimatedText({
 
   return (
     <p className={className} ref={ref} style={style}>
-      {tokens.map((token) => (
-        <Character
-          character={token.character}
-          index={token.index}
-          key={token.key}
-          progress={scrollYProgress}
-          total={characters.length}
-        />
-      ))}
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {tokens.map((token) => (
+          <span key={token.key}>
+            <Word
+              index={token.index}
+              progress={scrollYProgress}
+              total={words.length}
+              word={token.word}
+            />
+            {token.index < words.length - 1 ? " " : null}
+          </span>
+        ))}
+      </span>
     </p>
   );
 }

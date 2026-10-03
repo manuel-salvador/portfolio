@@ -1,5 +1,7 @@
 export type ApiProjectType = {
   badge?: string;
+  contribution?: string;
+  context?: string;
   name: string;
   image: string;
   skills: string;
@@ -11,6 +13,8 @@ export type ApiProjectType = {
 
 export type ProjectType = {
   badge?: string;
+  contribution?: string;
+  context?: string;
   name: string;
   image: string;
   skills: string[];

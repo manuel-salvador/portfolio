@@ -21,6 +21,23 @@ function paddedNumber(index: number): string {
   return String(index + 1).padStart(2, "0");
 }
 
+function projectContext(project: ProjectType): string {
+  const context = project.context?.trim() || project.badge?.trim();
+  if (context) {
+    return context;
+  }
+
+  if (!project.repo.trim() && project.deploy?.trim()) {
+    return "Live client project";
+  }
+
+  if (project.name.toLowerCase().includes("hackathon")) {
+    return "Hackathon project";
+  }
+
+  return "";
+}
+
 function Shot({
   alt,
   className,
@@ -67,16 +84,21 @@ function StackCard({
   const liveHref = project.deploy?.trim() ?? "";
   const codeHref = project.repo.trim();
   const href = liveHref || codeHref;
+  const context = projectContext(project);
+  const contribution = project.contribution?.trim();
+  const screenshotLabel = liveHref
+    ? `Open ${project.name} live website (opens in a new tab)`
+    : `Open ${project.name} source code (opens in a new tab)`;
 
   return (
     <div
-      className="project-sticky sticky h-[85vh]"
+      className="project-sticky h-auto sm:sticky sm:h-[85vh]"
       ref={ref}
       style={{ ["--stack" as string]: `${index * 28}px`, zIndex: index + 1 }}
     >
       <motion.article
-        className="flex h-full flex-col rounded-[40px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:rounded-[50px] sm:p-6 md:rounded-[60px] md:p-8"
-        style={reduce ? undefined : { scale }}
+        className="project-stack-card flex h-full flex-col rounded-[40px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:rounded-[50px] sm:p-6 md:rounded-[60px] md:p-8"
+        style={reduce ? undefined : { ["--project-scale" as string]: scale }}
       >
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="flex min-w-0 items-end gap-4 sm:gap-8">
@@ -93,6 +115,11 @@ function StackCard({
               >
                 {project.name}
               </h3>
+              {context ? (
+                <p className="mt-2 text-[#D7E2EA]/80 text-xs uppercase tracking-wider sm:text-sm">
+                  {context}
+                </p>
+              ) : null}
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -114,50 +141,76 @@ function StackCard({
           </div>
         </div>
 
-        <p className="mt-4 max-w-2xl font-light text-[#D7E2EA]/80 text-sm leading-relaxed sm:text-base">
+        <p className="mt-4 max-w-2xl font-light text-[#D7E2EA]/80 text-base leading-relaxed">
           {project.description}
         </p>
 
-        <div className="mt-4 flex min-h-0 flex-1 items-stretch gap-3">
-          <div className="flex w-[40%] flex-col gap-3">
+        {contribution ? (
+          <p className="mt-3 max-w-2xl text-[#D7E2EA] text-base leading-relaxed">
+            <span className="font-medium">My contribution: </span>
+            {contribution}
+          </p>
+        ) : null}
+
+        {project.skills.length > 0 ? (
+          <ul
+            aria-label={`${project.name} technologies`}
+            className="mt-4 flex flex-wrap gap-2"
+          >
+            {project.skills.map((skill) => (
+              <li
+                className="rounded-full border border-[#D7E2EA]/30 px-3 py-1 text-[#D7E2EA] text-xs uppercase tracking-wider"
+                key={skill}
+              >
+                {skill}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
+        <div className="mt-6 flex min-h-0 items-stretch gap-3 sm:mt-4 sm:flex-1">
+          <div
+            aria-hidden="true"
+            className="hidden w-[40%] flex-col gap-3 sm:flex"
+          >
             <Shot
               alt=""
-              className="rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
+              className="min-h-0 flex-1 rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
               position="object-top"
               src={project.image}
-              style={{ height: "clamp(130px, 16vw, 230px)" }}
+              style={{ maxHeight: "clamp(130px, 16vw, 230px)" }}
             />
             <Shot
               alt=""
-              className="rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
+              className="min-h-0 flex-[1.4] rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
               position="object-bottom"
               src={project.image}
-              style={{ height: "clamp(160px, 22vw, 340px)" }}
+              style={{ maxHeight: "clamp(160px, 22vw, 340px)" }}
             />
           </div>
           {href ? (
             <a
-              aria-label={`${project.name} screenshot`}
-              className="relative block w-[60%] overflow-hidden rounded-[40px] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4 sm:rounded-[50px] md:rounded-[60px]"
+              aria-label={screenshotLabel}
+              className="relative block aspect-[2/1] w-full overflow-hidden rounded-[40px] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4 sm:aspect-auto sm:w-[60%] sm:rounded-[50px] md:rounded-[60px]"
               href={href}
               rel="noopener noreferrer"
               target="_blank"
             >
               <Image
                 alt={`${project.name} screenshot`}
-                className="object-cover"
+                className="object-contain sm:object-cover"
                 fill
-                sizes="(max-width: 768px) 60vw, 40vw"
+                sizes="(max-width: 640px) calc(100vw - 76px), 40vw"
                 src={project.image}
               />
             </a>
           ) : (
-            <div className="relative w-[60%] overflow-hidden rounded-[40px] sm:rounded-[50px] md:rounded-[60px]">
+            <div className="relative aspect-[2/1] w-full overflow-hidden rounded-[40px] sm:aspect-auto sm:w-[60%] sm:rounded-[50px] md:rounded-[60px]">
               <Image
                 alt={`${project.name} screenshot`}
-                className="object-cover"
+                className="object-contain sm:object-cover"
                 fill
-                sizes="(max-width: 768px) 60vw, 40vw"
+                sizes="(max-width: 640px) calc(100vw - 76px), 40vw"
                 src={project.image}
               />
             </div>

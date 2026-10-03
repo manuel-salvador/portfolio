@@ -337,6 +337,12 @@ html {
   margin: auto;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 ::selection {
   color: #0c0c0c;
   background-color: #d7e2ea;
@@ -411,6 +417,12 @@ body {
 
 .project-sticky {
   top: calc(4.5rem + var(--stack, 0px));
+}
+
+@media (min-width: 640px) {
+  .project-stack-card {
+    transform: scale(var(--project-scale, 1));
+  }
 }
 
 @media (min-width: 768px) {

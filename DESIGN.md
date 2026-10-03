@@ -164,13 +164,13 @@ The floor is near-black, the type is a cool ice, and the only saturated color is
 
 The poster is a full-bleed column. The field has no container; the sections do. About centers at 48rem. Services and the contact sheet stop at 64rem. The project stack and the projects index stop at 72rem. The footer stops at 80rem.
 
-Poster gutters are 20px, widening to 32px and then 40px. The hero uses 24px, then 40px from 768px. Vertical rhythm is 80px (about), 80px / 96px / 128px (services), 96px (contact), and a marquee pad of 96px / 128px / 160px above a 40px foot. Stacked projects sit 32px apart in the column, but each card is a sticky viewport of 85vh.
+Poster gutters are 20px, widening to 32px and then 40px. The hero uses 24px, then 40px from 768px. Vertical rhythm is 80px (about), 80px / 96px / 128px (services), 96px (contact), and a marquee pad of 96px / 128px / 160px above a 40px foot. Stacked projects sit 32px apart. Below 640px, cards follow their content; from 640px, each card is a sticky viewport of 85vh.
 
 The white sheet overlaps nothing above it. The black project sheet pulls back over it by 40px, 48px from 640px, and 56px from 768px, with the same top radius as the sheet. Sticky cards pin at 72px plus 28px per index, and at 96px plus that offset from 768px. Each card behind scales down by 0.03 as it sticks.
 
-The hero fills the dynamic viewport. Four text links spread across the first row. There is no fixed bar on `/`. Inner pages keep a fixed studio-black bar and clear it with 112px of top padding. The contact block is the only poster section with a scroll margin, and that margin is 8px. Do not also set a document scroll-padding; the offsets would stack.
+The hero fills the dynamic viewport. Four text links with at least 44px hit height spread across the first row. A quiet ghost View CV link sits below the introduction in the lower-left information area; Contact Me remains the filled action on the right. There is no fixed bar on `/`. Inner pages keep a fixed studio-black bar and clear it with 112px of top padding. The contact block is the only poster section with a scroll margin, and that margin is 8px. Do not also set a document scroll-padding; the offsets would stack.
 
-The screenshot marquee is two rows of 420×270 stills, 12px apart, radius 16px, translated from scroll at 0.3. It does not run when reduced motion is requested. Poster entrances fade and rise over 0.7s (stills 0.9s) on cubic-bezier(0.25, 0.1, 0.25, 1), once. The contact sheet rises 28px over 0.6s.
+The screenshot marquee is two rows of 420×270 stills, 12px apart, radius 16px, translated from scroll at 0.3. It does not run when reduced motion is requested. Poster entrances start visibly at 85% opacity, then fade and rise over 0.7s (stills 0.9s) on cubic-bezier(0.25, 0.1, 0.25, 1), once. The contact sheet rises 28px over 0.6s from the same readable opacity. About animates complete words from 80% to full opacity with a 2px rise, while assistive technology receives one continuous paragraph. Reduced motion also disables smooth scrolling and the success-disc spring.
 
 Breakpoints in use are 640px, 768px, and 1024px.
 
@@ -235,7 +235,7 @@ Inner pages use a fixed full-width bar, studio black at 90%, blurred, with the m
 
 ### Project Stack
 
-Each featured project is a sticky black card: a two-digit index, an uppercase name, ghost links for a live URL and a repo when those exist, a light description at 80% ice, and three crops of the same still. The large crop links out when a URL exists. Scroll progress scales the card from 1 toward `1 - (cards behind) × 0.03`, unless reduced motion is on.
+Each featured project is a black card: a two-digit index, an uppercase name, a restrained project-context line, ghost links for a live URL and a repo when those exist, a 16px light description at 80% ice, and technology chips from the spreadsheet's skills. An optional spreadsheet-owned contribution appears as a short sentence when confirmed. From 640px, the card is sticky and shows three crops of the same still; scroll progress scales it from 1 toward `1 - (cards behind) × 0.03`, unless reduced motion is on. Below 640px, one complete screenshot sits inside a 2:1 landscape frame and the card follows its content without scaling. The main screenshot links out when a URL exists and its accessible name identifies that destination.
 
 ### Services Sheet
 
