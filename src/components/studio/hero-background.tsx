@@ -208,7 +208,7 @@ export default function HeroBackground() {
         className="absolute inset-0 z-10 [--portrait-y:50%] sm:[--portrait-y:75%]"
         style={{
           background:
-            "radial-gradient(ellipse at 50% var(--portrait-y), rgba(12,12,12,0.94) 0%, rgba(12,12,12,0.65) 24%, transparent 58%), linear-gradient(180deg, rgba(12,12,12,0.78) 0%, rgba(12,12,12,0.48) 38%, rgba(12,12,12,0.72) 100%)",
+            "radial-gradient(ellipse at 50% var(--portrait-y), rgb(12 12 12 / 34%) 0%, rgb(12 12 12 / 49%) 24%, transparent 58%), linear-gradient(180deg, rgb(12 12 12 / 17%) 0%, rgb(12 12 12 / 10%) 38%, rgba(12, 12, 12, 0.72) 100%)",
         }}
       />
     </div>
