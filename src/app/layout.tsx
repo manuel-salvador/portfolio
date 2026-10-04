@@ -7,6 +7,7 @@ import { Kanit } from "next/font/google";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import AmbientBackground from "@/components/studio/ambient-background";
+import FadeInObserver from "@/components/studio/fade-in-observer";
 
 const kanit = Kanit({
   subsets: ["latin"],
@@ -74,7 +75,10 @@ export default function RootLayout({
       >
         <AmbientBackground />
         <Header />
-        <main className="min-h-screen overflow-x-clip">{children}</main>
+        <main className="min-h-screen overflow-x-clip">
+          {children}
+          <FadeInObserver />
+        </main>
         <Footer />
       </body>
     </html>

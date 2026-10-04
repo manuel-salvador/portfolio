@@ -1,19 +1,15 @@
-"use client";
+import type { CSSProperties, ReactNode } from "react";
 
-import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
-const EASE = [0.25, 0.1, 0.25, 1] as const;
+type FadeTag = "div" | "h1" | "h2" | "nav" | "p";
 
-const fadeTags = {
-  div: motion.create("div"),
-  h1: motion.create("h1"),
-  h2: motion.create("h2"),
-  nav: motion.create("nav"),
-  p: motion.create("p"),
-} as const;
-
-type FadeTag = keyof typeof fadeTags;
+type FadeStyle = CSSProperties & {
+  "--fade-delay": string;
+  "--fade-duration": string;
+  "--fade-x": string;
+  "--fade-y": string;
+};
 
 type FadeInProps = {
   as?: FadeTag;
@@ -34,17 +30,16 @@ export default function FadeIn({
   x = 0,
   y = 30,
 }: FadeInProps) {
-  const reduce = useReducedMotion();
-  const Tag = fadeTags[as];
+  const Tag = as;
+  const style: FadeStyle = {
+    "--fade-delay": `${delay}s`,
+    "--fade-duration": `${duration}s`,
+    "--fade-x": `${x}px`,
+    "--fade-y": `${y}px`,
+  };
 
   return (
-    <Tag
-      className={className}
-      initial={reduce ? false : { opacity: 0.85, x, y }}
-      transition={{ delay, duration, ease: EASE }}
-      viewport={{ amount: 0, margin: "50px", once: true }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-    >
+    <Tag className={cn("studio-fade-in", className)} style={style}>
       {children}
     </Tag>
   );
