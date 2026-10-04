@@ -1,261 +1,433 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
+import Link from "next/link";
+import {
+  type ChangeEvent,
+  type FocusEvent,
+  type FormEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { sendEmail } from "@/app/actions";
 import { CheckIcon } from "@/components/icons";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import SectionLayout from "@/layouts/section-layout";
-import { testContactForm } from "@/utils/test-contact-form";
-import { motion } from "motion/react";
-import { type FormEvent, type Ref, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
+import {
+  type ContactField,
+  type ContactFieldErrors,
+  EMAIL_MAX_LENGTH,
+  firstInvalidField,
+  MESSAGE_MAX_LENGTH,
+  NAME_MAX_LENGTH,
+  validateContactFields,
+} from "@/utils/contact-form";
+
+const PREVIEW_DELAY_MS = 2000;
+
+type FieldConfig = {
+  autoCapitalize?: "none" | "words";
+  autoComplete?: string;
+  id: ContactField;
+  inputMode?: "email" | "text";
+  label: string;
+  maxLength: number;
+  multiline?: boolean;
+  spellCheck: boolean;
+  type?: "email" | "text";
+};
+
+const fields: FieldConfig[] = [
+  {
+    autoCapitalize: "words",
+    autoComplete: "name",
+    id: "name",
+    inputMode: "text",
+    label: "Name",
+    maxLength: NAME_MAX_LENGTH,
+    spellCheck: false,
+    type: "text",
+  },
+  {
+    autoCapitalize: "none",
+    autoComplete: "email",
+    id: "email",
+    inputMode: "email",
+    label: "Email",
+    maxLength: EMAIL_MAX_LENGTH,
+    spellCheck: false,
+    type: "email",
+  },
+  {
+    id: "message",
+    label: "Message",
+    maxLength: MESSAGE_MAX_LENGTH,
+    multiline: true,
+    spellCheck: true,
+  },
+];
+
+function labelClass(focused: boolean): string {
+  return cn(
+    "pointer-events-none absolute left-4 bg-[#0C0C0C] px-2 transition-all duration-300",
+    focused
+      ? "-top-2 text-[#D7E2EA] text-xs"
+      : "top-4 bg-transparent px-0 text-[#D7E2EA]/70 peer-autofill:-top-2 peer-autofill:bg-[#0C0C0C] peer-autofill:px-2 peer-autofill:text-[#D7E2EA] peer-autofill:text-xs peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-[#0C0C0C] peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-[#D7E2EA] peer-[:not(:placeholder-shown)]:text-xs"
+  );
+}
+
+function ContactControl({
+  error,
+  field,
+  focused,
+  onBlur,
+  onChange,
+  onFocus,
+}: {
+  error?: string;
+  field: FieldConfig;
+  focused: boolean;
+  onBlur: () => void;
+  onChange: (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  onFocus: (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}) {
+  const errorId = `${field.id}-error`;
+  const controlClass = cn(
+    "peer w-full rounded-2xl border bg-transparent px-4 py-4 text-[#D7E2EA] text-base outline-none transition-colors placeholder:text-transparent focus-visible:ring-2",
+    error
+      ? "border-red-400/70 focus-visible:border-red-300 focus-visible:ring-red-400/40"
+      : "border-[#D7E2EA]/35 focus-visible:border-[#D7E2EA] focus-visible:ring-[#D7E2EA]/30"
+  );
+
+  return (
+    <div className="relative">
+      {field.multiline ? (
+        <textarea
+          aria-describedby={error ? errorId : undefined}
+          aria-invalid={error ? true : undefined}
+          aria-required="true"
+          autoComplete={field.autoComplete}
+          className={cn(controlClass, "min-h-32 resize-y")}
+          dir="auto"
+          id={field.id}
+          maxLength={field.maxLength}
+          name={field.id}
+          onBlur={onBlur}
+          onChange={onChange}
+          onFocus={onFocus}
+          placeholder={field.label}
+          rows={4}
+          spellCheck={field.spellCheck}
+        />
+      ) : (
+        <input
+          aria-describedby={error ? errorId : undefined}
+          aria-invalid={error ? true : undefined}
+          aria-required="true"
+          autoCapitalize={field.autoCapitalize}
+          autoComplete={field.autoComplete}
+          className={controlClass}
+          dir="auto"
+          id={field.id}
+          inputMode={field.inputMode}
+          maxLength={field.maxLength}
+          name={field.id}
+          onBlur={onBlur}
+          onChange={onChange}
+          onFocus={onFocus}
+          placeholder={field.label}
+          spellCheck={field.spellCheck}
+          type={field.type}
+        />
+      )}
+      <label className={labelClass(focused)} htmlFor={field.id}>
+        {field.label}
+      </label>
+      {error ? (
+        <p className="mt-2 text-red-300 text-sm" id={errorId} role="alert">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  );
+}
 
 export default function Contact() {
-  const _form = useRef<HTMLFormElement>(null);
-  const divRef = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [messageSent, setMessageSent] = useState<boolean>(false);
-  const [invalidData, setInvalidData] = useState<boolean>(false);
-  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
+  const reduceMotion = useReducedMotion();
+  const previewTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [messageSent, setMessageSent] = useState(false);
+  const [sendFailed, setSendFailed] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<ContactFieldErrors>({});
+  const [focusedField, setFocusedField] = useState<ContactField | null>(null);
 
-  const [ref, entry] = useIntersectionObserver({
-    root: divRef,
-    threshold: 0.3,
-  });
+  useEffect(
+    () => () => {
+      if (previewTimer.current) {
+        clearTimeout(previewTimer.current);
+      }
+    },
+    []
+  );
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (messageSent) {
+      successHeadingRef.current?.focus();
+    }
+  }, [messageSent]);
 
-    setLoading(true);
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    if (process.env.NEXT_PUBLIC_PREVIEW_MODE) {
-      setTimeout(() => {
-        setMessageSent(true);
-        setLoading(false);
-      }, 2000);
+    const form = event.currentTarget;
 
+    if (form.dataset.submitting === "true") {
       return;
     }
 
-    if (_form.current !== null) {
-      const data = Object.fromEntries(new FormData(_form.current));
+    const data = new FormData(form);
+    const values = {
+      email: String(data.get("email") ?? ""),
+      message: String(data.get("message") ?? ""),
+      name: String(data.get("name") ?? ""),
+    };
+    const errors = validateContactFields(values);
+    const invalidField = firstInvalidField(errors);
 
-      const isCorrectData = testContactForm(data);
+    if (invalidField) {
+      setFieldErrors(errors);
+      setSendFailed(false);
+      document.getElementById(invalidField)?.focus();
+      return;
+    }
 
-      if (!isCorrectData) {
-        setInvalidData(true);
+    setFieldErrors({});
+    setSendFailed(false);
+    setLoading(true);
+    form.dataset.submitting = "true";
+
+    if (process.env.NEXT_PUBLIC_PREVIEW_MODE) {
+      previewTimer.current = setTimeout(() => {
+        setMessageSent(true);
         setLoading(false);
-        return;
-      }
+        delete form.dataset.submitting;
+      }, PREVIEW_DELAY_MS);
+      return;
+    }
 
-      const response = await sendEmail(new FormData(_form.current));
+    try {
+      const response = await sendEmail(new FormData(form));
 
       if (response.status === 200) {
         setMessageSent(true);
-      } else {
-        setInvalidData(true);
+        return;
       }
 
+      if (response.status === 400) {
+        setFieldErrors(response.errors);
+        const field = firstInvalidField(response.errors);
+        if (field) {
+          document.getElementById(field)?.focus();
+        }
+        return;
+      }
+
+      setSendFailed(true);
+    } catch {
+      setSendFailed(true);
+    } finally {
       setLoading(false);
+      delete form.dataset.submitting;
     }
   };
 
-  const handleOnChange = () => {
-    if (invalidData) {
-      setInvalidData(false);
-    }
+  const handleSendAnother = () => {
+    formRef.current?.reset();
+    setMessageSent(false);
+    setSendFailed(false);
+    setFieldErrors({});
+    window.setTimeout(() => {
+      document.getElementById("name")?.focus();
+    }, 0);
   };
+
+  const handleBlur = useCallback(() => {
+    setFocusedField(null);
+  }, []);
+
+  const handleFocus = useCallback(
+    (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const field = event.currentTarget.name;
+      if (field === "name" || field === "email" || field === "message") {
+        setFocusedField(field);
+      }
+    },
+    []
+  );
+
+  const handleFieldChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const field = event.currentTarget.name;
+      if (field !== "name" && field !== "email" && field !== "message") {
+        return;
+      }
+
+      setFieldErrors((current) => {
+        if (!current[field]) {
+          return current;
+        }
+
+        const next = { ...current };
+        delete next[field];
+        return next;
+      });
+    },
+    []
+  );
 
   return (
-    <SectionLayout className="px-6 py-24 md:px-8" id="contact">
+    <SectionLayout
+      className="scroll-mt-8 px-5 py-24 sm:px-8 md:px-10"
+      id="contact"
+    >
       <motion.div
-        className="mb-12 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        whileInView={{ opacity: 1, y: 0 }}
-      >
-        <span className="mb-2 block text-cyan-500 text-xs uppercase tracking-widest">
-          Contact
-        </span>
-        <h2 className="font-bold text-3xl text-white md:text-4xl">
-          Let&apos;s <span className="gradient-text">Talk</span>
-        </h2>
-        <p className="mx-auto mt-4 max-w-md text-slate-400">
-          Do you have a project in mind? I&apos;d love to hear about it.
-        </p>
-      </motion.div>
-
-      <motion.div
-        className={`${
-          entry?.isIntersecting ? "opacity-100" : "opacity-0"
-        } glass-card relative mx-auto flex h-full w-full max-w-lg flex-col items-center justify-center rounded-2xl p-8 transition-all duration-700 md:p-10`}
-        initial={{ opacity: 0, y: 30 }}
-        ref={ref as Ref<HTMLDivElement>}
+        className="relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-[40px] border-2 border-[#D7E2EA]/25 bg-[#0C0C0C]/80 md:grid-cols-[0.9fr_1.1fr]"
+        initial={reduceMotion ? false : { opacity: 0.85, y: 28 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
         whileInView={{ opacity: 1, y: 0 }}
       >
-        {/* Decorative elements */}
-        <div className="pointer-events-none absolute -top-20 -right-20 h-40 w-40 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-teal-500/10 blur-3xl" />
-
-        {/* Success State */}
-        <div
-          className={`${
-            messageSent ? "opacity-100" : "pointer-events-none opacity-0"
-          } absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-opacity duration-500`}
-        >
-          <motion.div
-            animate={messageSent ? { scale: 1 } : {}}
-            className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-r from-cyan-500 to-teal-500"
-            initial={{ scale: 0 }}
-            transition={{ damping: 15, stiffness: 200, type: "spring" }}
-          >
-            <CheckIcon className="fill-white" size={40} />
-          </motion.div>
-          <h3 className="mb-2 font-bold text-white text-xl">Message sent!</h3>
-          <p className="text-slate-400">Thank you for reaching out.</p>
-          <p className="text-slate-400">I&apos;ll get back to you soon.</p>
+        <div className="relative flex flex-col justify-center gap-6 px-6 py-10 md:px-10 md:py-14">
+          <h2 className="hero-heading font-black text-5xl uppercase leading-none tracking-tight md:text-7xl">
+            Contact
+          </h2>
+          <p className="max-w-sm text-[#D7E2EA] leading-relaxed">
+            Recruiters and clients can reach me here, or start with the CV.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              className="inline-flex min-h-11 items-center rounded-full border-2 border-[#D7E2EA] px-5 py-2 font-medium text-[#D7E2EA] text-sm uppercase tracking-widest transition-colors hover:bg-[#D7E2EA]/10 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+              href="/curriculum"
+            >
+              View CV
+            </Link>
+            <a
+              className="inline-flex min-h-11 items-center rounded-full border-2 border-[#D7E2EA]/40 px-5 py-2 font-medium text-[#D7E2EA] text-sm uppercase tracking-widest transition-colors hover:border-[#D7E2EA] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+              href="mailto:manu.sacr@hotmail.com"
+            >
+              Email me
+            </a>
+          </div>
         </div>
 
-        {/* Form */}
-        <form
-          className={`${
-            messageSent ? "pointer-events-none opacity-0" : "opacity-100"
-          } relative z-10 flex w-full flex-col gap-6 transition-opacity duration-300`}
-          onSubmit={handleSubmit}
-          ref={_form}
-        >
-          {/* Name Field */}
-          <div className="relative">
-            <input
-              autoComplete="off"
-              className="peer w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-4 text-white placeholder-transparent outline-none transition-all duration-300 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20"
-              id="name"
-              name="name"
-              onBlur={() => setFocusedField(null)}
-              onChange={handleOnChange}
-              onFocus={() => setFocusedField("name")}
-              placeholder="Name"
-              required
-              type="text"
-            />
-            <label
-              className={`pointer-events-none absolute left-4 transition-all duration-300 ${
-                focusedField === "name"
-                  ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
-                  : "top-4 text-slate-500 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
-              }`}
-              htmlFor="name"
+        <div className="relative flex h-full w-full flex-col items-center justify-center p-6 md:p-10">
+          {messageSent ? (
+            <div className="flex flex-col items-center px-4 py-8 text-center">
+              <motion.div
+                animate={{ scale: 1 }}
+                className="contact-pill mb-6 flex h-20 w-20 items-center justify-center rounded-full p-0"
+                initial={reduceMotion ? false : { scale: 0 }}
+                transition={{ damping: 15, stiffness: 200, type: "spring" }}
+              >
+                <CheckIcon className="fill-white" size={40} />
+              </motion.div>
+              <h3
+                className="mb-2 rounded-md font-bold text-[#D7E2EA] text-xl outline-none focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-4"
+                ref={successHeadingRef}
+                tabIndex={-1}
+              >
+                Message sent
+              </h3>
+              <p className="text-[#D7E2EA]">I&apos;ll reply by email.</p>
+              <button
+                className="mt-6 inline-flex min-h-11 items-center rounded-full border-2 border-[#D7E2EA] px-6 py-3 font-medium text-[#D7E2EA] uppercase tracking-widest transition-colors hover:bg-[#D7E2EA]/10 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+                onClick={handleSendAnother}
+                type="button"
+              >
+                Send another
+              </button>
+            </div>
+          ) : (
+            <form
+              aria-label="Contact"
+              className="relative z-10 flex w-full flex-col gap-6"
+              noValidate
+              onSubmit={handleSubmit}
+              ref={formRef}
             >
-              Name
-            </label>
-          </div>
+              {fields.map((field) => (
+                <ContactControl
+                  error={fieldErrors[field.id]}
+                  field={field}
+                  focused={focusedField === field.id}
+                  key={field.id}
+                  onBlur={handleBlur}
+                  onChange={handleFieldChange}
+                  onFocus={handleFocus}
+                />
+              ))}
 
-          {/* Email Field */}
-          <div className="relative">
-            <input
-              autoComplete="off"
-              className="peer w-full rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-4 text-white placeholder-transparent outline-none transition-all duration-300 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20"
-              id="email"
-              name="email"
-              onBlur={() => setFocusedField(null)}
-              onChange={handleOnChange}
-              onFocus={() => setFocusedField("email")}
-              placeholder="Email"
-              required
-              type="email"
-            />
-            <label
-              className={`pointer-events-none absolute left-4 transition-all duration-300 ${
-                focusedField === "email"
-                  ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
-                  : "top-4 text-slate-500 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
-              }`}
-              htmlFor="email"
-            >
-              Email
-            </label>
-          </div>
-
-          {/* Message Field */}
-          <div className="relative">
-            <textarea
-              autoComplete="off"
-              className="peer w-full resize-none rounded-xl border border-slate-700/50 bg-slate-800/50 px-4 py-4 text-white placeholder-transparent outline-none transition-all duration-300 focus:border-cyan-500/50 focus:ring-2 focus:ring-cyan-500/20"
-              id="message"
-              name="message"
-              onBlur={() => setFocusedField(null)}
-              onChange={handleOnChange}
-              onFocus={() => setFocusedField("message")}
-              placeholder="Message"
-              required
-              rows={4}
-            />
-            <label
-              className={`pointer-events-none absolute left-4 transition-all duration-300 ${
-                focusedField === "message"
-                  ? "-top-2 bg-slate-900 px-2 text-cyan-400 text-xs"
-                  : "top-4 text-slate-500 peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:bg-slate-900 peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:text-cyan-400 peer-[:not(:placeholder-shown)]:text-xs"
-              }`}
-              htmlFor="message"
-            >
-              Message
-            </label>
-          </div>
-
-          {/* Error State */}
-          {!!invalidData && !loading && (
-            <motion.div
-              animate={{ opacity: 1, y: 0 }}
-              className="rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-center"
-              initial={{ opacity: 0, y: -10 }}
-            >
-              <p className="text-red-400 text-sm">
-                Please check your information and try again
-              </p>
-            </motion.div>
-          )}
-
-          {/* Submit Button */}
-          <motion.button
-            className="relative w-full cursor-pointer overflow-hidden rounded-xl py-4 font-medium text-white disabled:cursor-not-allowed disabled:opacity-50"
-            disabled={loading}
-            type="submit"
-            whileHover={{ scale: loading ? 1 : 1.02 }}
-            whileTap={{ scale: loading ? 1 : 0.98 }}
-          >
-            <span className="absolute inset-0 bg-linear-to-r from-cyan-500 to-teal-500" />
-            <span className="absolute inset-0 bg-linear-to-r from-cyan-400 to-teal-400 opacity-0 transition-opacity duration-300 hover:opacity-100" />
-
-            {loading ? (
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                <svg
-                  className="h-5 w-5 animate-spin"
-                  fill="none"
-                  viewBox="0 0 24 24"
+              {sendFailed && !loading ? (
+                <div
+                  className="rounded-lg border border-red-400/40 bg-red-500/10 p-3"
+                  role="alert"
                 >
-                  <title>Loading</title>
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    fill="currentColor"
-                  />
-                </svg>
-                Sending...
-              </span>
-            ) : (
-              <span className="relative z-10">Send message</span>
-            )}
-          </motion.button>
-        </form>
+                  <p className="text-red-200 text-sm">
+                    The message didn&apos;t send. Your draft is still here. Try
+                    again, or{" "}
+                    <a
+                      className="underline underline-offset-2"
+                      href="mailto:manu.sacr@hotmail.com"
+                    >
+                      email me
+                    </a>
+                    .
+                  </p>
+                </div>
+              ) : null}
+
+              <button
+                className="contact-pill relative min-h-12 w-full cursor-pointer"
+                disabled={loading}
+                type="submit"
+              >
+                {loading ? (
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <svg
+                      aria-hidden="true"
+                      className="h-5 w-5 animate-spin"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    Sending...
+                  </span>
+                ) : (
+                  <span className="relative z-10">Send message</span>
+                )}
+              </button>
+            </form>
+          )}
+        </div>
       </motion.div>
     </SectionLayout>
   );

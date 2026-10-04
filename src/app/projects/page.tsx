@@ -7,23 +7,17 @@ export default async function ProjectsPage() {
   return (
     <div className="min-h-screen px-6 pt-28 pb-16 md:px-8">
       {/* Background Elements */}
-      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/4 right-1/4 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 h-80 w-80 rounded-full bg-teal-500/8 blur-3xl" />
-      </div>
-
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
         <div className="mb-16 text-center">
-          <span className="mb-2 block text-cyan-500 text-xs uppercase tracking-widest">
-            Portfolio
-          </span>
-          <h1 className="mb-4 font-bold text-4xl text-white md:text-5xl">
-            All <span className="gradient-text">Projects</span>
+          <h1
+            className="hero-heading mb-6 font-black uppercase leading-none tracking-tight"
+            style={{ fontSize: "clamp(3rem, 10vw, 8rem)" }}
+          >
+            Projects
           </h1>
-          <p className="mx-auto text-balance text-slate-400">
-            Explore my projects and discover how I transform ideas into digital
-            experiences.
+          <p className="mx-auto max-w-xl text-balance text-[#D7E2EA]">
+            Shipped sites, client systems, and experiments. Portal Bosque stays
+            as work I delivered.
           </p>
         </div>
 

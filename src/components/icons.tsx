@@ -55,7 +55,7 @@ export const CheckIcon = ({
   className?: string;
 }) => (
   <svg
-    className={`fill-[#1daf12] ${className}`}
+    className={className ?? "fill-slate-950"}
     height={size}
     viewBox="0 0 512 512"
     width={size}

@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-01T08:10:20.000Z",
+  "title": "Design System: Manuel Salvador — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "studio-black": {
+        "role": "neutral",
+        "displayName": "Studio Black",
+        "canonical": "#0C0C0C",
+        "tonalRamp": [
+          "#0d0d0d",
+          "#262626",
+          "#424242",
+          "#606060",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#ebebeb"
+        ]
+      },
+      "ice-ink": {
+        "role": "neutral",
+        "displayName": "Ice Ink",
+        "canonical": "#D7E2EA",
+        "tonalRamp": [
+          "#070e13",
+          "#1f282e",
+          "#3b444a",
+          "#586269",
+          "#788289",
+          "#9ca6ae",
+          "#c2ccd4",
+          "#e2edf5"
+        ]
+      },
+      "steel-shadow": {
+        "role": "neutral",
+        "displayName": "Steel Shadow",
+        "canonical": "#646973",
+        "tonalRamp": [
+          "#0a0d15",
+          "#22262f",
+          "#3e424c",
+          "#5c616a",
+          "#7b808b",
+          "#9fa5b0",
+          "#c5cbd6",
+          "#e5ebf7"
+        ]
+      },
+      "steel-light": {
+        "role": "neutral",
+        "displayName": "Steel Light",
+        "canonical": "#BBCCD7",
+        "tonalRamp": [
+          "#040f16",
+          "#1b2831",
+          "#36454e",
+          "#54636c",
+          "#73838d",
+          "#97a7b2",
+          "#bccdd8",
+          "#ddeef9"
+        ]
+      },
+      "white-sheet": {
+        "role": "neutral",
+        "displayName": "White Sheet",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#0d0d0d",
+          "#262626",
+          "#424242",
+          "#606060",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#ebebeb"
+        ]
+      },
+      "ember-root": {
+        "role": "primary",
+        "displayName": "Ember Root",
+        "canonical": "#18011F",
+        "tonalRamp": [
+          "#190120",
+          "#35193c",
+          "#52365b",
+          "#71537b",
+          "#92739c",
+          "#b897c2",
+          "#debce9",
+          "#f7e4fc"
+        ]
+      },
+      "ember-magenta": {
+        "role": "primary",
+        "displayName": "Ember Magenta",
+        "canonical": "#B600A8",
+        "tonalRamp": [
+          "#1e001b",
+          "#45013f",
+          "#700a67",
+          "#a10195",
+          "#c63bb8",
+          "#f064df",
+          "#f9aded",
+          "#fde1f8"
+        ]
+      },
+      "ember-violet": {
+        "role": "primary",
+        "displayName": "Ember Violet",
+        "canonical": "#7621B0",
+        "tonalRamp": [
+          "#17002a",
+          "#38005a",
+          "#5d078f",
+          "#7c36b3",
+          "#9d59d7",
+          "#bf86f4",
+          "#d9bcf9",
+          "#f1e5ff"
+        ]
+      },
+      "ember-heat": {
+        "role": "primary",
+        "displayName": "Ember Heat",
+        "canonical": "#BE4C00",
+        "tonalRamp": [
+          "#210200",
+          "#451500",
+          "#702900",
+          "#9a4315",
+          "#c75d28",
+          "#f08250",
+          "#f9ba9f",
+          "#fde6dc"
+        ]
+      },
+      "ember-gradient": {
+        "role": "primary",
+        "displayName": "Ember Pill",
+        "canonical": "linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%)",
+        "tonalRamp": [
+          "#18011F",
+          "#B600A8",
+          "#7621B0",
+          "#BE4C00",
+          "#18011F",
+          "#B600A8",
+          "#7621B0",
+          "#BE4C00"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Poster and section titles. Steel gradient only on studio black; solid studio black on the white sheet. The hero line uses the same face at 10.2vw–12.6vw."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Two-digit indexes beside a service or a stacked project."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Uppercase service and project names under the index."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Quiet reading copy. About steps to weight 500; supporting lines drop to weight 300."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase ghost actions at 0.1em tracking. The contact pill uses the same tracking from 0.75rem."
+      }
+    },
+    "shadows": [
+      {
+        "name": "contact-pill",
+        "value": "0 4px 4px rgba(181, 1, 167, 0.25), inset 4px 4px 12px #7721b1",
+        "purpose": "The only shadow. It belongs to the contact pill and the sent-state disc, not to cards or sheets."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-poster",
+        "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        "purpose": "Poster entrances. Default duration 0.7s; about stills 0.9s. Once, from a 30px rise, skipped when reduced motion is set."
+      },
+      {
+        "name": "duration-pill",
+        "value": "200ms ease",
+        "purpose": "Contact pill opacity and ghost color washes."
+      },
+      {
+        "name": "duration-sheet",
+        "value": "0.6s",
+        "purpose": "Contact sheet entrance, 28px rise. Skipped when reduced motion is set."
+      },
+      {
+        "name": "marquee-scroll",
+        "value": "translateX((scroll offset) * 0.3)",
+        "purpose": "Two screenshot rows drift in opposite directions. They stay still when reduced motion is set."
+      },
+      {
+        "name": "stack-scale",
+        "value": "scale 1 to 1 - (cards behind * 0.03)",
+        "purpose": "Sticky project cards shrink as they pin. Off when reduced motion is set."
+      },
+      {
+        "name": "scroll-smooth",
+        "value": "smooth",
+        "purpose": "Document scroll-behavior. Poster sections do not add scroll-padding. Contact alone uses an 8px scroll margin."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Contact Pill",
+      "kind": "button",
+      "refersTo": "button-contact",
+      "description": "The only filled action. Hero, about, and the contact submit share it.",
+      "html": "<button class=\"ds-contact-pill\" type=\"button\">Contact Me</button>",
+      "css": ".ds-contact-pill { display: inline-flex; align-items: center; justify-content: center; padding: 12px 32px; font-family: Kanit, sans-serif; font-size: 0.75rem; font-weight: 500; line-height: 1; color: #FFFFFF; text-transform: uppercase; letter-spacing: 0.1em; background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%); border: none; border-radius: 9999px; outline: 2px solid #FFFFFF; outline-offset: -3px; box-shadow: 0 4px 4px rgba(181, 1, 167, 0.25), inset 4px 4px 12px #7721b1; cursor: pointer; transition: opacity 200ms ease; } .ds-contact-pill:hover { opacity: 0.85; } .ds-contact-pill:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; } .ds-contact-pill:disabled { cursor: not-allowed; opacity: 0.5; } @media (min-width: 640px) { .ds-contact-pill { padding: 14px 40px; font-size: 0.875rem; } } @media (min-width: 768px) { .ds-contact-pill { padding: 16px 48px; font-size: 1rem; } }"
+    },
+    {
+      "name": "Ghost Pill",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Every action that is not the contact pill: live project, code, all projects, CV, send another.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#projects\">Live Project</a>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 12px 32px; font-family: Kanit, sans-serif; font-size: 0.875rem; font-weight: 500; color: #D7E2EA; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; background: transparent; border: 2px solid #D7E2EA; border-radius: 9999px; transition: background-color 200ms ease; } .ds-btn-ghost:hover { background: rgba(215, 226, 234, 0.1); } .ds-btn-ghost:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; } @media (min-width: 640px) { .ds-btn-ghost { padding: 14px 40px; font-size: 1rem; } }"
+    },
+    {
+      "name": "Contact Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Transparent ice field on studio black. The label rises onto a black chip when the field is filled.",
+      "html": "<label class=\"ds-field\"><input type=\"text\" placeholder=\"Name\" /><span>Name</span></label>",
+      "css": ".ds-field { position: relative; display: block; font-family: Kanit, sans-serif; } .ds-field span { position: absolute; left: 16px; top: 16px; color: rgba(215, 226, 234, 0.7); font-size: 1rem; transition: top 300ms, font-size 300ms, padding 300ms; } .ds-field input { width: 100%; padding: 16px; font-family: inherit; font-size: 1rem; font-weight: 400; line-height: 1.625; color: #D7E2EA; background: transparent; border: 1px solid rgba(215, 226, 234, 0.35); border-radius: 16px; } .ds-field input::placeholder { color: transparent; } .ds-field input:focus-visible { outline: none; border-color: #D7E2EA; box-shadow: 0 0 0 2px rgba(215, 226, 234, 0.3); } .ds-field input:focus-visible + span, .ds-field input:not(:placeholder-shown) + span { top: -8px; padding: 0 8px; font-size: 0.75rem; color: #D7E2EA; background: #0C0C0C; } .ds-field input[aria-invalid=\"true\"] { border-color: rgba(248, 113, 113, 0.7); box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.4); }"
+    },
+    {
+      "name": "Poster Nav",
+      "kind": "nav",
+      "description": "Four uppercase ice links spread across the hero. Not fixed, and not rendered as a bar on the poster.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Poster\"><a href=\"#about\">About</a><a href=\"#services\">Services</a><a href=\"#projects\">Projects</a><a href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; } .ds-nav a { font-family: Kanit, sans-serif; font-size: 0.875rem; font-weight: 500; color: #D7E2EA; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; transition: opacity 200ms; } .ds-nav a:hover { opacity: 0.7; } .ds-nav a:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 4px; } @media (min-width: 768px) { .ds-nav a { font-size: 1.125rem; } } @media (min-width: 1024px) { .ds-nav a { font-size: 1.4rem; } }"
+    },
+    {
+      "name": "Stack Card",
+      "kind": "card",
+      "refersTo": "card-stack",
+      "description": "Sticky project card on the black sheet. Live cards are 85vh and scale down by 0.03 per card behind.",
+      "html": "<article class=\"ds-stack\"><div class=\"ds-stack-head\"><span class=\"ds-stack-index\">01</span><h3>Portal Bosque</h3></div><a class=\"ds-stack-ghost\" href=\"#projects\">Live Project</a><p>A nature-based family club, in production for a real client.</p></article>",
+      "css": ".ds-stack { display: flex; flex-direction: column; gap: 16px; padding: 16px; color: #D7E2EA; background: #0C0C0C; border: 2px solid #D7E2EA; border-radius: 40px; font-family: Kanit, sans-serif; } .ds-stack-head { display: flex; align-items: flex-end; gap: 16px; } .ds-stack-index { font-size: clamp(3rem, 10vw, 140px); font-weight: 900; line-height: 1; } .ds-stack h3 { margin: 0; font-size: clamp(1rem, 2.2vw, 2.1rem); font-weight: 500; line-height: 1; text-transform: uppercase; } .ds-stack p { margin: 0; max-width: 42rem; font-size: 0.875rem; font-weight: 300; line-height: 1.625; color: rgba(215, 226, 234, 0.8); } .ds-stack-ghost { align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; padding: 12px 32px; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: #D7E2EA; border: 2px solid #D7E2EA; border-radius: 9999px; } .ds-stack-ghost:hover { background: rgba(215, 226, 234, 0.1); } .ds-stack-ghost:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; } @media (min-width: 640px) { .ds-stack { padding: 24px; border-radius: 50px; } } @media (min-width: 768px) { .ds-stack { padding: 32px; border-radius: 60px; } }"
+    },
+    {
+      "name": "Services Sheet",
+      "kind": "custom",
+      "refersTo": "sheet-services",
+      "description": "The one white sheet. Display type on it is solid studio black, not the steel gradient.",
+      "html": "<section class=\"ds-sheet\"><h2>Services</h2><div class=\"ds-service\"><span>01</span><div><h3>Web products</h3><p>End-to-end web products a client or a team can use.</p></div></div></section>",
+      "css": ".ds-sheet { padding: 80px 20px 32px; color: #0C0C0C; background: #FFFFFF; border-radius: 40px 40px 0 0; font-family: Kanit, sans-serif; } .ds-sheet h2 { margin: 0 0 64px; font-size: clamp(3rem, 12vw, 160px); font-weight: 900; line-height: 1; letter-spacing: -0.025em; text-align: center; text-transform: uppercase; } .ds-service { display: flex; flex-direction: column; gap: 16px; padding: 32px 0; border-bottom: 1px solid rgba(12, 12, 12, 0.15); } .ds-service span { font-size: clamp(3rem, 10vw, 140px); font-weight: 900; line-height: 1; } .ds-service h3 { margin: 0 0 12px; font-size: clamp(1rem, 2.2vw, 2.1rem); font-weight: 500; line-height: 1; text-transform: uppercase; } .ds-service p { margin: 0; max-width: 42rem; font-size: clamp(0.85rem, 1.6vw, 1.25rem); font-weight: 300; line-height: 1.625; opacity: 0.6; } @media (min-width: 640px) { .ds-sheet { border-radius: 50px 50px 0 0; padding: 96px 32px 40px; } } @media (min-width: 768px) { .ds-sheet { border-radius: 60px 60px 0 0; padding: 128px 40px 48px; } .ds-service { flex-direction: row; align-items: center; gap: 40px; } }"
+    },
+    {
+      "name": "Steel Display",
+      "kind": "custom",
+      "description": "Section title on the black field. Clipped to the vertical steel gradient.",
+      "html": "<h2 class=\"ds-display\">About me</h2>",
+      "css": ".ds-display { margin: 0; font-family: Kanit, sans-serif; font-size: clamp(3rem, 12vw, 160px); font-weight: 900; line-height: 1; letter-spacing: -0.025em; text-align: center; text-transform: uppercase; color: transparent; background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%); -webkit-background-clip: text; background-clip: text; }"
+    },
+    {
+      "name": "Skill Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Uppercase skill mark on an index card. Not a toggle and not a filled accent.",
+      "html": "<span class=\"ds-chip\">TypeScript</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; padding: 4px 12px; font-family: Kanit, sans-serif; font-size: 0.75rem; font-weight: 400; color: #D7E2EA; text-transform: uppercase; letter-spacing: 0.05em; background: transparent; border: 1px solid rgba(215, 226, 234, 0.3); border-radius: 9999px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Studio Poster",
+    "overview": "The homepage is a poster on a dark studio floor. One black field, one white services sheet, steel display type, and a single magenta-to-ember action. Scale is dense at the headline and quiet in the paragraph. The name on the poster is Manuel Salvador; the work is full-stack product delivery.\n\nThe previous observatory is rejected: glass cards, sonar cyan, and a floating pill nav do not belong on this floor. Generic purple-on-black chrome is rejected too. Magenta lives inside one pill. It is a pinned accent, not a theme.",
+    "keyCharacteristics": [
+      "Studio black field, ice ink, steel gradient display on that field",
+      "One white sheet with 40–60px top corners",
+      "One filled pill; every other action is a ghost stroke",
+      "Uppercase tracked labels, then quiet body copy",
+      "Kanit only, in the weights the site loads: 300, 400, 500, 700, and 900",
+      "Depth from an overlapping sheet and a sticky project stack, not glow"
+    ],
+    "rules": [
+      {
+        "name": "The One Pill Rule",
+        "body": "Ember magenta, ember violet, and ember heat appear only inside the contact pill (including the sent-state disc that reuses that control). No other surface, rule, or heading takes this gradient. If a screen needs a second filled color, it does not get one.",
+        "section": "colors"
+      },
+      {
+        "name": "The Poster Then Quiet Rule",
+        "body": "Headlines are black weight, uppercase, and leading-none. Paragraphs do not inherit that size. On the white sheet, display type is solid studio black. The steel gradient is only for display type on the black field.",
+        "section": "typography"
+      },
+      {
+        "name": "The Steel On Black Rule",
+        "body": "Clip the gradient to the glyphs. Do not paint a flat white headline on the field, and do not run the steel gradient across the white sheet.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Field Rule",
+        "body": "Surfaces are flat at rest and on hover. Do not add a drop shadow, a glow, or a glass blur to a sheet, a card, or a field. Hover on a ghost pill is a 10% ice wash. Hover on the contact pill is opacity 0.85. Disabled pill opacity is 0.5.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Big Corner Rule",
+        "body": "A poster sheet or a stacked project card uses the 40 / 50 / 60px steps. Do not drop those surfaces back to an 8px or 12px radius. Pills stay fully round. The 16px radius is for fields and marquee tiles, not for the sheet.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do paint the field studio black (#0C0C0C) and set reading type in ice ink (#D7E2EA).",
+      "Do set poster display in Kanit 900, uppercase, leading-none, tracking -0.025em, and clip it to the steel gradient only on the black field.",
+      "Do keep a single filled action: the contact pill, white type on the ember gradient, fully round, with its own inset ring and shadow.",
+      "Do draw every other action as a ghost pill: 2px ice stroke, ice type, uppercase, tracking 0.1em.",
+      "Do round poster sheets and stack cards at 40px, 50px from 640px, and 60px from 768px.",
+      "Do place the original stills unframed on the field."
+    ],
+    "donts": [
+      "Don't revive the observatory: glass cards, sonar cyan, glow shadows, or a floating pill nav.",
+      "Don't theme the page in purple. Magenta is a stop inside the one pill, not a surface color.",
+      "Don't set body copy in the display clamp, or introduce a second typeface. The face is Kanit.",
+      "Don't add hard offset shadows, eyebrows, or kickers. The floor is flat except for the contact pill’s own shadow.",
+      "Don't invent another name, 3D services, or prices. The poster is Manuel Salvador’s."
+    ]
+  }
+}

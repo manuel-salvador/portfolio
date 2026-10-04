@@ -1,17 +1,31 @@
 "use client";
 
-import { ArrowDown } from "@/components/icons";
-import SkillsList from "@/components/skills-list";
-import SectionLayout from "@/layouts/section-layout";
 import { motion } from "motion/react";
+import { ArrowDown } from "@/components/icons";
+import SectionLayout from "@/layouts/section-layout";
+
+function ViewportCorners() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-5 md:inset-10"
+    >
+      <span className="absolute top-0 left-0 h-7 w-7 border-cyan-400/40 border-t border-l md:h-9 md:w-9" />
+      <span className="absolute top-0 right-0 h-7 w-7 border-cyan-400/40 border-t border-r md:h-9 md:w-9" />
+      <span className="absolute bottom-0 left-0 h-7 w-7 border-cyan-400/40 border-b border-l md:h-9 md:w-9" />
+      <span className="absolute right-0 bottom-0 h-7 w-7 border-cyan-400/40 border-r border-b md:h-9 md:w-9" />
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <SectionLayout
-      className="relative mt-32 flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-6 pt-0 text-center md:mt-20 md:pt-0 2xl:gap-12"
+      className="relative flex h-dvh max-h-dvh flex-col items-center justify-center gap-6 overflow-hidden py-0 pt-32 text-center md:py-0 md:pt-20 2xl:gap-10"
       id="home"
     >
-      {/* Background Gradient Orbs */}
+      <ViewportCorners />
+
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-1/4 left-1/4 h-96 w-96 animate-float rounded-full bg-cyan-500/20 blur-3xl" />
         <div
@@ -21,60 +35,86 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 h-150 w-150 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-radial from-cyan-500/10 to-transparent blur-2xl" />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col gap-5">
-        <motion.div
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 flex items-center justify-center"
+      >
+        <span className="absolute h-72 w-72 animate-sonar-ping rounded-full border border-cyan-400/25 md:h-96 md:w-96" />
+        <span
+          className="absolute h-72 w-72 animate-sonar-ping rounded-full border border-cyan-400/20 md:h-96 md:w-96"
+          style={{ animationDelay: "1.5s" }}
+        />
+        <span
+          className="absolute h-72 w-72 animate-sonar-ping rounded-full border border-teal-400/15 md:h-96 md:w-96"
+          style={{ animationDelay: "3s" }}
+        />
+      </div>
+
+      <div className="relative z-10 flex max-w-4xl flex-col items-center gap-5 px-4">
+        <motion.h1
           animate={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: -30 }}
+          className="gradient-text font-bold text-5xl tracking-tight md:text-6xl 2xl:text-7xl"
+          initial={{ opacity: 0, y: 24 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="gradient-text font-bold text-5xl tracking-tight 2xl:text-7xl">
-            Manuel Salvador
-          </h1>
-        </motion.div>
+          Manuel Salvador
+        </motion.h1>
 
-        <motion.div
+        <div aria-hidden="true" className="sonar-divider" />
+
+        <motion.h2
           animate={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 20 }}
-          transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+          className="text-slate-200 text-xl tracking-wide 2xl:text-2xl"
+          initial={{ opacity: 0, y: 16 }}
+          transition={{ delay: 0.35, duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-slate-300 text-xl tracking-wide 2xl:text-2xl">
-            <span className="text-cyan-400">&lt;</span>
-            Full-Stack Web Developer
-            <span className="text-cyan-400"> /&gt;</span>
-          </h2>
-        </motion.div>
+          Full-Stack Web Developer
+        </motion.h2>
 
         <motion.p
           animate={{ opacity: 1 }}
-          className="mx-auto text-balance text-slate-400 text-sm md:text-base"
+          className="mx-auto max-w-xl text-balance text-base text-slate-300 md:text-lg"
           initial={{ opacity: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
-          Building modern digital experiences with clean, scalable code and
-          intuitive design.
+          I shipped Portal Bosque for a real client. Diseñar Viajes is the
+          system I&apos;m building now, and I&apos;m open to the next role or
+          project.
         </motion.p>
       </div>
 
-      {/* Skills Section */}
       <motion.div
         animate={{ opacity: 1, y: 0 }}
-        className="relative z-10"
-        initial={{ opacity: 0, y: 30 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
+        className="relative z-10 flex flex-wrap items-center justify-center gap-4"
+        initial={{ opacity: 0, y: 24 }}
+        transition={{ delay: 0.62, duration: 0.8 }}
       >
-        <SkillsList />
+        <a
+          className="btn-primary rounded-xl px-8 py-3 font-medium"
+          href="#projects"
+        >
+          See my work
+        </a>
+        <a
+          className="rounded-full border border-slate-600 bg-slate-800/50 px-8 py-3 font-medium text-slate-100 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-white focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-2"
+          href="#contact"
+        >
+          Get in touch
+        </a>
       </motion.div>
 
-      {/* Scroll Indicator */}
       <motion.a
         animate={{ opacity: 1 }}
-        className="absolute bottom-4 flex flex-col items-center gap-2 text-slate-400 transition-colors hover:text-cyan-400 md:bottom-8"
+        aria-label="Scroll to about"
+        className="absolute bottom-4 flex flex-col items-center gap-2 text-slate-300 transition-colors hover:text-cyan-300 focus-visible:outline-2 focus-visible:outline-cyan-300 focus-visible:outline-offset-4 md:bottom-8"
         href="#aboutMe"
         initial={{ opacity: 0 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 1.1 }}
       >
-        <span className="text-xs uppercase tracking-widest md:hidden 2xl:block">
+        <span
+          aria-hidden="true"
+          className="text-xs uppercase tracking-widest md:hidden 2xl:block"
+        >
           Scroll
         </span>
         <motion.div

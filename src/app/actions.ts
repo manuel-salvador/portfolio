@@ -1,51 +1,48 @@
 "use server";
 
-const nameRegex = /^[a-zA-Z\s]+$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const messageRegex = /^[a-zA-Z0-9\s!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+$/;
+import {
+  type ContactFieldErrors,
+  validateContactFields,
+} from "@/utils/contact-form";
 
-export const sendEmail = async (formData: FormData) => {
+export type SendEmailResult =
+  | { status: 200; message: string }
+  | { status: 400; message: string; errors: ContactFieldErrors }
+  | { status: 500; message: string };
+
+const SEND_FAILURE =
+  "The message didn't send. Your draft is still here. Try again, or email manu.sacr@hotmail.com.";
+
+function readField(formData: FormData, field: string): string {
+  const value = formData.get(field);
+  return typeof value === "string" ? value : "";
+}
+
+export const sendEmail = async (
+  formData: FormData
+): Promise<SendEmailResult> => {
+  const name = readField(formData, "name");
+  const email = readField(formData, "email");
+  const message = readField(formData, "message");
+  const errors = validateContactFields({ email, message, name });
+
+  if (Object.keys(errors).length > 0) {
+    return {
+      errors,
+      message: "Some fields need a quick fix.",
+      status: 400,
+    };
+  }
+
   try {
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const message = formData.get("message") as string;
-
-    if (!(name && email && message)) {
-      return {
-        message: "All fields are required",
-        status: 400,
-      };
-    }
-
-    if (!nameRegex.test(name)) {
-      return {
-        message: "Invalid name format",
-        status: 400,
-      };
-    }
-
-    if (!emailRegex.test(email)) {
-      return {
-        message: "Invalid email format",
-        status: 400,
-      };
-    }
-
-    if (!messageRegex.test(message)) {
-      return {
-        message: "Invalid message format",
-        status: 400,
-      };
-    }
-
     const data = {
       accessToken: process.env.EMAIL_PRIVATE_KEY,
       service_id: process.env.EMAIL_SERVICE_ID,
       template_id: process.env.EMAIL_TEMPLATE_ID,
       template_params: {
-        email,
-        message,
-        name,
+        email: email.trim(),
+        message: message.trim(),
+        name: name.trim(),
       },
       user_id: process.env.EMAIL_PUBLIC_KEY,
     };
@@ -63,7 +60,7 @@ export const sendEmail = async (formData: FormData) => {
 
     if (!response.ok) {
       return {
-        message: "Failed to send email",
+        message: SEND_FAILURE,
         status: 500,
       };
     }
@@ -72,9 +69,9 @@ export const sendEmail = async (formData: FormData) => {
       message: "OK",
       status: 200,
     };
-  } catch (error) {
+  } catch {
     return {
-      message: error instanceof Error ? error.message : "Something went wrong",
+      message: SEND_FAILURE,
       status: 500,
     };
   }

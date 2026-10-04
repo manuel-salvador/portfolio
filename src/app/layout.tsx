@@ -1,20 +1,17 @@
 import "@/styles/globals.css";
 import "atropos/css/min";
 
-import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Kanit } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import AmbientBackground from "@/components/studio/ambient-background";
+import FadeInObserver from "@/components/studio/fade-in-observer";
 
-const inter = Inter({
+const kanit = Kanit({
   subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
+  weight: ["300", "400", "500", "700", "900"],
 });
 
 const SITE_NAME = "Manuel Salvador | Portfolio";
@@ -25,6 +22,12 @@ const SITE_URL = process.env.NEXT_PUBLIC_PREVIEW_MODE
   : "https://manuel-salvador.vercel.app";
 const SITE_IMAGE = "https://i.imgur.com/kBZaSjc.png";
 const TWITTER_HANDLE = "@manu_svd";
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  viewportFit: "cover",
+  width: "device-width",
+};
 
 export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
@@ -66,10 +69,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={`${inter.variable} ${spaceGrotesk.variable}`} lang="en">
-      <body className={`${inter.className} antialiased`}>
+    <html lang="en">
+      <body
+        className={`${kanit.className} relative isolate bg-[#0C0C0C] text-[#D7E2EA] antialiased`}
+      >
+        <AmbientBackground />
         <Header />
-        <main className="mx-auto min-h-screen max-w-7xl">{children}</main>
+        <main className="min-h-screen overflow-x-clip">
+          {children}
+          <FadeInObserver />
+        </main>
         <Footer />
       </body>
     </html>

@@ -10,7 +10,7 @@ export default function SocialLinkIcon({
   const sizeClasses = size === "sm" ? "h-8 w-8 p-1.5" : "h-12 w-12 p-3";
   return (
     <a
-      className={`flex ${sizeClasses} items-center justify-center rounded-full border border-white/10 bg-white/5 transition-all duration-300 hover:border-cyan-500/50 hover:bg-cyan-500/20 hover:text-cyan-400`}
+      className={`flex ${sizeClasses} items-center justify-center rounded-full border border-[#D7E2EA]/20 text-[#D7E2EA] transition-all duration-300 hover:border-[#D7E2EA] hover:bg-[#D7E2EA]/10`}
       href={href}
       rel="noreferrer"
       target="_blank"
