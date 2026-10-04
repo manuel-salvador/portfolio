@@ -107,6 +107,12 @@ The user's latest direction replaces the steel headings and ember contact palett
 - Browser chrome: #0891B2 scrollbar thumb and #A5F3FC selection highlight on #0C0C0C.
 - Purple, magenta, and orange contact stops are retired. Other actions retain their ice ghost treatment.
 
+## Ambient background update — 2026-10-04
+
+The user's direction adds a shared dark abstract background with cyan and teal light moving slowly across the field. It appears behind the homepage sections and inner pages; the hero retains its scene. Two gradient layers drift over 26–32 seconds, with a darker center for reading. Services retains its light sheet at 95% opacity, allowing a faint tint through. Project cards remain solid and the contact panel uses an 80% studio-black ground.
+
+The background pauses while the hero covers the viewport or the tab is hidden. Reduced motion keeps a static field. This background treatment takes precedence over the original flat-field rule for the page ground; it does not add elevation to cards or controls.
+
 ## Overview
 
 **Creative North Star: "The Studio Poster"**

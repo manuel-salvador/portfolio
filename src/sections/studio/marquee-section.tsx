@@ -99,7 +99,7 @@ export default function MarqueeSection({ images }: MarqueeSectionProps) {
   return (
     <section
       aria-label="Project screenshots"
-      className="overflow-hidden bg-[#0C0C0C] pt-24 pb-10 sm:pt-32 md:pt-40"
+      className="overflow-hidden pt-24 pb-10 sm:pt-32 md:pt-40"
       ref={sectionRef}
     >
       <div className="flex flex-col gap-3">

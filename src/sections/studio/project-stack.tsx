@@ -225,7 +225,7 @@ function StackCard({
 export default function ProjectStack({ projects }: ProjectStackProps) {
   return (
     <section
-      className="relative z-10 -mt-10 rounded-t-[40px] bg-[#0C0C0C] px-5 pt-16 pb-24 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 md:-mt-14 md:rounded-t-[60px] md:px-10"
+      className="project-stack-surface relative z-10 -mt-10 rounded-t-[40px] px-5 pt-16 pb-24 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 md:-mt-14 md:rounded-t-[60px] md:px-10"
       id="projects"
     >
       <h2

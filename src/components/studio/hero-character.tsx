@@ -9,6 +9,8 @@ const FRONT_TIME = 1.5;
 const START_TIME = 0.25;
 const FRAME_DURATION = 1 / 24;
 const SEEK_THRESHOLD = FRAME_DURATION / 2;
+const BOTTOM_FADE_MASK =
+  "linear-gradient(to bottom, #000 66%, rgb(0 0 0 / 0.7) 77%, rgb(0 0 0 / 0.2) 89%, transparent 98%)";
 
 function getPoseTime(position: number, duration: number): number {
   const endTime = Math.max(START_TIME, duration - FRAME_DURATION);
@@ -160,6 +162,10 @@ export default function HeroCharacter() {
       className="group relative aspect-[360/347] w-full"
       data-ready="false"
       ref={portraitRef}
+      style={{
+        maskImage: BOTTOM_FADE_MASK,
+        WebkitMaskImage: BOTTOM_FADE_MASK,
+      }}
     >
       <Image
         alt=""

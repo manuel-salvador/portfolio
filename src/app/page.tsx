@@ -47,7 +47,7 @@ export default async function HomePage() {
   const projects = await api.projects.list();
 
   return (
-    <div className="overflow-x-clip bg-[#0C0C0C] text-[#D7E2EA]">
+    <div className="overflow-x-clip text-[#D7E2EA]">
       <HeroSection />
       <MarqueeSection images={screenshotUrls(projects)} />
       <AboutSection />

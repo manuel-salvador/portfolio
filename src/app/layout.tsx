@@ -6,6 +6,7 @@ import { Kanit } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import AmbientBackground from "@/components/studio/ambient-background";
 
 const kanit = Kanit({
   subsets: ["latin"],
@@ -69,8 +70,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${kanit.className} bg-[#0C0C0C] text-[#D7E2EA] antialiased`}
+        className={`${kanit.className} relative isolate bg-[#0C0C0C] text-[#D7E2EA] antialiased`}
       >
+        <AmbientBackground />
         <Header />
         <main className="min-h-screen overflow-x-clip">{children}</main>
         <Footer />

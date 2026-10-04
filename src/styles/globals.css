@@ -353,6 +353,91 @@ body {
   background: #0c0c0c;
 }
 
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  contain: strict;
+  overflow: hidden;
+  pointer-events: none;
+  background: #0c0c0c;
+}
+
+.ambient-background-light {
+  position: absolute;
+  inset: -20%;
+  animation: ambient-light-drift 26s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+.ambient-background-light-cyan {
+  background:
+    radial-gradient(
+      ellipse at 8% 65%,
+      rgb(34 211 238 / 0.22),
+      rgb(6 182 212 / 0.08) 28%,
+      transparent 52%
+    ),
+    radial-gradient(ellipse at 78% 12%, rgb(6 182 212 / 0.16), transparent 46%);
+}
+
+.ambient-background-light-teal {
+  background:
+    radial-gradient(
+      ellipse at 90% 76%,
+      rgb(13 148 136 / 0.24),
+      rgb(13 148 136 / 0.06) 30%,
+      transparent 54%
+    ),
+    radial-gradient(ellipse at 28% 18%, rgb(34 211 238 / 0.08), transparent 42%);
+  animation-duration: 32s;
+  animation-delay: -12s;
+  animation-direction: alternate-reverse;
+}
+
+.ambient-background-shade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgb(12 12 12 / 0.75),
+    rgb(12 12 12 / 0.2) 66%,
+    transparent
+  );
+}
+
+.ambient-background[data-active="true"] .ambient-background-light {
+  animation-play-state: running;
+}
+
+.project-stack-surface {
+  background: linear-gradient(#0c0c0c 3.5rem, transparent 18rem);
+}
+
+@keyframes ambient-light-drift {
+  from {
+    opacity: 0.7;
+    transform: translate3d(-4%, 3%, 0) rotate(-8deg) scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(5%, -4%, 0) rotate(8deg) scale(1.12);
+  }
+}
+
+@media (max-width: 639px) {
+  .ambient-background-light {
+    inset: -10%;
+    animation-duration: 32s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-background-light {
+    animation: none;
+  }
+}
+
 .hero-heading {
   color: transparent;
   -webkit-text-fill-color: transparent;

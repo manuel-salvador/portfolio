@@ -293,11 +293,11 @@ export default function Contact() {
 
   return (
     <SectionLayout
-      className="scroll-mt-8 bg-[#0C0C0C] px-5 py-24 sm:px-8 md:px-10"
+      className="scroll-mt-8 px-5 py-24 sm:px-8 md:px-10"
       id="contact"
     >
       <motion.div
-        className="relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-[40px] border-2 border-[#D7E2EA]/25 md:grid-cols-[0.9fr_1.1fr]"
+        className="relative mx-auto grid w-full max-w-5xl overflow-hidden rounded-[40px] border-2 border-[#D7E2EA]/25 bg-[#0C0C0C]/80 md:grid-cols-[0.9fr_1.1fr]"
         initial={reduceMotion ? false : { opacity: 0.85, y: 28 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
