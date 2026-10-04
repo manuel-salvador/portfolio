@@ -1,26 +1,28 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 import { HERO_CHARACTER_MEDIA } from "@/constants/hero-character-media";
 
-const FRONT_TIME = 1.5;
-const START_TIME = 0.25;
-const FRAME_DURATION = 1 / 24;
+const FRAME_DURATION = 1 / HERO_CHARACTER_MEDIA.frameRate;
 const SEEK_THRESHOLD = FRAME_DURATION / 2;
+const RESPONSE_TIME_MS = 85;
+const POSITION_THRESHOLD = 0.002;
+const INITIAL_FRAME_MS = 1000 / 60;
 const BOTTOM_FADE_MASK =
   "linear-gradient(to bottom, #000 66%, rgb(0 0 0 / 0.7) 77%, rgb(0 0 0 / 0.2) 89%, transparent 98%)";
 
 function getPoseTime(position: number, duration: number): number {
-  const endTime = Math.max(START_TIME, duration - FRAME_DURATION);
-  const frontTime = Math.min(FRONT_TIME, endTime);
+  const endTime = Math.max(0, duration - FRAME_DURATION);
+  const leftTime = Math.min(HERO_CHARACTER_MEDIA.poseTimes.left, endTime);
+  const frontTime = Math.min(HERO_CHARACTER_MEDIA.poseTimes.front, endTime);
+  const rightTime = Math.min(HERO_CHARACTER_MEDIA.poseTimes.right, endTime);
 
   if (position <= 0.5) {
-    return START_TIME + position * 2 * (frontTime - START_TIME);
+    return leftTime + position * 2 * (frontTime - leftTime);
   }
 
-  return frontTime + (position - 0.5) * 2 * (endTime - frontTime);
+  return frontTime + (position - 0.5) * 2 * (rightTime - frontTime);
 }
 
 export default function HeroCharacter() {
@@ -39,21 +41,31 @@ export default function HeroCharacter() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     let pointerPosition = 0.5;
+    let displayedPosition = 0.5;
     let animationFrame = 0;
+    let lastFrameTime = 0;
+    let isVisible = true;
+    let failed = false;
 
     const canScrub = () => finePointer.matches && !reducedMotion.matches;
 
     const cancelSeek = () => {
       window.cancelAnimationFrame(animationFrame);
       animationFrame = 0;
+      lastFrameTime = 0;
     };
 
-    const seekToPointer = () => {
+    const hasPendingMovement = () =>
+      Math.abs(displayedPosition - pointerPosition) > POSITION_THRESHOLD;
+
+    const seekToPointer = (timestamp: number) => {
       animationFrame = 0;
 
       if (
         !canScrub() ||
         document.hidden ||
+        !isVisible ||
+        failed ||
         video.seeking ||
         video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA ||
         !Number.isFinite(video.duration) ||
@@ -62,23 +74,63 @@ export default function HeroCharacter() {
         return;
       }
 
-      const targetTime = getPoseTime(pointerPosition, video.duration);
+      const elapsed = lastFrameTime
+        ? timestamp - lastFrameTime
+        : INITIAL_FRAME_MS;
+      lastFrameTime = timestamp;
+      const blend = 1 - Math.exp(-elapsed / RESPONSE_TIME_MS);
+      displayedPosition += (pointerPosition - displayedPosition) * blend;
+      if (!hasPendingMovement()) {
+        displayedPosition = pointerPosition;
+      }
+
+      const poseTime = getPoseTime(displayedPosition, video.duration);
+      const targetTime = Math.round(poseTime / FRAME_DURATION) * FRAME_DURATION;
       if (Math.abs(video.currentTime - targetTime) > SEEK_THRESHOLD) {
         video.currentTime = targetTime;
+        return;
+      }
+
+      if (hasPendingMovement()) {
+        animationFrame = window.requestAnimationFrame(seekToPointer);
+      } else {
+        lastFrameTime = 0;
       }
     };
 
     const queueSeek = () => {
-      if (animationFrame === 0) {
+      if (
+        animationFrame === 0 &&
+        canScrub() &&
+        isVisible &&
+        !document.hidden &&
+        !failed
+      ) {
         animationFrame = window.requestAnimationFrame(seekToPointer);
       }
     };
 
     const onSeeked = () => {
-      if (canScrub()) {
+      if (!failed) {
         portrait.dataset.ready = "true";
-        queueSeek();
+        if (hasPendingMovement()) {
+          queueSeek();
+        } else {
+          lastFrameTime = 0;
+        }
       }
+    };
+
+    const initializePose = () => {
+      if (!Number.isFinite(video.duration) || video.duration <= 0 || failed) {
+        return;
+      }
+
+      video.pause();
+      const initialTime = canScrub()
+        ? getPoseTime(0.5, video.duration)
+        : HERO_CHARACTER_MEDIA.poseTimes.still;
+      video.currentTime = initialTime;
     };
 
     const onPointerMove = (event: PointerEvent) => {
@@ -87,6 +139,10 @@ export default function HeroCharacter() {
       }
 
       const bounds = hero.getBoundingClientRect();
+      if (bounds.width <= 0) {
+        return;
+      }
+
       pointerPosition = Math.max(
         0,
         Math.min(1, (event.clientX - bounds.left) / bounds.width)
@@ -100,6 +156,7 @@ export default function HeroCharacter() {
     };
 
     const onVideoError = () => {
+      failed = true;
       cancelSeek();
       portrait.dataset.ready = "false";
     };
@@ -107,17 +164,10 @@ export default function HeroCharacter() {
     const syncPreferences = () => {
       cancelSeek();
       pointerPosition = 0.5;
+      displayedPosition = 0.5;
       portrait.dataset.ready = "false";
-
-      if (canScrub()) {
-        video.preload = "auto";
-        video.src = HERO_CHARACTER_MEDIA.video;
-      } else {
-        video.removeAttribute("src");
-        video.preload = "none";
-      }
-
-      video.load();
+      video.preload = canScrub() ? "auto" : "metadata";
+      initializePose();
     };
 
     const onVisibilityChange = () => {
@@ -129,7 +179,17 @@ export default function HeroCharacter() {
       resetPose();
     };
 
-    video.addEventListener("loadeddata", queueSeek);
+    const observer = new IntersectionObserver(([entry]) => {
+      isVisible = entry?.isIntersecting ?? false;
+      if (isVisible) {
+        resetPose();
+      } else {
+        cancelSeek();
+        pointerPosition = 0.5;
+      }
+    });
+
+    video.addEventListener("loadedmetadata", initializePose);
     video.addEventListener("seeked", onSeeked);
     video.addEventListener("error", onVideoError);
     hero.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -138,11 +198,15 @@ export default function HeroCharacter() {
     document.addEventListener("visibilitychange", onVisibilityChange);
     reducedMotion.addEventListener("change", syncPreferences);
     finePointer.addEventListener("change", syncPreferences);
+    observer.observe(hero);
     syncPreferences();
+    video.src = HERO_CHARACTER_MEDIA.video;
+    video.load();
 
     return () => {
       cancelSeek();
-      video.removeEventListener("loadeddata", queueSeek);
+      observer.disconnect();
+      video.removeEventListener("loadedmetadata", initializePose);
       video.removeEventListener("seeked", onSeeked);
       video.removeEventListener("error", onVideoError);
       hero.removeEventListener("pointermove", onPointerMove);
@@ -151,6 +215,7 @@ export default function HeroCharacter() {
       document.removeEventListener("visibilitychange", onVisibilityChange);
       reducedMotion.removeEventListener("change", syncPreferences);
       finePointer.removeEventListener("change", syncPreferences);
+      video.pause();
       video.removeAttribute("src");
       video.load();
     };
@@ -167,21 +232,12 @@ export default function HeroCharacter() {
         WebkitMaskImage: BOTTOM_FADE_MASK,
       }}
     >
-      <Image
-        alt=""
-        className="object-contain"
-        fill
-        priority
-        sizes="(min-width: 1024px) 520px, (min-width: 768px) 440px, (min-width: 640px) 360px, 280px"
-        src={HERO_CHARACTER_MEDIA.poster}
-      />
       <video
         className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-150 group-data-[ready=true]:opacity-100 motion-reduce:transition-none"
         disablePictureInPicture
-        height={694}
+        height={720}
         muted
         playsInline
-        poster={HERO_CHARACTER_MEDIA.poster}
         preload="none"
         ref={videoRef}
         width={720}

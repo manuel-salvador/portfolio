@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import AmbientBackground from "@/components/studio/ambient-background";
 import FadeInObserver from "@/components/studio/fade-in-observer";
+import { SITE_LOGO_URL } from "@/constants/urls";
 
 const kanit = Kanit({
   subsets: ["latin"],
@@ -32,7 +33,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   icons: {
-    icon: "/favicon.ico",
+    icon: SITE_LOGO_URL,
   },
   metadataBase: new URL(SITE_URL),
   openGraph: {

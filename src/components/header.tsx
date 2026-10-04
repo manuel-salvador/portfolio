@@ -4,10 +4,10 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import logo from "public/logo.webp";
 import { useEffect, useRef, useState } from "react";
 
 import SocialLinkIcon from "@/components/social-link-icon";
+import { SITE_LOGO_URL } from "@/constants/urls";
 import { cn } from "@/lib/utils";
 import {
   CloseIcon,
@@ -205,7 +205,7 @@ export default function Header() {
               fill
               priority
               sizes="40px"
-              src={logo}
+              src={SITE_LOGO_URL}
             />
           </Link>
 

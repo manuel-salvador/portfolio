@@ -12,14 +12,14 @@ const TOP_STILLS = [
     className:
       "top-[4%] left-[1%] w-[120px] sm:left-[2%] sm:w-[160px] md:left-[4%] md:w-[210px]",
     delay: 0.1,
-    src: "/studio/moon.png",
+    src: "https://gqbv64qxck.ufs.sh/f/ojdYOw5LQOrYFOrOZ7iGC2SkxZhaQVlYKoUsTHivXcgfPO36",
     x: -80,
   },
   {
     className:
       "top-[4%] right-[1%] w-[120px] sm:right-[2%] sm:w-[160px] md:right-[4%] md:w-[210px]",
     delay: 0.15,
-    src: "/studio/brick.png",
+    src: "https://gqbv64qxck.ufs.sh/f/ojdYOw5LQOrYJ8TG220RZohvidLe7OG0l1SxpqPnfKkIN8b4",
     x: 80,
   },
 ] as const;
@@ -29,14 +29,14 @@ const LOWER_STILLS = [
     className:
       "top-[52%] left-[2%] w-[100px] sm:left-[5%] sm:w-[140px] md:left-[7%] md:w-[180px]",
     delay: 0.25,
-    src: "/studio/sculpture.png",
+    src: "https://gqbv64qxck.ufs.sh/f/ojdYOw5LQOrY6Ld6AkVn3BHjuIgWiJO2zcvrFoS0fELDqweA",
     x: -80,
   },
   {
     className:
       "top-[54%] right-[2%] w-[130px] sm:right-[5%] sm:w-[170px] md:right-[7%] md:w-[220px]",
     delay: 0.3,
-    src: "/studio/forms.png",
+    src: "https://gqbv64qxck.ufs.sh/f/ojdYOw5LQOrYMDdjQklMNC8qT05uPEXn4Jc7ey9GziaBhbZw",
     x: 80,
   },
 ] as const;
